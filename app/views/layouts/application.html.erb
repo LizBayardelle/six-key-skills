@@ -1,15 +1,59 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SKS</title>
+    <title>
+      <%= if content_for?(:title) then yield(:title) + ' | ' end %>
+      Six Key Skills
+    </title>
+    <%= if content_for?(:head) then yield(:head) end %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= include_gon %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag :application %>
+    <%#= favicon_link_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Cormorant:300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <!-- favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
   </head>
 
   <body>
-    <%= yield %>
+
+
+    <div class="non-footer">
+      <%= render 'layouts/navbar' %>
+      <%= render 'layouts/sidenav' %>
+      <%= render 'layouts/notifications' %>
+
+      <%= yield %>
+    </div>
+
+    <%= render 'layouts/footer' %>
+
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <%= javascript_include_tag 'mdb_framework'%>
+
+    <script>
+      // SideNav Button Initialization
+      $(".button-collapse").sideNav();
+      // SideNav Scrollbar Initialization
+      var sideNavScrollbar = document.querySelector('.custom-scrollbar');
+      var ps = new PerfectScrollbar(sideNavScrollbar);
+    </script>
+
+    <%= yield :additional_js %>
+
   </body>
 </html>

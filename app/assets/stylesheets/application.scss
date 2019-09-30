@@ -1,0 +1,100 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *
+  *= require_tree .
+  *= require_self
+  *= require perfect-scrollbar
+  */
+
+   @import 'bootstrap';
+   @import 'mdb/mdb';
+   @import 'font-awesome';
+   @import 'font_awesome5_webfont';
+   @import 'font_awesome5.css';
+
+
+
+
+
+
+  /*-----------------------------
+  -------------------------------
+  ------------COLORS-------------
+  -------------------------------
+  -------------------------------
+  -----------------------------*/
+
+$color-navy: #383b53 !important;
+$color-beige: #ccc5b9 !important;
+$color-red: #ad343e !important;
+$color-slate: #66717e !important;
+$color-whiteish: #fffcf2 !important;
+
+.color-navy { background-color: $color-navy; }
+.color-beige { background-color: $color-beige; }
+.color-red { background-color: $color-red; }
+.color-slate { background-color: $color-slate; }
+.color-whiteish { background-color: $color-whiteish; }
+
+.text-navy { color: $color-navy; }
+.text-beige { color: $color-beige; }
+.text-red { color: $color-red; }
+.text-slate { color: $color-slate; }
+.text-whiteish { color: $color-whiteish; }
+
+.text-white-hover:hover { color: white }
+
+a { color: $color-slate }
+a:hover { color: $color-navy }
+
+* { font-family: 'Cormorant', serif; }
+
+
+
+
+
+
+
+
+
+  /*-----------------------------
+  -------------------------------
+  ---------MDB OVERRIDES---------
+  -------------------------------
+  -------------------------------
+  -----------------------------*/
+
+
+body {
+  padding-left: 240px;
+}
+
+@media only screen and (max-width : 1441px) {
+  body {
+    padding-left: 0;
+  }
+}
+
+.side-nav .logo-wrapper {
+  height: 150px;
+}
+
+.sidenav-icon { display: inline-block; width: 25px;}
+
+.dropdown .dropdown-menu.dropdown-info .dropdown-item:hover, .dropdown .dropdown-menu.dropdown-info .dropdown-item:active, .dropdown .dropdown-menu.dropdown-info .dropdown-item.active, .dropup .dropdown-menu.dropdown-info .dropdown-item:hover, .dropup .dropdown-menu.dropdown-info .dropdown-item:active, .dropup .dropdown-menu.dropdown-info .dropdown-item.active, .dropleft .dropdown-menu.dropdown-info .dropdown-item:hover, .dropleft .dropdown-menu.dropdown-info .dropdown-item:active, .dropleft .dropdown-menu.dropdown-info .dropdown-item.active, .dropright .dropdown-menu.dropdown-info .dropdown-item:hover, .dropright .dropdown-menu.dropdown-info .dropdown-item:active, .dropright .dropdown-menu.dropdown-info .dropdown-item.active {
+    background-color: $color-navy;
+  }
+
+.nav-item {
+  padding-left: 10px;
+}
