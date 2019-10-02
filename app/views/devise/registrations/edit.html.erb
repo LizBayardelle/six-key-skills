@@ -1,35 +1,133 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<main class="my-5 py-5">
+  <div class="container">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+    <div class="card">
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+      <div class="card-header text-center">
+        <h2 class="my-1">Update My Information</h2>
+      </div> <!-- card header -->
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
+      <div class="card-body px-lg-5">
 
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
-  </div>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <%= f.error_notification %>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
+           <%= render "devise/shared/error_messages" %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+             <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+           <% end %>
 
-<%= link_to "Back", :back %>
+
+          <div class="form-inputs">
+            <h5 class="card-title pb-0 mb-0 text-center">Basic Information</h5>
+            <div class="row">
+
+              <div class="col-sm-4">
+                <div class="md-form mb-1">
+                  <%= f.text_field :first_name,
+                            class: "form-control",
+                            id: "materialFormFirstName",
+                            required: true,
+                            label: false,
+                            autofocus: true,
+                            input_html: { autocomplete: "first_name" }%>
+                  <label for="materialFormFirstName">First Name</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+              <div class="col-sm-4">
+                <div class="md-form mb-1">
+                  <%= f.text_field :last_name,
+                            class: "form-control",
+                            id: "materialFormLastName",
+                            required: true,
+                            input_html: { autocomplete: "last_name" }%>
+                  <label for="materialFormLastName">Last Name</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+              <div class="col-sm-4">
+                <div class="md-form mb-1">
+                  <%= f.text_field :email,
+                            class: "form-control",
+                            id: "materialFormEmail",
+                            required: true,
+                            input_html: { autocomplete: "email" }%>
+                  <label for="materialFormEmail">Email Address</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+          </div> <!-- row -->
+
+
+
+
+            <h5 class="card-title pb-0 pt-5 mb-0 text-center">Confirm Current Password (Mandatory)</h5>
+            <div class="row">
+
+              <div class="col-12">
+                <div class="md-form mb-1">
+                  <%= f.password_field :current_password,
+                  class: "form-control",
+                  id: "materialFormCurrentPassword",
+                  required: false,
+                  hint: "We need your current password to confirm your changes",
+                  input_html: { autocomplete: "current-password" } %>
+                  <label for="materialFormCurrentPassword">Confirm Current Password</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+            </div> <!-- row -->
+
+
+
+
+
+            <h5 class="card-title pb-0 pt-5 mb-0 text-center">Change My Password (Optional)</h5>
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div class="md-form mb-1">
+                  <%= f.password_field :password,
+                        class: "form-control",
+                        id: "materialFormNewPassword",
+                        required: false,
+                        hint: "leave it blank if you don't want to change it",
+                        input_html: { autocomplete: "new-password" } %>
+                  <label for="materialFormNewPassword">Set New Password</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+              <div class="col-sm-6">
+                <div class="md-form mb-1">
+                  <%= f.password_field :password_confirmation,
+                        class: "form-control",
+                        id: "materialFormConfirmNew",
+                        required: true,
+                        input_html: { autocomplete: "new-password" } %>
+                  <label for="materialFormConfirmNew">Confirm New Password</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+            </div> <!-- row -->
+
+
+
+
+
+
+          </div> <!-- form inputs -->
+
+          <div class="form-actions text-center mt-4">
+            <%= f.button :submit, "Save My Info", class: "btn btn-primary" %>
+            <br><%= render "devise/shared/links" %>
+          </div>
+        <% end %>
+
+      </div> <!-- card-body -->
+    </div> <!-- card -->
+
+  </div> <!-- container -->
+</main>

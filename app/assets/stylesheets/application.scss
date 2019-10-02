@@ -70,10 +70,11 @@ a:hover { color: $color-navy }
   /*-----------------------------
   -------------------------------
   ---------MDB OVERRIDES---------
-  -------------------------------
+  -----------AND DESIGN----------
   -------------------------------
   -----------------------------*/
 
+.non-footer { min-height: calc(100vh - 265px); }
 
 body {
   padding-left: 240px;
@@ -89,10 +90,10 @@ body {
   height: 150px;
 }
 
-.sidenav-icon { display: inline-block; width: 25px;}
+.sidenav-icon, .icon-width { display: inline-block; width: 25px;}
 
 .dropdown .dropdown-menu.dropdown-info .dropdown-item:hover, .dropdown .dropdown-menu.dropdown-info .dropdown-item:active, .dropdown .dropdown-menu.dropdown-info .dropdown-item.active, .dropup .dropdown-menu.dropdown-info .dropdown-item:hover, .dropup .dropdown-menu.dropdown-info .dropdown-item:active, .dropup .dropdown-menu.dropdown-info .dropdown-item.active, .dropleft .dropdown-menu.dropdown-info .dropdown-item:hover, .dropleft .dropdown-menu.dropdown-info .dropdown-item:active, .dropleft .dropdown-menu.dropdown-info .dropdown-item.active, .dropright .dropdown-menu.dropdown-info .dropdown-item:hover, .dropright .dropdown-menu.dropdown-info .dropdown-item:active, .dropright .dropdown-menu.dropdown-info .dropdown-item.active {
-    background-color: $color-navy;
+    background-color: $color-slate;
   }
 
 .nav-item {
@@ -102,3 +103,29 @@ body {
 .side-nav {
   font-size: 0.9rem;
 }
+
+.card-header {
+  background-color: $color-slate;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.btn-primary {
+  background-color: $color-slate;
+}
+
+.md-form input[type=text]:focus:not([readonly]), .md-form input[type=password]:focus:not([readonly]), .md-form input[type=email]:focus:not([readonly]), .md-form input[type=url]:focus:not([readonly]), .md-form input[type=time]:focus:not([readonly]), .md-form input[type=date]:focus:not([readonly]), .md-form input[type=datetime-local]:focus:not([readonly]), .md-form input[type=tel]:focus:not([readonly]), .md-form input[type=number]:focus:not([readonly]), .md-form input[type=search-md]:focus:not([readonly]), .md-form input[type=search]:focus:not([readonly]), .md-form textarea.md-textarea:focus:not([readonly]) {
+    box-shadow: 0 1px 0 0 $color-red;
+    border-bottom: 1px solid $color-red;
+}
+
+label.active { color: $color-red; }
+
+.card-title { color: $color-navy; font-weight: 700; }
+
+.form-check-input[type="checkbox"]:checked + label:before, label.btn input[type="checkbox"]:checked + label:before {
+  border-right: 2px solid $color-red;
+  border-bottom: 2px solid $color-red;
+}
+
+footer p { margin-bottom: 0; }

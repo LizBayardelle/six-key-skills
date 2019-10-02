@@ -1,25 +1,94 @@
-<h2>Sign up</h2>
+<main class="my-5 py-5">
+  <div class="container">
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <div class="card">
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
-  </div>
+      <div class="card-header text-center">
+        <h2 class="my-1">Create an Account</h2>
+      </div> <!-- card header -->
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
+      <div class="card-body px-lg-5">
 
-<%= render "devise/shared/links" %>
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+
+           <%= render "devise/shared/error_messages" %>
+
+
+          <div class="form-inputs">
+            <h5 class="card-title pb-0 mb-0">Basic Information</h5>
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div class="md-form mb-1">
+                  <%= f.text_field :first_name,
+                            class: "form-control",
+                            id: "materialFormFirstName",
+                            required: true,
+                            label: false,
+                            autofocus: true,
+                            input_html: { autocomplete: "first_name" }%>
+                  <label for="materialFormFirstName">First Name</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+              <div class="col-sm-6">
+                <div class="md-form mb-1">
+                  <%= f.text_field :last_name,
+                            class: "form-control",
+                            id: "materialFormLastName",
+                            required: true,
+                            input_html: { autocomplete: "last_name" }%>
+                  <label for="materialFormLastName">Last Name</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+            </div> <!-- row -->
+
+            <div class="md-form mb-1">
+              <%= f.text_field :email,
+                        class: "form-control",
+                        id: "materialFormEmail",
+                        required: true,
+                        input_html: { autocomplete: "email" }%>
+              <label for="materialFormEmail">Email Address</label>
+            </div> <!-- md-form -->
+
+            <h5 class="card-title pb-0 pt-4 mb-0">Create a Password</h5>
+            <div class="row">
+
+              <div class="col-sm-6">
+                <div class="md-form mb-1">
+                  <%= f.password_field :password,
+                        class: "form-control",
+                        required: true,
+                        hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                        input_html: { autocomplete: "new-password" } %>
+                  <label for="materialFormFirstName">Password</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+              <div class="col-sm-6">
+                <div class="md-form mb-1">
+                  <%= f.password_field :password_confirmation,
+                        class: "form-control",
+                        required: true,
+                        input_html: { autocomplete: "new-password" } %>
+                  <label for="materialFormLastName">Confirm Password</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+
+            </div> <!-- row -->
+          </div> <!-- form inputs -->
+
+          <div class="form-actions text-center mt-4">
+            <%= f.button :submit, "Create My Account", class: "btn btn-primary" %>
+            <br><%= render "devise/shared/links" %>
+          </div>
+        <% end %>
+
+      </div> <!-- card-body -->
+    </div> <!-- card -->
+
+  </div> <!-- container -->
+</main>

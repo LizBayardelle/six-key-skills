@@ -1,18 +1,52 @@
-<h2>Forgot your password?</h2>
+<main class="my-5 py-5">
+  <div class="container">
 
-<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= f.error_notification %>
+    <div class="card">
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-  </div>
+      <div class="card-header text-center">
+        <h2 class="my-1">Forgot Your Password?</h2>
+      </div> <!-- card header -->
 
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
-<% end %>
+      <div class="card-body px-lg-5">
 
-<%= render "devise/shared/links" %>
+
+        <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+          <%= f.error_notification %>
+
+          <%= render "devise/shared/error_messages" %>
+
+          <div class="form-inputs">
+
+            <div class="row">
+
+              <div class="col-12">
+                <div class="md-form mb-1">
+                  <%= f.text_field :email,
+                        id: "materialFormEmail",
+                        label: false,
+                        required: false,
+                        class: "form-control",
+                        autofocus: true,
+                        input_html: { autocomplete: "email" } %>
+                  <label for="materialFormEmail">Email</label>
+                </div> <!-- md-form -->
+              </div> <!-- col -->
+            </div> <!-- row -->
+
+          </div> <!-- form-inputs -->
+
+          <div class="form-actions text-center mt-4">
+            <%= f.button :submit, "Reset My Password", class: "btn btn-primary" %>
+            <br><%= render "devise/shared/links" %>
+          </div>
+        <% end %>
+
+
+
+
+
+      </div> <!-- card-body -->
+    </div> <!-- card -->
+
+  </div> <!-- container -->
+</main>

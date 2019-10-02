@@ -39,13 +39,23 @@
       </li>
 
       <li class="nav-item dropdown">
-        <a class="nav-link" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          My Account </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-          <%= link_to 'Sign Up', new_user_registration_path, class: "dropdown-item" %>
-          <%= link_to 'Sign In', new_user_session_path, class: "dropdown-item" %>
-        </div>
+        <% if current_user %>
+          <a class="nav-link" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <%= current_user.full_name %></a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+            <%= link_to 'My Account', user_path(current_user), class: "dropdown-item" %>
+            <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        <% else %>
+          <a class="nav-link" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            My Account </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+            <%= link_to 'Sign Up', new_user_registration_path, class: "dropdown-item" %>
+            <%= link_to 'Sign In', new_user_session_path, class: "dropdown-item" %>
+          </div>
+        <% end %>
       </li>
 
     </ul>
