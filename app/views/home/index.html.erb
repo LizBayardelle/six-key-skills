@@ -1,29 +1,65 @@
-<section class="view" style="height: 500px">
-  <div class="jumbotron card card-image h-100" style="background-image: url(https://sixkeyskills.s3-us-west-1.amazonaws.com/boy-ladder.jpg);">
-  </div> <!-- jumbotron -->
+<main>
 
-  <div class="mask rgba-stylish-slight h-100">
+  <div class="view jarallax" style="height: 100vh;">
 
-    <div class="text-white text-center px-4">
-      <div class="row pt-1 mt-1 pt-sm-4 mt-sm-4"> <!--Grid row-->
+    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/white-papers-background-3.jpg" alt="">
 
-        <div class="col-sm-4 d-none d-sm-block">
-        </div> <!-- buffer column -->
+    <div class="mask rgba-white-strong">
+      <div class="container flex-center text-center">
+        <div class="row mb-5">
+          <div class="col-md-12 wow fadeIn mb-3">
+            <h1 class="display-3 mb-2 wow fadeInDown text-black font-weight-bold" data-wow-delay="0.3s">What's keeping you from <a class="text-red">success</a>?</h1>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
+              Whatever your goal is, you need six key skills to succeed.  If you haven't reached a goal, it's because you're lacking in one of these key areas.
+            </h4>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
+              Take the free quiz to see which skills are keeping you from your goals.
+            </h4>
+            <a class="btn color-slate btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s">Read More</a> <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s">Take the Quiz</a>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- mask -->
 
-        <div class="col-12 col-sm-8 align-self-end mt-5 black-text text-center text-md-left wow fadeInLeft" data-wow-delay="0.3s">
-          <h2 class="display-4 font-weight-bold">What's keeping you from&nbsp;success?</h2>
-          <hr class="hr-dark">
-          <h5 class="mb-3 font-weight-bold">
-            Whatever your goal is, you need six key skills to succeed.  If you haven't reached a goal, it's because you're lacking in one of these key areas.
-          </h5>
-          <h5 class="mb-3 font-weight-bold">
-            Take the free quiz to see which skills are keeping you from your goals.
-          </h5>
-          <a class="btn btn-outline-black">Take the Quiz</a>
+  </div> <!-- jarallax view -->
+
+
+  <div class="z-depth-3">
+    <div class="container pb-4">
+
+      <div class="row">  <!--Grid row-->
+        <div class="col-md-12 text-center"> <!--Grid column-->
+
+          <h2 class="h1 font-weight-bold text-navy my-5 py-4">What are the Six Key Skills?</h2>
+          <p align="justify">Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.</p>
+
         </div> <!--Grid column-->
-
       </div> <!--Grid row-->
-    </div> <!-- text -->
 
-  </div> <!-- mask -->
-</section> <!-- view -->
+    </div> <!-- container -->
+  </div> <!-- z depth -->
+
+
+
+  <div class="view jarallax">
+    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/woman-arms-up-ocean.jpg" alt="">
+  </div>
+
+
+
+</main>
+
+
+<script>
+  $(document).ready(function() {
+    // object-fit polyfill run
+    objectFitImages();
+
+    /* init Jarallax */
+    jarallax(document.querySelectorAll('.jarallax'));
+
+    jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+        keepImg: true,
+    });
+  });
+</script>
