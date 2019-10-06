@@ -1,0 +1,123 @@
+<%= simple_form_for(@lead_magnet) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :title,
+                    class: "form-control",
+                    id: "title",
+                    required: true,
+                    label: false %>
+          <label for="title">Lead Magnet Title</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12 pt-3 text-left">
+        <label>Sample Image</label><br>
+        <%= f.file_field :sample %>
+      </div> <!-- col-12 -->
+
+      <div class="col-12 my-4">
+        <p class="text-left">Description</p>
+        <%= f.text_area :description, class: "tinymce", rows: 3, style: "width: 100%" %>
+        <%= tinymce_assets %>
+        <%= tinymce plugins: ["wordcount", "code", "anchor", "casechange", "codesample", "hr", "link", "preview"] %>
+      </div>
+    </div> <!-- row -->
+
+    <p class="text-left">Applicable Categories:</p>
+    <div class="row text-left">
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :motivation, class: "form-check-input", id: "motivation" %>
+        <%= f.label :motivation, class: "form-check-label", for: "motivation" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :mindset, class: "form-check-input", id: "mindset" %>
+        <%= f.label :mindset, class: "form-check-label", for: "mindset" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :resourcing, class: "form-check-input", id: "resourcing" %>
+        <%= f.label :resourcing, class: "form-check-label", for: "resourcing" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :planning, class: "form-check-input", id: "planning" %>
+        <%= f.label :planning, class: "form-check-label", for: "planning" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :time_management, class: "form-check-input", id: "time_management" %>
+        <%= f.label :time_management, class: "form-check-label", for: "time_management" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :discipline, class: "form-check-input", id: "discipline" %>
+        <%= f.label :discipline, class: "form-check-label", for: "discipline" %>
+      </div>
+
+    </div> <!-- row -->
+
+
+    <div class="row">
+      <div class="form-group col-12 mb-0 pb-0">
+        <%= f.input :lead_magnet_type, label: false, prompt: "Select LM Type", input_html: { class: 'mdb-select md-form colorful-select' }, collection: [['Attachment', 'Attachment'], ['Link', 'Link']], required: true %>
+      </div>
+
+      <div class="col-12 col-sm-6 pb-3 text-left">
+        <label>Attach LM Document (if Attachment)</label><br>
+        <%= f.file_field :document %>
+      </div> <!-- col -->
+
+      <div class="col-12 col-sm-6">
+        <div class="md-form mb-1">
+          <%= f.text_field :link_url,
+                    class: "form-control",
+                    id: "link_url",
+                    required: true,
+                    label: false %>
+          <label for="link_url">URL for Lead Magnet (if Link)</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+    </div> <!-- row -->
+
+
+    <div class="row text-left mt-4">
+      <div class="col-12 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :active, class: "form-check-input", id: "active" %>
+        <%= f.label :active, class: "form-check-label", for: "active" %>
+      </div>
+    </div> <!-- row -->
+
+
+  </div> <!-- form inputs -->
+
+  <div class="form-actions text-center mt-4">
+    <%= f.button :submit, "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    $('.mdb-select').materialSelect();
+    tinymce.init({
+      selector: "textarea",  // change this value according to your HTML
+      plugins: "code",
+      toolbar: "code",
+      menubar: "tools"
+    });
+  });
+</script>

@@ -1,0 +1,176 @@
+<main>
+
+  <div class="view jarallax" style="height: 30vh; min-height: 500px;">
+
+    <img class="jarallax-img" src="<%= @blog.image_url %>" alt="<%= @blog.title %>">
+
+    <div class="mask rgba-white-strong">
+
+      <section class="text-center text-sm-right px-5 pt-2">
+        <%= link_to 'Back to Blog', blogs_path %>
+        <% if current_user && current_user.admin %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'Edit Blog', edit_blog_path(@blog) %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'LM Index', lead_magnets_path %>
+        <% end %>
+      </section>
+
+      <div class="container text-center mt-5">
+        <div class="row mb-5">
+          <div class="col-md-12 wow fadeIn mb-3">
+            <h2 class="mb-2 wow fadeInDown text-black font-weight-bold" data-wow-delay="0.3s">
+              <%= render partial: "blogs/category_icon", locals: { blog: @blog } %>
+            </h2>
+            <h1 class="display-3 mb-2 wow fadeInDown text-black font-weight-bold" data-wow-delay="0.3s"><%= @blog.title %></h1>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
+              <%= @blog.teaser %>
+            </h4>
+            <a class="btn color-slate btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s" href="#body">Read More</a>
+            <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s">Take the Quiz</a>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+
+    </div> <!-- mask -->
+
+  </div> <!-- jarallax view -->
+
+
+  <div class="z-depth-3" id="body">
+    <div class="container pb-4">
+
+      <div class="row py-4">  <!-- row-->
+        <div class="col-md-12"> <!-- column-->
+          <%= raw(@blog.body) %>
+        </div> <!-- column -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </div> <!-- body -->
+
+
+
+  <div class="view jarallax" style="min-height: 300px; height: 25vh">
+    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/white-brick-wall-2.jpg" alt="<%= @blog.title %>">
+    <div id="lead-magnet" class="text-center py-5">
+      <h2 class="font-weight-bold">Take the Next Step</h2>
+      <%= @blog.lead_magnet %>
+    </div> <!-- lead magnet -->
+
+  </div> <!-- jarallax -->
+
+
+
+
+  <div class="z-depth-3" id="body">
+    <div class="container pb-4">
+
+      <h2 class="text-center pt-4 pb-2">Comments & Questions</h2>
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = "<%= polymorphic_url(@blog) %>";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "<%= @blog.id %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://six-key-skills.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+      </script>
+
+    </div> <!-- container -->
+  </div> <!-- z depth -->
+
+
+
+  <div class="view jarallax" style="min-height: 300px; height: 25vh">
+    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/blue-wood-background.jpg" alt="<%= @blog.title %>">
+    <div class="row py-5 text-center justify-content-center">  <!-- row-->
+      <div class="col-md-10 color-transparent-white"> <!-- column-->
+        <h2 class="font-weight-bold text-white pt-4">Subscribe</h2>
+
+        <div class="text-center mb-3">
+
+        </div> <!-- icons row -->
+      </div> <!-- column-->
+    </div> <!-- row-->
+  </div> <!-- jarallax -->
+
+
+  <div class="container pb-4">
+
+    <div class="row py-4 text-center">  <!-- row-->
+      <div class="col-md-12"> <!-- column-->
+        <h2 class="font-weight-bold">Share the Wisdom</h2>
+
+        <div class="text-center mb-3">
+          <div class="fb-share-button"
+            data-href="<%= polymorphic_url(@blog) %>"
+            data-layout="button_count">
+          </div>
+          <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+        </div> <!-- icons row -->
+
+        <% if @blog.pins.attached? %>
+          <% @blog.pins.each do |pin| %>
+            <%= image_tag url_for(pin), class: "pin" %>
+          <% end %>
+        <% end %>
+      </div> <!-- column-->
+    </div> <!-- row-->
+
+  </div> <!-- container -->
+
+
+</main>
+
+
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    // object-fit polyfill run
+    objectFitImages();
+
+    /* init Jarallax */
+    jarallax(document.querySelectorAll('.jarallax'));
+
+    jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+        keepImg: true,
+    });
+  });
+
+  //disqus_config()
+  var disqus_config = function () {
+    this.page.url = "<%= polymorphic_url(@blog) %>";  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = "<%= @blog.id %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+
+  (function() { // DON'T EDIT BELOW THIS LINE
+  var d = document, s = d.createElement('script');
+  s.src = 'https://six-key-skills.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+  })();
+</script>
+
+
+
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- facebook share -->

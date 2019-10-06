@@ -1,0 +1,61 @@
+<section class="text-center text-sm-right px-5 pt-2">
+  <% if current_user && current_user.admin %>
+    <%= link_to 'Back to LM Index', lead_magnets_path %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Edit LM', edit_lead_magnet_path(@lead_magnet) %>
+  <% end %>
+</section>
+
+
+
+<header class="text-center container">
+  <h1 class="font-weight-bold mt-4"><%= @lead_magnet.title %></h1>
+  <% if !@lead_magnet.active %>
+    <p>INACTIVE</p>
+  <% end %>
+  <%= raw(@lead_magnet.description) %>
+</header>
+
+
+
+
+<section class="text-center mb-5"> <!-- blogs -->
+  <div class="container">  <!-- container -->
+
+    <% if @lead_magnet.lead_magnet_type == "Link" %>
+      <%= link_to @lead_magnet.link_url, target: "_blank" do %>
+        <%= image_tag url_for(@lead_magnet.sample), class: "pin" %>
+      <% end %>
+    <% elsif @lead_magnet.lead_magnet_type == "Attachment" %>
+      <%= link_to url_for(@lead_magnet.document), target: "_blank" do %>
+        <%= image_tag url_for(@lead_magnet.sample), class: "pin" %>
+      <% end %>
+    <% end %>
+
+    <p class="mb-1"><em>Created by <%= @lead_magnet.user.full_name %></em></p>
+
+    <% category_array = [] %>
+
+    <% if @lead_magnet.motivation %>
+      <% category_array << "Motivation" %>
+    <% end %>
+    <% if @lead_magnet.mindset %>
+      <% category_array << "Mindset" %>
+    <% end %>
+    <% if @lead_magnet.resourcing %>
+      <% category_array << "Resourcing" %>
+    <% end %>
+    <% if @lead_magnet.planning %>
+      <% category_array << "Planning" %>
+    <% end %>
+    <% if @lead_magnet.time_management %>
+      <% category_array << "Time Management" %>
+    <% end %>
+    <% if @lead_magnet.discipline %>
+      <% category_array << "Discipline" %>
+    <% end %>
+
+    <p class="font-weight-bold"><%= category_array.join("&nbsp;&nbsp;|&nbsp;&nbsp;").html_safe %></p>
+
+  </div> <!-- container -->
+</section>

@@ -1,0 +1,54 @@
+<section class="text-center text-sm-right px-5 pt-2">
+  <% if current_user && current_user.admin %>
+      <%= link_to 'New Blog', new_blog_path %>
+      &nbsp;&nbsp;|&nbsp;&nbsp;
+      <%= link_to 'Admin Blogs Portal', admin_blogs_path %>
+  <% end %>
+</section>
+
+
+
+<header class="text-center mb-4">
+  <h1 class="font-weight-bold my-3">The Blog</h1>
+  <!-- <p class="dark-grey-text w-responsive mx-auto mb-5"></p> -->
+</header>
+
+
+
+<section class="container text-center mb-5"> <!-- blogs -->
+  <div class="row">  <!-- Grid row -->
+
+    <% @blogs.each do |blog| %>
+      <div class="col-lg-4 col-md-6 mb-md-0 mb-4"> <!-- Grid column -->
+
+        <div class="view overlay rounded z-depth-2 mb-3">
+          <img class="img-fluid" src="<%= blog.image_url %>" alt="Sample image">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div> <!-- Featured image -->
+
+        <a href="#!" class="navy-text">
+          <h6 class="font-weight-bold">
+            <%= render partial: "blogs/category_icon", locals: { blog: blog } %>
+          </h6>
+        </a> <!-- Category -->
+
+        <h3 class="font-weight-bold mb-0 pb-0"><strong><%= blog.title %></strong></h3>
+        <p class="mb-1"><em>by <a class="font-weight-bold"><%= blog.user.full_name %></a>, <%= blog.published_at.strftime("%b %e, %Y") %></em></p>
+        <p class="dark-grey-text">
+          <%= blog.teaser %>
+          <% if current_user && current_user.admin %>
+            <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_blog_path(blog) %>
+            <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, blog_path(blog), method: :delete, data: { confirm: 'Are you sure you want to delete that blog?'} %>
+          <% end %>
+        </p>
+        <a><%= link_to 'Read More', blog, class: "btn color-red text-white text-white-hover btn-md" %></a>
+
+      </div> <!-- Grid column -->
+    <% end %>
+
+  </div>
+  <!-- Grid row -->
+
+</section>

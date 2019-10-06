@@ -1,0 +1,173 @@
+
+<%= simple_form_for(@blog) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :title,
+                    class: "form-control",
+                    id: "title",
+                    required: true,
+                    label: false %>
+          <label for="title">Post Title</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :teaser,
+                    class: "form-control",
+                    id: "teaser",
+                    required: true,
+                    label: false %>
+          <label for="title">Teaser</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :image_url,
+                    class: "form-control",
+                    id: "image_url",
+                    required: true,
+                    label: false %>
+          <label for="title">Image URL</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12 my-4">
+        <%= f.text_area :body, class: "tinymce", rows: 20, style: "width: 100%" %>
+        <%= tinymce_assets %>
+        <%= tinymce plugins: ["wordcount", "code", "anchor", "casechange", "codesample", "hr", "link", "preview"] %>
+      </div>
+
+    </div> <!-- row -->
+
+
+
+    <h3 class="text-center">Categories</h3>
+    <div class="row">
+
+      <div class="form-group col-12">
+        <%= f.input :primary_category, label: false, prompt: "Select Primary Category", input_html: { class: 'mdb-select md-form colorful-select' }, collection: [['General', 'General'], ['Motivation', 'Motivation'], ['Mindset', 'Mindset'], ['Resourcing', 'Resourcing'], ['Planning', 'Planning'], ['Time Management', 'Time Management'], ['Discipline', 'Discipline']], required: true %>
+      </div>
+
+    </div> <!-- row -->
+
+
+    <p class="text-left">Other Applicable Categories:</p>
+    <div class="row text-left">
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :motivation, class: "form-check-input", id: "motivation" %>
+        <%= f.label :motivation, class: "form-check-label", for: "motivation" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :mindset, class: "form-check-input", id: "mindset" %>
+        <%= f.label :mindset, class: "form-check-label", for: "mindset" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :resourcing, class: "form-check-input", id: "resourcing" %>
+        <%= f.label :resourcing, class: "form-check-label", for: "resourcing" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :planning, class: "form-check-input", id: "planning" %>
+        <%= f.label :planning, class: "form-check-label", for: "planning" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :time_management, class: "form-check-input", id: "time_management" %>
+        <%= f.label :time_management, class: "form-check-label", for: "time_management" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :discipline, class: "form-check-input", id: "discipline" %>
+        <%= f.label :discipline, class: "form-check-label", for: "discipline" %>
+      </div>
+
+    </div> <!-- row -->
+
+
+
+    <h3 class="text-center mt-5">Social Media</h3>
+    <div class="row text-left">
+
+      <div class="col-12 pb-3">
+        <label>Pins</label><br>
+        <%= f.file_field :pins, multiple: true %>
+      </div> <!-- col-12 -->
+
+      <div class="col-12">
+        <p class="text-left">Pinterest Description</p>
+        <%= f.text_area :pinterest_description, class: "tinymce", rows: 3, style: "width: 100%" %>
+      </div>
+
+    </div> <!-- row -->
+
+
+
+    <h3 class="text-center mt-5">Publishing Info</h3>
+    <div class="row text-left">
+
+      <div class="col-12 md-form mt-4">
+        <label for="date">Publish On Date</label>
+        <%= f.text_field :published_at, placeholder: "Select Date to Publish", class: "form-control datepicker", id: "published_at" %>
+      </div>
+
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :published, class: "form-check-input", id: "published" %>
+        <%= f.label :published, class: "form-check-label", for: "published" %>
+      </div>
+
+      <% if current_user.admin %>
+        <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+          <%= f.check_box :approved, class: "form-check-input", id: "approved" %>
+          <%= f.label :approved, class: "form-check-label", for: "approved" %>
+        </div>
+
+        <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+          <%= f.check_box :featured, class: "form-check-input", id: "featured" %>
+          <%= f.label :featured, class: "form-check-label", for: "featured" %>
+        </div>
+      <% end %>
+    </div> <!-- row -->
+
+
+
+    <h3 class="text-center mt-5">Lead Magnet</h3>
+    <div class="row text-left">
+      <%= f.association :lead_magnet %>
+    </div> <!-- row -->
+
+  </div> <!-- form inputs -->
+
+  <div class="form-actions text-center mt-4">
+    <%= f.button :submit, "Save", class: "btn btn-primary" %>
+  </div>
+
+<% end %> <!-- end form -->
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    $('.mdb-select').materialSelect();
+    $('.datepicker').pickadate();
+    tinymce.init({
+      selector: "textarea",  // change this value according to your HTML
+      plugins: "code",
+      toolbar: "code",
+      menubar: "tools"
+    });
+  });
+</script>

@@ -1,0 +1,32 @@
+<% case blog.primary_category
+
+ when "General" %>
+    <%= link_to blogs_path, class: "text-slate" do %>
+      <i class="fas fa-book-open pr-2"></i> <%= blog.primary_category %>
+    <% end %>
+  <% when "Motivation" %>
+    <%= link_to page_path("motivation"), class: "text-slate" do %>
+      <i class="fas fa-mountain pr-2"></i> <%= blog.primary_category %>
+    <% end %>
+  <% when "Mindset" %>
+    <%= link_to page_path("mindset"), class: "text-slate" do %>
+      <i class="fas fa-brain pr-2"></i> <%= blog.primary_category %>
+    <% end %>
+  <% when "Resourcing" %>
+    <%= link_to page_path("resourcing"), class: "text-slate" do %>
+      <i class="fas fa-first-aid pr-2"></i> <%= blog.primary_category %>
+    <% end %>
+  <% when "Planning" %>
+    <%= link_to page_path("planning"), class: "text-slate" do %>
+      <i class="fas fa-sitemap pr-2"></i> <%= blog.primary_category %>
+    <% end %>
+  <% when "Time Management" %>
+    <%= link_to page_path("time-management"), class: "text-slate" do %>
+      <i class="fas fa-stopwatch pr-2"></i> <%= blog.primary_category %>
+    <% end %>
+  <% when "Discipline" %>
+    <%= link_to page_path("discipline"), class: "text-slate" do %>
+      <i class="fas fa-cookie-bite pr-2"></i> <%= blog.primary_category %>
+    <% end %>
+
+<% end %>

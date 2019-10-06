@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  teaser: MyString
+  body: MyText
+  motivation: false
+  mindset: false
+  resourcing: false
+  planning: false
+  time_management: false
+  discipline: false
+  image_url: MyString
+  pinterest_description: MyText
+  published: false
+  published_at: 2019-10-04 21:15:22
+  featured: false
+  lead_magnet: one
+  user: one
+
+two:
+  title: MyString
+  teaser: MyString
+  body: MyText
+  motivation: false
+  mindset: false
+  resourcing: false
+  planning: false
+  time_management: false
+  discipline: false
+  image_url: MyString
+  pinterest_description: MyText
+  published: false
+  published_at: 2019-10-04 21:15:22
+  featured: false
+  lead_magnet: two
+  user: two
