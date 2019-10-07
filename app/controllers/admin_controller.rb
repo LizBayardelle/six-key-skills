@@ -5,5 +5,10 @@ class AdminController < ApplicationController
 
   def users
     @users = User.all
+    @subscribers = Subscriber.all
+  end
+
+  def lead_magnets
+    @lead_magnets = LeadMagnet.all
   end
 end

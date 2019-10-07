@@ -1,6 +1,6 @@
 <section class="text-center text-sm-right px-5 pt-2">
   <% if current_user && current_user.admin %>
-    <%= link_to 'Back to LM Index', lead_magnets_path %>
+    <%= link_to 'Back to LM Index', admin_lead_magnets_path %>
     &nbsp;&nbsp;|&nbsp;&nbsp;
     <%= link_to 'Edit LM', edit_lead_magnet_path(@lead_magnet) %>
   <% end %>
@@ -56,6 +56,13 @@
     <% end %>
 
     <p class="font-weight-bold"><%= category_array.join("&nbsp;&nbsp;|&nbsp;&nbsp;").html_safe %></p>
+
+    <% if @lead_magnet.lead_magnet_type == "Link" %>
+      <%= link_to "Get it Now", @lead_magnet.link_url, target: "_blank", class: "btn btn-lg color-red mb-5 text-white text-white-hover" %>
+    <% elsif @lead_magnet.lead_magnet_type == "Attachment" %>
+      <%= link_to "Download it Now", url_for(@lead_magnet.document), target: "_blank", class: "btn btn-lg color-red mb-5 text-white text-white-hover" %>
+    <% end %>
+
 
   </div> <!-- container -->
 </section>

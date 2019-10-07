@@ -1,5 +1,14 @@
 class RegistrationsController < Devise::RegistrationsController
 
+  def create
+    super
+    Subscriber.each do |sub|
+      if @user.email == sub.email
+        sub.update_attributes(member: true)
+      end
+    end
+  end
+
   private
 
   def sign_up_params

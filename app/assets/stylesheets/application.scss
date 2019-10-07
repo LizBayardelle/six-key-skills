@@ -45,7 +45,7 @@ $color-whiteish: #fffcf7 !important;
 .color-red { background-color: $color-red; }
 .color-slate { background-color: $color-slate; }
 .color-whiteish { background-color: $color-whiteish; }
-.color-transparent-white { background-color: rgba(255, 255, 255, 0.3); }
+.color-transparent-white { background-color: rgba(255, 255, 255, 0.4); }
 
 .text-navy { color: $color-navy; }
 .text-beige { color: $color-beige; }
@@ -85,6 +85,8 @@ body { padding-left: 240px; }
     padding-left: 0;
   }
 }
+
+.alert { margin: 0 }
 
 .side-nav .logo-wrapper { height: 150px; }
 .sidenav-icon, .icon-width { display: inline-block; width: 25px;}
@@ -131,7 +133,8 @@ footer p { margin-bottom: 0; }
 
 .pin {
   height: 200px;
-  padding: 5px;
+  display: inline-block;
+  margin: 8px;
 }
 
 

@@ -12,7 +12,7 @@
           &nbsp;&nbsp;|&nbsp;&nbsp;
           <%= link_to 'Edit Blog', edit_blog_path(@blog) %>
           &nbsp;&nbsp;|&nbsp;&nbsp;
-          <%= link_to 'LM Index', lead_magnets_path %>
+          <%= link_to 'LM Index', admin_lead_magnets_path %>
         <% end %>
       </section>
 
@@ -50,12 +50,28 @@
 
 
 
-  <div class="view jarallax" style="min-height: 300px; height: 25vh">
-    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/white-brick-wall-2.jpg" alt="<%= @blog.title %>">
-    <div id="lead-magnet" class="text-center py-5">
-      <h2 class="font-weight-bold">Take the Next Step</h2>
-      <%= @blog.lead_magnet %>
-    </div> <!-- lead magnet -->
+  <div class="view jarallax" style="min-height: 300px">
+    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/parchment-paper.jpg" alt="<%= @blog.title %>">
+    <% if @blog.lead_magnet %>
+      <div id="lead-magnet" class="container py-5">
+        <h2 class="font-weight-bold text-center">Take the Next Step</h2>
+        <div class="row">
+          <div class="col-sm-3">
+            <%= image_tag @blog.lead_magnet.sample, class: "pin z-depth-3" %>
+          </div> <!-- col -->
+          <div class="col-sm-9 pl-5">
+            <p><%= raw(@blog.lead_magnet.description) %></p>
+            <% if current_user %>
+              <%= link_to "Get it Now", lead_magnet_path(@blog.lead_magnet.id), class: "btn btn-lg color-red text-white text-white-hover" %>
+            <% else %>
+              <button type="button" class="btn btn-lg color-red text-white text-white-hover" data-toggle="modal" data-target="#basicExampleModal">
+                Get it Now
+              </button>
+            <% end %>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- lead magnet container -->
+    <% end %>
 
   </div> <!-- jarallax -->
 
@@ -85,25 +101,12 @@
 
 
 
-  <div class="view jarallax" style="min-height: 300px; height: 25vh">
-    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/blue-wood-background.jpg" alt="<%= @blog.title %>">
+  <div class="view jarallax" style="min-height: 300px">
+    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/white-brick-wall-2.jpg" alt="<%= @blog.title %>">
     <div class="row py-5 text-center justify-content-center">  <!-- row-->
-      <div class="col-md-10 color-transparent-white"> <!-- column-->
-        <h2 class="font-weight-bold text-white pt-4">Subscribe</h2>
 
-        <div class="text-center mb-3">
-
-        </div> <!-- icons row -->
-      </div> <!-- column-->
-    </div> <!-- row-->
-  </div> <!-- jarallax -->
-
-
-  <div class="container pb-4">
-
-    <div class="row py-4 text-center">  <!-- row-->
-      <div class="col-md-12"> <!-- column-->
-        <h2 class="font-weight-bold">Share the Wisdom</h2>
+      <div class="col-12"> <!-- column-->
+        <h2 class="font-weight-bold text-black">Share the Wisdom</h2>
 
         <div class="text-center mb-3">
           <div class="fb-share-button"
@@ -111,14 +114,30 @@
             data-layout="button_count">
           </div>
           <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
-        </div> <!-- icons row -->
+        </div> <!-- sm share buttons-->
 
         <% if @blog.pins.attached? %>
           <% @blog.pins.each do |pin| %>
-            <%= image_tag url_for(pin), class: "pin" %>
+            <%= image_tag url_for(pin), class: "pin z-depth-3", style: "display: inline-block" %>
           <% end %>
         <% end %>
       </div> <!-- column-->
+
+
+    </div> <!-- row-->
+  </div> <!-- jarallax -->
+
+
+  <div class="container pb-4">
+
+    <div class="row py-4 text-center">  <!-- row-->
+
+      <div class="col-12"> <!-- column-->
+        <h2 class="font-weight-bold">Subscribe</h2>
+        <h3>Get updates on how you can keep building your key skills.</h3>
+        <%= render partial: 'subscribers/form', locals: { subscriber: @new_subscriber, lead_magnet_id: @blog.lead_magnet.id } %>
+      </div> <!-- column-->
+
     </div> <!-- row-->
 
   </div> <!-- container -->
@@ -129,6 +148,30 @@
 
 
 
+
+
+
+
+<!-- NEW SUBSCRIBER MODAL -->
+<div class="modal fade" id="basicExampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="text-right pr-3">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <h2>Subscribe</h2>
+        <p>To get access to your <span class="font-weight-bold"><%= @blog.lead_magnet.title %></span> right now!
+          <br>We promise never to spam you and you may unsubscribe&nbsp;at&nbsp;any&nbsp;time.</p>
+        <%= render partial: 'subscribers/form', locals: { subscriber: @new_subscriber, lead_magnet_id: @blog.lead_magnet.id } %>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- NEW SUBSCRIBER MODAL -->
 
 
 

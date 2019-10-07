@@ -1,5 +1,8 @@
 class LeadMagnetsController < ApplicationController
   before_action :set_lead_magnet, only: [:show, :edit, :update, :destroy]
+  before_action :admin_only, except: [:show]
+  before_action :subscriber_or_member, only: [:show]
+
 
   # GET /lead_magnets
   # GET /lead_magnets.json
@@ -62,6 +65,20 @@ class LeadMagnetsController < ApplicationController
     end
   end
 
+  def admin_only
+    unless current_user && current_user.admin
+      redirect_back(fallback_location: root_path)
+      flash[:warning] = "Sorry, you must be an administrator to access that page."
+    end
+  end
+
+  def subscriber_or_member
+    unless current_user || Subscriber.where(email: params[:email]).count != 0
+      redirect_back(fallback_location: root_path)
+      flash[:warning] = "Sorry, you must subscribe or have a site login to see that.  Create a free account for access to our entire resource library."
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lead_magnet
@@ -85,7 +102,7 @@ class LeadMagnetsController < ApplicationController
         :lead_magnet_type,
         :document,
         :link_url,
-        
+
         :active,
         :user_id
       )

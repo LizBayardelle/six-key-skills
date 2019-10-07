@@ -1,0 +1,38 @@
+
+<%= simple_form_for(subscriber) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row justify-content-center">
+
+      <div class="col-sm-6 col-lg-4 col-xl-3">
+        <div class="md-form mb-1">
+          <%= f.text_field :first_name,
+                    class: "form-control",
+                    id: "first_name",
+                    required: true,
+                    label: false %>
+          <label for="first_name">Your First Name</label>
+        </div> <!-- md-form -->
+
+        <div class="md-form mb-1">
+          <%= f.text_field :email,
+                    class: "form-control",
+                    id: "email",
+                    required: true,
+                    label: false %>
+          <label for="email">Your Email</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <%= f.hidden_field :lead_magnet_id, value: lead_magnet_id %>
+
+    </div> <!-- row -->
+  </div> <!-- form inputs -->
+
+  <div class="form-actions text-center mt-4">
+    <%= f.button :submit, "Subscribe", class: "btn btn-primary" %>
+  </div>
+
+<% end %>
