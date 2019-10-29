@@ -2,6 +2,13 @@
 <%= simple_form_for(subscriber) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <% if subscriber.errors.any? %>
+    <ul>
+      <% subscriber.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
   <div class="form-inputs">
     <div class="row justify-content-center">
@@ -26,7 +33,7 @@
         </div> <!-- md-form -->
       </div> <!-- col -->
 
-      <%= f.hidden_field :lead_magnet_id, value: lead_magnet_id %>
+      <%= f.hidden_field :resource_id, value: params[:resource_id] %>
 
     </div> <!-- row -->
   </div> <!-- form inputs -->

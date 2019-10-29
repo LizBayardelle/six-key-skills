@@ -27,12 +27,12 @@
 
 
 
-  /*-----------------------------
-  -------------------------------
-  ------------COLORS-------------
-  -------------------------------
-  -------------------------------
-  -----------------------------*/
+/*-----------------------------
+-------------------------------
+------------COLORS-------------
+-------------------------------
+-------------------------------
+-----------------------------*/
 
 $color-navy: #383b53 !important;
 $color-beige: #ccc5b9 !important;
@@ -66,6 +66,59 @@ a:hover { color: $color-navy }
 
 
 
+/*-----------------------------
+-------------------------------
+----------NAVIGATION-----------
+-------------------------------
+-------------------------------
+-----------------------------*/
+
+.side-nav .logo-wrapper { height: 150px; }
+.sidenav-icon, .icon-width { display: inline-block; width: 25px;}
+.nav-item { padding-left: 10px; }
+.side-nav .collapsible a { font-size: 0.9rem !important; }
+.side-nav { font-size: 0.9rem; }
+
+
+.dropdown .dropdown-menu.dropdown-info .dropdown-item:hover, .dropdown .dropdown-menu.dropdown-info .dropdown-item:active, .dropdown .dropdown-menu.dropdown-info .dropdown-item.active, .dropup .dropdown-menu.dropdown-info .dropdown-item:hover, .dropup .dropdown-menu.dropdown-info .dropdown-item:active, .dropup .dropdown-menu.dropdown-info .dropdown-item.active, .dropleft .dropdown-menu.dropdown-info .dropdown-item:hover, .dropleft .dropdown-menu.dropdown-info .dropdown-item:active, .dropleft .dropdown-menu.dropdown-info .dropdown-item.active, .dropright .dropdown-menu.dropdown-info .dropdown-item:hover, .dropright .dropdown-menu.dropdown-info .dropdown-item:active, .dropright .dropdown-menu.dropdown-info .dropdown-item.active {
+    background-color: $color-slate;
+  }
+
+.colorful-select .dropdown-content li span { color: black !important; }
+.colorful-select .dropdown-content li:hover, .dropdown-content li:active { background-color: $color-slate; color: white !important; }
+.colorful-select .dropdown-content li.active span { color: black !important; }
+
+
+
+
+
+
+
+/*-----------------------------
+-------------------------------
+--------------FORMS------------
+-------------------------------
+-------------------------------
+-----------------------------*/
+
+.picker__box .picker__header .picker__date-display .picker__weekday-display { background-color: $color-navy; }
+.picker__box .picker__header .picker__date-display { background-color: $color-slate; }
+
+
+.md-form input[type=text]:focus:not([readonly]), .md-form input[type=password]:focus:not([readonly]), .md-form input[type=email]:focus:not([readonly]), .md-form input[type=url]:focus:not([readonly]), .md-form input[type=time]:focus:not([readonly]), .md-form input[type=date]:focus:not([readonly]), .md-form input[type=datetime-local]:focus:not([readonly]), .md-form input[type=tel]:focus:not([readonly]), .md-form input[type=number]:focus:not([readonly]), .md-form input[type=search-md]:focus:not([readonly]), .md-form input[type=search]:focus:not([readonly]), .md-form textarea.md-textarea:focus:not([readonly]) {
+    box-shadow: 0 1px 0 0 $color-red;
+    border-bottom: 1px solid $color-red;
+}
+
+label.active { color: $color-red; }
+
+.form-check-input[type="checkbox"]:checked + label:before, label.btn input[type="checkbox"]:checked + label:before {
+  border-right: 2px solid $color-red;
+  border-bottom: 2px solid $color-red;
+}
+
+
+
 
 
 
@@ -80,30 +133,32 @@ html { scroll-behavior: smooth; }
 .non-footer { min-height: calc(100vh - 265px); }
 
 body { padding-left: 240px; }
+
 @media only screen and (max-width : 1441px) {
   body {
     padding-left: 0;
   }
 }
 
+@media only screen and (min-width : 1441px) {
+  .hidden-with-sidenav { display: none; }
+}
+
+
 .alert { margin: 0 }
 
-.side-nav .logo-wrapper { height: 150px; }
-.sidenav-icon, .icon-width { display: inline-block; width: 25px;}
-.nav-item { padding-left: 10px; }
-.side-nav { font-size: 0.9rem; }
+.btn-primary { background-color: $color-slate; }
+.btn-primary:hover { color: white !important; }
 
+.thumbnail {
+  height: 250px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
 
-.dropdown .dropdown-menu.dropdown-info .dropdown-item:hover, .dropdown .dropdown-menu.dropdown-info .dropdown-item:active, .dropdown .dropdown-menu.dropdown-info .dropdown-item.active, .dropup .dropdown-menu.dropdown-info .dropdown-item:hover, .dropup .dropdown-menu.dropdown-info .dropdown-item:active, .dropup .dropdown-menu.dropdown-info .dropdown-item.active, .dropleft .dropdown-menu.dropdown-info .dropdown-item:hover, .dropleft .dropdown-menu.dropdown-info .dropdown-item:active, .dropleft .dropdown-menu.dropdown-info .dropdown-item.active, .dropright .dropdown-menu.dropdown-info .dropdown-item:hover, .dropright .dropdown-menu.dropdown-info .dropdown-item:active, .dropright .dropdown-menu.dropdown-info .dropdown-item.active {
-    background-color: $color-slate;
-  }
-
-.colorful-select .dropdown-content li span { color: black !important; }
-.colorful-select .dropdown-content li:hover, .dropdown-content li:active { background-color: $color-slate; color: white !important; }
-.colorful-select .dropdown-content li.active span { color: black !important; }
-
-.picker__box .picker__header .picker__date-display .picker__weekday-display { background-color: $color-navy; }
-.picker__box .picker__header .picker__date-display { background-color: $color-slate; }
+.thumbnail-sm {
+  height: 150px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
 
 .card-header {
   background-color: $color-slate;
@@ -111,23 +166,7 @@ body { padding-left: 240px; }
   font-size: 1.2rem;
 }
 
-.btn-primary {
-  background-color: $color-slate;
-}
-
-.md-form input[type=text]:focus:not([readonly]), .md-form input[type=password]:focus:not([readonly]), .md-form input[type=email]:focus:not([readonly]), .md-form input[type=url]:focus:not([readonly]), .md-form input[type=time]:focus:not([readonly]), .md-form input[type=date]:focus:not([readonly]), .md-form input[type=datetime-local]:focus:not([readonly]), .md-form input[type=tel]:focus:not([readonly]), .md-form input[type=number]:focus:not([readonly]), .md-form input[type=search-md]:focus:not([readonly]), .md-form input[type=search]:focus:not([readonly]), .md-form textarea.md-textarea:focus:not([readonly]) {
-    box-shadow: 0 1px 0 0 $color-red;
-    border-bottom: 1px solid $color-red;
-}
-
-label.active { color: $color-red; }
-
 .card-title { color: $color-navy; font-weight: 700; }
-
-.form-check-input[type="checkbox"]:checked + label:before, label.btn input[type="checkbox"]:checked + label:before {
-  border-right: 2px solid $color-red;
-  border-bottom: 2px solid $color-red;
-}
 
 footer p { margin-bottom: 0; }
 
@@ -154,3 +193,9 @@ bottom: .5em;
 .paginate_button {
   padding: 0 5px;
 }
+
+.classic-tabs .nav li a {
+    padding: 10px !important;
+    font-size: 1.1rem !important;
+    text-transform: none !important;
+  }

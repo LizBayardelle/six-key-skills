@@ -1,0 +1,57 @@
+<main class="py-5 container">
+  <header class="text-center">
+
+
+    <% if current_user && current_user.admin %>
+      <p>
+        <%= link_to 'Edit Resource', edit_resource_path(@resource) %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Resource Manager', admin_resources_path %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Resources Page', resources_path %>
+      </p>
+    <% end %>
+
+
+    <h1 class="mb-0"><%= @resource.title %></h1>
+    <h3 class="mb-0">(<%= @resource.classification %>)</h3>
+
+
+
+    <p><em>
+      Created by <%= @resource.user.full_name %>
+      <% if current_user && current_user.admin %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <% if @resource.active %>Active<% else %>Inactive<% end %>
+      <% end %>
+    </em></p>
+
+
+    <img src="<%= rails_blob_path(@resource.sample) %>" class="thumbnail mt-2 mb-4" alt="Sample <%= @resource.title %> Image">
+
+
+    <% categories = [] %>
+    <% if @resource.general %><% categories << "General Resources" %><% end %>
+    <% if @resource.motivation %><% categories << "Motivation" %><% end %>
+    <% if @resource.mindset %><% categories << "Mindset" %><% end %>
+    <% if @resource.resourcing %><% categories << "Resourcing" %><% end %>
+    <% if @resource.planning %><% categories << "Planning" %><% end %>
+    <% if @resource.time_management %><% categories << "Time Management" %><% end %>
+    <% if @resource.discipline %><% categories << "Discipline" %><% end %>
+    <p class="font-weight-bold mb-0"><%= categories.join(", ") %></p>
+
+
+    <p class=""><%= @resource.description %></p>
+
+
+    <% if @resource.resource_type == "Attachment" && @resource.document.present? %>
+      <a href="<%= rails_blob_path(@resource.document) %>" class="btn btn-primary btn-md" target="_blank">Download</a>
+    <% else %>
+      <a href="<%= @resource.link_url %>" class="btn btn-primary btn-md" target="_blank">Get It Now</a>
+    <% end %>
+
+
+
+
+  </header>
+</main>

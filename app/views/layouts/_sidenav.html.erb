@@ -33,6 +33,23 @@
     <li>
       <ul class="collapsible collapsible-accordion">
 
+
+        <% if current_user && current_user.admin %>
+          <li><a class="collapsible-header waves-effect arrow-r">
+            <div class="sidenav-icon"><i class="fas fa-user-lock"></i></div>Admin
+              <i class="fas fa-angle-down rotate-icon"></i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><%= link_to "Resource Manager", admin_resources_path, class: "waves-effect" %></li>
+                <li><%= link_to "Blog Manager", admin_blogs_path, class: "waves-effect" %></li>
+                <li><%= link_to "User Manager", admin_users_path, class: "waves-effect" %></li>
+              </ul>
+            </div>
+          </li>
+        <% end %>
+
+
+
         <li>
           <a class="waves-effect arrow-r">
             <em>Map My Skills©</em> Quiz

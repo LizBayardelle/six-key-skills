@@ -28,7 +28,7 @@ class SubscribersController < ApplicationController
 
     respond_to do |format|
       if @subscriber.save
-        format.html { redirect_to lead_magnet_path(@subscriber.lead_magnet_id, email: @subscriber.email) }
+        format.html { redirect_to resource_path(@subscriber.resource_id, email: @subscriber.email) }
         format.json { render :show, status: :created, location: @subscriber }
       else
         format.html { render :new }
@@ -73,7 +73,7 @@ class SubscribersController < ApplicationController
         :first_name,
         :email,
         :member,
-        :lead_magnet_id
+        :resource_id
       )
     end
 end

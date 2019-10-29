@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_07_041209) do
+ActiveRecord::Schema.define(version: 2019_10_29_184427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,40 +52,43 @@ ActiveRecord::Schema.define(version: 2019_10_07_041209) do
     t.datetime "published_at"
     t.boolean "approved", default: false
     t.boolean "featured", default: false
-    t.bigint "lead_magnet_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "primary_category"
-    t.index ["lead_magnet_id"], name: "index_blogs_on_lead_magnet_id"
+    t.bigint "resource_id"
+    t.index ["resource_id"], name: "index_blogs_on_resource_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
-  create_table "lead_magnets", force: :cascade do |t|
+  create_table "resources", force: :cascade do |t|
     t.string "title"
     t.text "description"
+    t.boolean "general", default: false
     t.boolean "motivation", default: false
     t.boolean "mindset", default: false
     t.boolean "resourcing", default: false
     t.boolean "planning", default: false
     t.boolean "time_management", default: false
     t.boolean "discipline", default: false
-    t.string "lead_magnet_type"
+    t.string "resource_type"
     t.string "link_url"
     t.boolean "active", default: true
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_lead_magnets_on_user_id"
+    t.string "classification"
+    t.index ["user_id"], name: "index_resources_on_user_id"
   end
 
   create_table "subscribers", force: :cascade do |t|
     t.string "first_name"
     t.string "email"
     t.boolean "member", default: false
-    t.integer "lead_magnet_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "resource_id"
+    t.index ["resource_id"], name: "index_subscribers_on_resource_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -106,7 +109,8 @@ ActiveRecord::Schema.define(version: 2019_10_07_041209) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "blogs", "lead_magnets"
+  add_foreign_key "blogs", "resources"
   add_foreign_key "blogs", "users"
-  add_foreign_key "lead_magnets", "users"
+  add_foreign_key "resources", "users"
+  add_foreign_key "subscribers", "resources"
 end

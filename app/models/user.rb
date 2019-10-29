@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :lead_magnets
+  has_many :resources
   has_many :blogs
 
   def full_name

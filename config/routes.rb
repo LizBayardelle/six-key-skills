@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :subscribers
   get 'home/index'
   root 'home#index'
 
@@ -11,10 +10,10 @@ Rails.application.routes.draw do
 
   get 'admin/blogs'
   get 'admin/users'
-  get 'admin/lead_magnets'
+  get 'admin/resources'
 
   resources :blogs
-  resources :lead_magnets
-
+  resources :resources
+  resources :subscribers
 
 end

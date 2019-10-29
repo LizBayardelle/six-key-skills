@@ -1,0 +1,96 @@
+<main class="container-fluid px-5">
+
+  <% if current_user && current_user.admin %>
+    <section class="text-right pt-2">
+      <%= link_to 'Add a New Resource', new_resource_path %>
+    </section>
+  <% end %>
+
+  <heading class="text-center my-5">
+    <h1>Resources</h1>
+  </heading>
+
+
+
+  <!-- Classic tabs -->
+<div class="classic-tabs mx-2 mb-5">
+
+  <ul class="nav" id="myClassicTabShadow" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link  waves-light active show" id="tab-all" data-toggle="tab" href="#area-all"
+        role="tab" aria-controls="area-all" aria-selected="true">All</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link  waves-light" id="tab-general" data-toggle="tab" href="#area-general"
+        role="tab" aria-controls="area-general" aria-selected="true">General</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="tab-motivation" data-toggle="tab" href="#area-motivation"
+        role="tab" aria-controls="area-motivation" aria-selected="false">Buying</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="tab-mindset" data-toggle="tab" href="#area-mindset"
+        role="tab" aria-controls="area-mindset" aria-selected="false">Mindset</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="tab-resourcing" data-toggle="tab" href="#area-resourcing"
+        role="tab" aria-controls="area-resourcing" aria-selected="false">Resourcing</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="tab-planning" data-toggle="tab" href="#area-planning"
+        role="tab" aria-controls="area-planning" aria-selected="false">Planning</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="tab-time_management" data-toggle="tab" href="#area-time_management"
+        role="tab" aria-controls="area-time_management" aria-selected="false">Time Management</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link waves-light" id="tab-discipline" data-toggle="tab" href="#area-discipline"
+        role="tab" aria-controls="area-discipline" aria-selected="false">Discipline</a>
+    </li>
+  </ul>
+
+  <div class="tab-content card" id="myClassicTabContentShadow">
+    <div class="tab-pane fade active show" id="area-all" role="tabpanel" aria-labelledby="tab-all">
+      <%= render partial: "resources/tab_interior", locals: { resources: @resources } %>
+    </div>
+    <div class="tab-pane fade" id="area-general" role="tabpanel" aria-labelledby="tab-general">
+      <%= render partial: "resources/tab_interior", locals: { resources: @general } %>
+    </div>
+    <div class="tab-pane fade" id="area-motivation" role="tabpanel" aria-labelledby="tab-motivation">
+      <%= render partial: "resources/tab_interior", locals: { resources: @motivation } %>
+    </div>
+    <div class="tab-pane fade" id="area-mindset" role="tabpanel" aria-labelledby="tab-mindset">
+      <%= render partial: "resources/tab_interior", locals: { resources: @mindset } %>
+    </div>
+    <div class="tab-pane fade" id="area-resourcing" role="tabpanel" aria-labelledby="tab-resourcing">
+      <%= render partial: "resources/tab_interior", locals: { resources: @resourcing } %>
+    </div>
+    <div class="tab-pane fade" id="area-planning" role="tabpanel" aria-labelledby="tab-planning">
+      <%= render partial: "resources/tab_interior", locals: { resources: @planning } %>
+    </div>
+    <div class="tab-pane fade" id="area-time_management" role="tabpanel" aria-labelledby="tab-time_management">
+      <%= render partial: "resources/tab_interior", locals: { resources: @time_management } %>
+    </div>
+    <div class="tab-pane fade" id="area-discipline" role="tabpanel" aria-labelledby="tab-discipline">
+      <%= render partial: "resources/tab_interior", locals: { resources: @discipline } %>
+    </div>
+  </div>
+
+</div>
+<!-- Classic tabs -->
+
+
+
+
+
+</main>
+
+
+
+
+<script>
+	$(document).ready(function(){
+    $('.card-text').matchHeight();
+	})
+</script>

@@ -1,0 +1,37 @@
+<div class="row d-flex justify-content-center">
+
+  <% if resources.count == 0 %>
+    <p>There are currently no resources in this category.  Check back soon!</p>
+  <% else %>
+    <% resources.each do |resource| %>
+      <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
+        <div class="text-center">
+          <% if current_user && current_user.admin %>
+            <p class="mb-0">
+              <%= link_to 'Edit', edit_resource_path(resource) %> |
+              <%= link_to 'Delete', resource, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </p>
+          <% end %>
+          <img src="<%= rails_blob_path(resource.sample) %>" class="thumbnail-sm mt-2" alt="Sample project sample">
+        </div> <!-- view overlay (sample) -->
+        <div class="card-body">
+          <div class="card-text">
+            <h4 class="font-weight-bold mb-0 text-center">
+              <%= resource.title %>
+            </h4>
+            <p class="font-weight-bold text-center mb-2">
+              <%= resource.classification %>
+            </p>
+            <p class="mb-2">
+              <%= resource.description %>
+            </p>
+          </div> <!-- card text -->
+          <div class="text-center">
+              <%= link_to "Get it Now", resource, class: "btn btn-primary btn-md" %>
+          </div> <!-- center -->
+        </div> <!-- card body -->
+      </div> <!-- Grid column -->
+    <% end %>
+  <% end %>
+
+</div> <!-- Grid row -->

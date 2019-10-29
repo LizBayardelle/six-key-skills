@@ -31,8 +31,8 @@ class BlogsController < ApplicationController
 
     if params[:blog][:pins].present?
       @blog.pins.purge
+      @blog.pins.attach(params[:blog][:pins])
     end
-    @blog.pins.attach(params[:blog][:pins])
 
     respond_to do |format|
       if @blog.save
@@ -105,7 +105,7 @@ class BlogsController < ApplicationController
         :featured,
         :approved,
 
-        :lead_magnet_id,
+        :resource_id,
         :user_id,
 
         pins: []

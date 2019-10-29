@@ -8,7 +8,7 @@ class AdminController < ApplicationController
     @subscribers = Subscriber.all
   end
 
-  def lead_magnets
-    @lead_magnets = LeadMagnet.all
+  def resources
+    @resources = Resource.all
   end
 end

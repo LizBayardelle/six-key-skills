@@ -1,0 +1,21 @@
+<main class="py-5">
+
+  <header class="text-center">
+    <h1>Create a New Resource</h1>
+  </header>
+
+  <section>
+    <div class="container">
+
+      <%= render 'form', resource: @resource %>
+
+      <div class="text-center pt-4">
+        <%= link_to 'Resource Manager', admin_resources_path %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'Resource Library', resources_path %>
+      </div> <!-- centered -->
+
+    </div> <!-- container -->
+  </section>
+
+</main>

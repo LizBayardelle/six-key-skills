@@ -142,14 +142,14 @@
 
 
 
-    <h3 class="text-center mt-5">Lead Magnet</h3>
-    <% lead_magnet_collection = [] %>
-    <% LeadMagnet.where(active: true).each do |lm| %>
-      <% lead_magnet_collection << ["#{lm.title}", "#{lm.id}"] %>
+    <h3 class="text-center mt-5">Associated Resource</h3>
+    <% resource_collection = [] %>
+    <% Resource.where(active: true).each do |lm| %>
+      <% resource_collection << ["#{lm.title}", "#{lm.id}"] %>
     <% end %>
     <div class="row text-left">
       <div class="form-group col-12">
-        <%= f.input :lead_magnet_id, label: false, prompt: "Choose an Associated Lead Magnet", input_html: { class: 'mdb-select md-form colorful-select' }, collection: lead_magnet_collection, required: true %>
+        <%= f.input :resource_id, label: false, prompt: "Choose an Associated Resource", input_html: { class: 'mdb-select md-form colorful-select' }, collection: resource_collection, required: true %>
       </div>
     </div> <!-- row -->
 

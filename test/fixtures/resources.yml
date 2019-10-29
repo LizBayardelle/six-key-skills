@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  general: false
+  motivation: false
+  mindset: false
+  resourcing: false
+  planning: false
+  time_management: false
+  discipline: false
+  resource_type: MyString
+  link_url: MyString
+  active: false
+  user: one
+
+two:
+  title: MyString
+  description: MyText
+  general: false
+  motivation: false
+  mindset: false
+  resourcing: false
+  planning: false
+  time_management: false
+  discipline: false
+  resource_type: MyString
+  link_url: MyString
+  active: false
+  user: two
