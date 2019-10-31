@@ -134,6 +134,8 @@ html { scroll-behavior: smooth; }
 
 body { padding-left: 240px; }
 
+p.small-line-height { line-height: 1.2 }
+
 @media only screen and (max-width : 1441px) {
   body {
     padding-left: 0;

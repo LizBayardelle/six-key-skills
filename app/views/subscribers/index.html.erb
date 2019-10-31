@@ -1,33 +1,75 @@
-<p id="notice"><%= notice %></p>
+<main class="py-5 container">
 
-<h1>Subscribers</h1>
+  <header class="text-center">
+    <h1>Subscribers</h1>
+  </header>
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Email</th>
-      <th>Member</th>
-      <th>Lead magnet</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @subscribers.each do |subscriber| %>
-      <tr>
-        <td><%= subscriber.first_name %></td>
-        <td><%= subscriber.email %></td>
-        <td><%= subscriber.member %></td>
-        <td><%= subscriber.lead_magnet_id %></td>
-        <td><%= link_to 'Show', subscriber %></td>
-        <td><%= link_to 'Edit', edit_subscriber_path(subscriber) %></td>
-        <td><%= link_to 'Destroy', subscriber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <h2>Subscribers by Resource</h2>
+  <section id="by-resource" class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Resource Name</th>
+          <th scope="col"># Subscribed</th>
+        </tr>
+      </thead>
 
-<br>
+      <tbody>
+        <% Resource.all.each do |resource| %>
+          <tr>
+            <% subscribed = 0 %>
 
-<%= link_to 'New Subscriber', new_subscriber_path %>
+            <% @subscribers.each do |sub| %>
+              <% if sub.resource_id_array.include?(resource.id.to_s) %>
+                <% subscribed += 1 %>
+              <% end %>
+            <% end %>
+
+            <td><%= link_to resource.title, resource %></td>
+            <td><%= subscribed %></td>
+          <tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>  <!-- resources -->
+
+
+  <% unsubscribed = Subscriber.where(unsubscribed: true) %>
+
+  <h2>Subscribers List (<%= @subscribers.count - unsubscribed.count %>)</h2>
+  <section id="by-name" class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Resources</th>
+          <th scope="col">Member</th>
+          <th scope="col">Unsub</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @subscribers.each do |subscriber| %>
+          <% memberMatch = false %>
+          <% User.all.each do |u| %>
+            <% if u.email == subscriber.email %>
+              <% memberMatch = true %>
+            <% end %>
+          <% end %>
+          <tr>
+            <td><%= subscriber.created_at.strftime("%m/%d/%Y") %></td>
+            <td><%= subscriber.first_name %></td>
+            <td><%= subscriber.email %></td>
+            <td><% subscriber.resource_id_array.each do |res_id| %><%= Resource.find(res_id).title %><br><% end %></td>
+            <td class="text-center"><% if subscriber.member || memberMatch %><i class="fas fa-check"></i><% end %></td>
+            <td class="text-center"><% if subscriber.unsubscribed %><i class="fas fa-times"></i><% end %></td>
+            <td class="text-center"><%= link_to '<i class="fas fa-times"></i>'.html_safe, subscriber, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+</section> <!-- by-name -->

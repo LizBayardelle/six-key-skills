@@ -33,13 +33,13 @@
         </div> <!-- md-form -->
       </div> <!-- col -->
 
-      <%= f.hidden_field :resource_id, value: params[:resource_id] %>
+      <%= f.hidden_field :resource_id, value: resource_id %>
 
     </div> <!-- row -->
   </div> <!-- form inputs -->
 
   <div class="form-actions text-center mt-4">
-    <%= f.button :submit, "Subscribe", class: "btn btn-primary" %>
+    <%= f.button :button, "Subscribe", class: "btn btn-primary", type: "submit", name: "resource_id", value: resource_id %>
   </div>
 
 <% end %>

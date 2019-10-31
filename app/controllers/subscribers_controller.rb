@@ -4,7 +4,7 @@ class SubscribersController < ApplicationController
   # GET /subscribers
   # GET /subscribers.json
   def index
-    @subscribers = Subscriber.all
+    @subscribers = Subscriber.order("created_at DESC")
   end
 
   # GET /subscribers/1
@@ -25,14 +25,22 @@ class SubscribersController < ApplicationController
   # POST /subscribers.json
   def create
     @subscriber = Subscriber.new(subscriber_params)
+    existing = Subscriber.where(email: @subscriber.email).first
 
-    respond_to do |format|
-      if @subscriber.save
-        format.html { redirect_to resource_path(@subscriber.resource_id, email: @subscriber.email) }
-        format.json { render :show, status: :created, location: @subscriber }
-      else
-        format.html { render :new }
-        format.json { render json: @subscriber.errors, status: :unprocessable_entity }
+    if existing
+      existing.resource_id_array << params[:resource_id]
+      existing.save
+      redirect_to resource_path(params[:resource_id], email: @subscriber.email)
+    else
+      @subscriber.resource_id_array << params[:resource_id]
+      respond_to do |format|
+        if @subscriber.save
+          format.html { redirect_to resource_path(@subscriber.resource_id_array.last(), email: @subscriber.email) }
+          format.json { render :show, status: :created, location: @subscriber }
+        else
+          format.html { render :new }
+          format.json { render json: @subscriber.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -73,7 +81,8 @@ class SubscribersController < ApplicationController
         :first_name,
         :email,
         :member,
-        :resource_id
+        :unsubscribed,
+        resource_id_array: []
       )
     end
 end
