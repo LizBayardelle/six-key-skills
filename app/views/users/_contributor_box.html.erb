@@ -1,0 +1,21 @@
+<div class="contributor-box">
+  <div class="box-header">
+    <h2 class="font-weight-bold mb-0 pb-0">
+      <%= user.full_title %>
+    </h2>
+    <h5 class=""><em>
+      <%= user.job_title %>
+      <% if user.company %> at
+        <% if user.website %>
+          <%= link_to user.company, user.website, class: "text-white" %>
+        <% else %>
+          <%= user.company %>
+        <% end %>
+      <% end %>
+      , Contributor since <%= user.contributor_since.year %>
+    </em></h5>
+  </div> <!-- box-header -->
+  <div class="box-body">
+    <p><%= user.bio %></p>
+  </div>
+</div> <!-- contributor-box -->

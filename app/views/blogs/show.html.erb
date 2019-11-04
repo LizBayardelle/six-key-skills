@@ -41,9 +41,26 @@
     <div class="container pb-4">
 
       <div class="row py-4">  <!-- row-->
-        <div class="col-md-12"> <!-- column-->
+        <div class="col-md-12 pb-3"> <!-- column-->
           <%= raw(@blog.body) %>
         </div> <!-- column -->
+
+        <%= render partial: "users/contributor_box", locals: { user: @blog.user } %>
+
+        <div class="col-12 pt-4 justify-contents center">
+
+          <hr class="col-6 mt-4">
+
+          <h3 class="">Related Reading</h3>
+          <p>
+            <ul>
+              <% @related_blogs.each do |blog| %>
+                <li><%= link_to blog.title, blog_path(blog) %></li>
+              <% end %>
+            </ul>
+          </p>
+        </div> <!-- col -->
+
       </div> <!-- row -->
     </div> <!-- container -->
   </div> <!-- body -->

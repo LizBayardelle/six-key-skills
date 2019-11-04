@@ -12,6 +12,20 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    case @blog.primary_category
+    when "Motivation"
+      @related_blogs = Blog.where(motivation: true, published: true).where("published_at < ?", Date.today)
+    when "Mindset"
+      @related_blogs = Blog.where(mindset: true, published: true).where("published_at < ?", Date.today)
+    when "Resourcing"
+      @related_blogs = Blog.where(resourcing: true, published: true).where("published_at < ?", Date.today)
+    when "Planning"
+      @related_blogs = Blog.where(planning: true, published: true).where("published_at < ?", Date.today)
+    when "Time Management"
+      @related_blogs = Blog.where(time_management: true, published: true).where("published_at < ?", Date.today)
+    when "Discipline"
+      @related_blogs = Blog.where(discipline: true, published: true).where("published_at < ?", Date.today)
+    end
   end
 
   # GET /blogs/new

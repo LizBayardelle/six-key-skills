@@ -18,11 +18,20 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
 
       :membership,
-      :contributor,
       :admin,
 
       :password,
-      :password_confirmation)
+      :password_confirmation,
+
+      :contributor,
+      :bio,
+      :full_title,
+      :website,
+      :contributor_since,
+      :location,
+      :job_title,
+      :company,
+    )
   end
 
   def account_update_params
@@ -32,11 +41,20 @@ class RegistrationsController < Devise::RegistrationsController
       :email,
 
       :membership,
-      :contributor,
       :admin,
 
       :password,
       :password_confirmation,
-      :current_password)
+      :current_password,
+      :contributor,
+
+      :bio,
+      :full_title,
+      :website,
+      :contributor_since,
+      :location,
+      :job_title,
+      :company,
+    )
   end
 end

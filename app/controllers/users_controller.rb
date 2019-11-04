@@ -11,6 +11,14 @@ class UsersController < ApplicationController
     @admin = User.where(admin: true)
   end
 
+  def make_contributor
+    @user = User.find(params[:id])
+    if @user.update_attributes(contributor: true, contributor_since: Date.today)
+      redirect_back(fallback_location: users_path)
+      flash[:notice] = "That user is now a contributor!"
+    end
+  end
+
   def only_self
     @user = User.find(params[:id])
     unless current_user && @user.id == current_user.id

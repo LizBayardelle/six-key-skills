@@ -39,13 +39,17 @@ $color-beige: #ccc5b9 !important;
 $color-red: #ad343e !important;
 $color-slate: #66717e !important;
 $color-whiteish: #fffcf7 !important;
+$color-transparent-white: rgba(255, 255, 255, 0.4) !important;
+$color-transparent-slate: rgba(102, 113, 126, 0.7) !important;
 
 .color-navy { background-color: $color-navy; }
 .color-beige { background-color: $color-beige; }
 .color-red { background-color: $color-red; }
 .color-slate { background-color: $color-slate; }
 .color-whiteish { background-color: $color-whiteish; }
-.color-transparent-white { background-color: rgba(255, 255, 255, 0.4); }
+.color-transparent-white { background-color: $color-transparent-white; }
+.color-transparent-slate { background-color: $color-transparent-slate; }
+
 
 .text-navy { color: $color-navy; }
 .text-beige { color: $color-beige; }
@@ -201,3 +205,18 @@ bottom: .5em;
     font-size: 1.1rem !important;
     text-transform: none !important;
   }
+
+.contributor-box {
+  border: solid thin $color-slate;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.contributor-box .box-header {
+  background-color: $color-transparent-slate;
+  color: white !important;
+  padding: 20px 40px 10px 40px;
+}
+
+.contributor-box .box-body {
+  padding: 20px 40px 10px 40px;
+}
