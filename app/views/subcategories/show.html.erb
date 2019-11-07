@@ -1,0 +1,48 @@
+<main>
+
+  <div class="view jarallax" style="height: 30vh; min-height: 500px;">
+
+    <img class="jarallax-img" src="<%= url_for(@subcategory.image) %>" alt="<%= @subcategory.name %>">
+
+    <div class="mask rgba-white-strong">
+
+      <section class="text-center text-sm-right px-5 pt-2">
+        <% if current_user && current_user.admin %>
+          <%= link_to 'Edit Subcategory', edit_subcategory_path(@subcategory) %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'Subcategory Manager', subcategories_path %>
+        <% end %>
+      </section>
+
+      <div class="container text-center mt-5">
+        <div class="row mb-5">
+          <div class="col-md-12 wow fadeIn mb-3">
+            <h1 class="display-3 mb-2 wow fadeInDown text-black font-weight-bold" data-wow-delay="0.3s"><%= @subcategory.name %></h1>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
+              <%= @subcategory.description %>
+            </h4>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+
+    </div> <!-- mask -->
+
+  </div> <!-- jarallax view -->
+
+
+  <div class="z-depth-3" id="body">
+    <div class="container pb-4">
+
+      <div class="row py-4">  <!-- row-->
+        <div class="col-md-12 pb-3"> <!-- column-->
+
+          <h2 class="text-center pt-3">Articles on <%= @subcategory.name %></h2>
+          <% @blog_categorizations.each do |blog_sub| %>
+            <% blog = Blog.find(blog_sub.blog_id) %>
+            <p><%= link_to blog.title, blog %></p>
+          <% end %>
+
+        </div> <!-- column -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </div> <!-- body -->

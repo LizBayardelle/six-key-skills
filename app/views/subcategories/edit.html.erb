@@ -1,0 +1,14 @@
+<header class="text-center">
+  <h1 class="font-weight-bold mt-5">Edit <%= @subcategory.name %></h1>
+  <p>
+    <%= link_to 'See Subcategory', @subcategory %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Subcategory Manager', subcategories_path %>
+  </p>
+</header>
+
+<section class="text-center mb-5 my-"> <!-- blogs -->
+  <div class="container">  <!-- container -->
+    <%= render 'form', subcategory: @subcategory %>
+  </div> <!-- container -->
+</section>

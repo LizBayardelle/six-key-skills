@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_012613) do
+ActiveRecord::Schema.define(version: 2019_11_07_175535) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2019_11_04_012613) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "blog_categorizations", force: :cascade do |t|
+    t.bigint "blog_id"
+    t.bigint "subcategory_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_blog_categorizations_on_blog_id"
+    t.index ["subcategory_id"], name: "index_blog_categorizations_on_subcategory_id"
   end
 
   create_table "blogs", force: :cascade do |t|
@@ -79,6 +88,20 @@ ActiveRecord::Schema.define(version: 2019_11_04_012613) do
     t.datetime "updated_at", null: false
     t.string "classification"
     t.index ["user_id"], name: "index_resources_on_user_id"
+  end
+
+  create_table "subcategories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "motivation", default: false
+    t.boolean "mindset", default: false
+    t.boolean "resourcing", default: false
+    t.boolean "planning", default: false
+    t.boolean "time_management", default: false
+    t.boolean "discipline", default: false
   end
 
   create_table "subscribers", force: :cascade do |t|

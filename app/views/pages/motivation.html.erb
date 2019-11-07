@@ -7,9 +7,9 @@
     <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/begin.jpg" alt="">
 
     <div class="mask rgba-white-light">
-      <div class="container text-center">
-        <div class="row mt-5">
-          <div class="col-md-12 wow fadeIn mt-5">
+      <div class="container flex-center text-center pb-5">
+        <div class="row pb-5">
+          <div class="col-md-12 wow fadeIn">
             <h1 class="display-3 mb-2 wow fadeInDown text-black font-weight-bold" data-wow-delay="0.3s">Motivation</h1>
             <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
               Whatever your goal is, you need six key skills to succeed.  If you haven't reached a goal, it's because you're lacking in one of these key areas.
@@ -30,10 +30,11 @@
     <div class="container pb-4">
 
       <div class="row">  <!--Grid row-->
-        <div class="col-md-12 text-center"> <!--Grid column-->
+        <div class="col-md-12 my-5 text-center"> <!--Grid column-->
 
-          <h2 class="h1 font-weight-bold text-navy my-5 py-4">What are the Six Key Skills?</h2>
-          <p align="justify">Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.Lorem ipsum dolor sit amet, consectetur quis elit. Perspiciatis commodi porro, cumque provident rem corporis odit, ut quas dolores maxime nesciunt possimus quis, soluta velit debitis amet, veritatis cupiditate reprehenderit.</p>
+          <h2 class="h1 font-weight-bold text-navy pt-4 pb-4">Motivation Skills</h2>
+          <% subcategories = Subcategory.where(motivation: true, active: true) %>
+          <%= render partial: "pages/subcategories_list", locals: { subcategories: subcategories } %>
 
         </div> <!--Grid column-->
       </div> <!--Grid row-->

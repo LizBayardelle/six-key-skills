@@ -1,0 +1,86 @@
+<%= simple_form_for(@subcategory) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+  <div class="form-inputs">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :name,
+                    class: "form-control",
+                    id: "name",
+                    required: true,
+                    label: false %>
+          <label for="name">Name</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12 my-4">
+        <%= f.text_area :description, class: "form-control", style: "width: 100%" %>
+      </div>
+
+    </div> <!-- row -->
+
+
+
+    <div class="row text-left mb-3">
+
+      <div class="col-12 pb-4">
+        <label>Subcategory Image</label><br>
+        <%= f.file_field :image %>
+      </div> <!-- col-12 -->
+
+      <div class="col-12 field form-check">
+        <%= f.check_box :active, class: "form-check-input", id: "active" %>
+        <%= f.label :active, class: "form-check-label", for: "active" %>
+      </div>
+
+    </div> <!-- row -->
+
+
+
+
+    <h3 class="text-center">Categories</h3>
+    <div class="row text-left mb-4">
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :motivation, class: "form-check-input", id: "motivation" %>
+        <%= f.label :motivation, class: "form-check-label", for: "motivation" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :mindset, class: "form-check-input", id: "mindset" %>
+        <%= f.label :mindset, class: "form-check-label", for: "mindset" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :resourcing, class: "form-check-input", id: "resourcing" %>
+        <%= f.label :resourcing, class: "form-check-label", for: "resourcing" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :planning, class: "form-check-input", id: "planning" %>
+        <%= f.label :planning, class: "form-check-label", for: "planning" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :time_management, class: "form-check-input", id: "time_management" %>
+        <%= f.label :time_management, class: "form-check-label", for: "time_management" %>
+      </div>
+
+      <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :discipline, class: "form-check-input", id: "discipline" %>
+        <%= f.label :discipline, class: "form-check-label", for: "discipline" %>
+      </div>
+
+    </div> <!-- row -->
+
+
+
+
+    <div class="form-actions">
+      <%= f.button :submit, class: "btn btn-primary" %>
+    </div>
+<% end %>
