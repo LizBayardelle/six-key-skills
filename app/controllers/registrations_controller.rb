@@ -2,9 +2,15 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     super
-    Subscriber.each do |sub|
+    Subscriber.all.each do |sub|
       if @user.email == sub.email
         sub.update_attributes(member: true)
+      end
+    end
+    Preauthorization.all.each do |pre|
+      if @user.email == pre.email
+        @user.update_attributes(admin: pre.admin, contributor: pre.contributor, contributor_since: Date.today)
+        pre.update_attributes(fulfilled: true)
       end
     end
   end

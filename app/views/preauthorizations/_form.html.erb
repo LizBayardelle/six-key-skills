@@ -1,0 +1,38 @@
+
+<%= simple_form_for(preauthorization) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+  <div class="form-inputs">
+    <div class="row">
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :email,
+                    class: "form-control",
+                    id: "email",
+                    required: true,
+                    label: false %>
+          <label for="email">User Email</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+    </div> <!-- row -->
+
+    <div class="row text-left my-4">
+      <div class="col-12 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :admin, class: "form-check-input", id: "admin" %>
+        <%= f.label :admin, class: "form-check-label", for: "admin" %>
+      </div>
+
+      <div class="col-12 field form-check" style="margin-left: auto; margin-right: auto;">
+        <%= f.check_box :contributor, class: "form-check-input", id: "contributor" %>
+        <%= f.label :contributor, class: "form-check-label", for: "contributor" %>
+      </div>
+    </div> <!-- row -->
+
+  </div> <!-- form-inputs -->
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

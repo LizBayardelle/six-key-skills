@@ -1,20 +1,28 @@
 <main class="mb-5 mt-3">
 
-  <div class="text-right px-5">
-    <%= link_to "Edit My Information", edit_user_registration_path(@user) %>
-  </div>
+  <% if current_user.id == @user.id %>
+    <div class="text-right px-5">
+      <%= link_to "Edit My Information", edit_user_registration_path(@user) %>
+    </div>
+  <% end %>
 
   <div class="container">
 
     <header class="text-center">
-      <h1>My Account</h1>
+      <% if current_user.id == @user.id %>
+        <h1>My Account</h1>
+      <% else %>
+        <h1><%= @user.full_name %></h1>
+      <% end %>
       <p>
-        <em><%= @user.full_name %></em>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <% if current_user.id == @user.id %>
+          <em><%= @user.full_name %></em>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+        <% end %>
         <% if @user.admin %>
           <em>Administrator</em>
         <% elsif @user.contributor %>
-          <em>Contributor</em>
+          <em>Contributor Since <%= @user.contributor_since.year %></em>
         <% else %>
           <em>Member Since <%= @user.created_at.year %></em>
         <% end %>

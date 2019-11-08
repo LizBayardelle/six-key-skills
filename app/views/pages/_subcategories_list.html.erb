@@ -1,9 +1,9 @@
 <div class="row">
   <% subcategories.each do |sub| %>
 
-    <div class="col-sm-6 col-md-4">
-      <div class="view zoom">
-        <img src="<%= url_for(sub.image) %>" class="img-fluid " alt="<%= sub.name %>">
+    <div class="col-sm-6 col-md-4 pb-4">
+      <div class="view zoom z-depth-3">
+        <img src="<%= url_for(sub.image) %>" class="img-fluid thumbnail-grid-image" alt="<%= sub.name %>">
         <div class="mask flex-center waves-effect waves-light rgba-white-strong">
           <p class="h2 font-weight-bold"><%= sub.name %></p>
         </div>

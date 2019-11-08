@@ -33,6 +33,30 @@
     <li>
       <ul class="collapsible collapsible-accordion">
 
+        <% if current_user %>
+          <li><a class="collapsible-header waves-effect arrow-r">
+            <div class="sidenav-icon"><i class="fas fa-user"></i></div><%= current_user.full_name %>
+              <i class="fas fa-angle-down rotate-icon"></i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><%= link_to 'My Account', user_path(current_user), class: "waves-effect" %></li>
+                <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "waves-effect" %></li>
+              </ul>
+            </div>
+          </li>
+        <% else %>
+          <li><a class="collapsible-header waves-effect arrow-r">
+            <div class="sidenav-icon"><i class="fas fa-user"></i></div>My Account
+              <i class="fas fa-angle-down rotate-icon"></i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><%= link_to 'Sign Up', new_user_registration_path, class: "waves-effect" %></li>
+                <li><%= link_to 'Sign In', new_user_session_path, class: "waves-effect" %></li>
+              </ul>
+            </div>
+          </li>
+        <% end %>
+
 
         <% if current_user && current_user.admin %>
           <li><a class="collapsible-header waves-effect arrow-r">

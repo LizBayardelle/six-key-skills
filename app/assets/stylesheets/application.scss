@@ -133,6 +133,13 @@ label.active { color: $color-red; }
   -------------------------------
   -----------------------------*/
 
+.thumbnail-grid-image {
+  object-fit: cover;
+  height: 250px;
+  width: 100%;
+}
+
+
 html { scroll-behavior: smooth; }
 .non-footer { min-height: calc(100vh - 265px); }
 
@@ -194,6 +201,10 @@ table.dataTable thead .sorting_desc:before,
 table.dataTable thead .sorting_desc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before {
 bottom: .5em;
+}
+
+table.table th, table.table td {
+  padding: 2px 5px;
 }
 
 .paginate_button {

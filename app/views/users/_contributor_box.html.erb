@@ -1,21 +1,31 @@
-<div class="contributor-box">
-  <div class="box-header">
-    <h2 class="font-weight-bold mb-0 pb-0">
-      <%= user.full_title %>
-    </h2>
-    <h5 class=""><em>
-      <%= user.job_title %>
-      <% if user.company %> at
+<% if user.full_title %>
+
+  <div class="contributor-box">
+    <div class="box-header">
+      <h2 class="font-weight-bold mb-0 pb-0">
+        <%= user.full_title %>
+      </h2>
+      <h5 class=""><em>
+        <%= user.job_title %>
+        <% if user.company %> at
         <% if user.website %>
-          <%= link_to user.company, user.website, class: "text-white" %>
+        <%= link_to user.company, user.website, class: "text-white" %>
         <% else %>
-          <%= user.company %>
+        <%= user.company %>
         <% end %>
-      <% end %>
-      , Contributor since <%= user.contributor_since.year %>
-    </em></h5>
-  </div> <!-- box-header -->
-  <div class="box-body">
-    <p><%= user.bio %></p>
+        <% end %>
+        , Contributor since <%= user.contributor_since.year %>
+      </em></h5>
+    </div> <!-- box-header -->
+    <div class="box-body">
+      <p><%= user.bio %></p>
+    </div>
+  </div> <!-- contributor-box -->
+
+<% elsif current_user && current_user.id == user.id %>
+
+  <div class="text-center">
+    <%= link_to "Fill Out My Contributor Bio", edit_user_registration_path(user), class: "btn btn-primary" %>
   </div>
-</div> <!-- contributor-box -->
+
+<% end %>

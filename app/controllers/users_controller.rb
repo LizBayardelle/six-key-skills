@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
   def only_self
     @user = User.find(params[:id])
-    unless current_user && @user.id == current_user.id
+    unless current_user && ( @user.id == current_user.id || current_user.admin )
       redirect_back(fallback_location: root_path)
       flash[:warning] = "Sorry, you can only access your own user page."
     end

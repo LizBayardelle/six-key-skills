@@ -1,2 +1,120 @@
-<h1>Admin#users</h1>
-<p>Find me in app/views/admin/users.html.erb</p>
+<header class="text-center mt-5 mb-4">
+  <h1 class="font-weight-bold">Member List</h1>
+</header>
+
+<section class="text-center mb-5 my-"> <!-- users -->
+  <div class="container">  <!-- container -->
+    <h2>Members</h2>
+
+    <div class="table-responsive" style="width: 100%">
+      <table id="dtBasicExample" class="table table-striped table-bordered" width="100%">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Membership</th>
+            <th>Admin</th>
+            <th>Contributor</th>
+          </tr>
+        </thead>
+
+        <tbody class="text-left">
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.full_name, user %></td>
+              <td><%= user.email %></td>
+              <td><%= user.membership %></td>
+              <td class="text-center"><% if user.admin %><i class="fas fa-check"></i><% end %></td>
+              <td class="text-center"><% if user.contributor %><i class="fas fa-check"></i><% else %><%= link_to "Make Contributor", make_contributor_path(user), method: :post %><% end %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div> <!-- table responsive -->
+
+
+  </div> <!-- container -->
+</section>
+
+
+
+<section class="text-center mb-5 my-"> <!-- users -->
+  <div class="container">  <!-- container -->
+    <h2>Preauthorizations</h2>
+
+    <button type="button" class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#newPreauthorization">
+      New Preauthorization
+    </button>
+
+    <div class="table-responsive" style="width: 100%">
+      <table id="dtBasicExample" class="table table-striped table-bordered" width="100%">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Admin</th>
+            <th>Contributor</th>
+            <th>Account Created</th>
+            <th><i class="fas fa-times"></i></th>
+          </tr>
+        </thead>
+
+        <tbody class="text-left">
+          <% @preauthorizations.each do |preauthorization| %>
+            <tr>
+              <td><%= mail_to preauthorization.email, preauthorization.email, target: "_blank" %></td>
+              <td class="text-center"><% if preauthorization.admin %><i class="fas fa-check"></i><% end %></td>
+              <td class="text-center"><% if preauthorization.contributor %><i class="fas fa-check"></i><% end %></td>
+              <td class="text-center"><% if preauthorization.fulfilled %><i class="fas fa-check"></i><% end %></td>
+              <th class="text-center"><%= link_to '<i class="fas fa-times"></i>'.html_safe, preauthorization, method: :delete, data: { confirm: 'Are you sure?' } %></th>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div> <!-- table responsive -->
+
+
+  </div> <!-- container -->
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="newPreauthorization" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create a New Preauthorization</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= render partial: "preauthorizations/form", locals: { preauthorization: @new_preauthorization } %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function () {
+    $('#dtBasicExample').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+  });
+</script>

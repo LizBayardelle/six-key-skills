@@ -49,16 +49,18 @@
 
         <div class="col-12 pt-4 justify-contents center">
 
-          <hr class="col-6 mt-4">
+          <% if @related_blogs %>
+            <hr class="col-6 mt-4">
 
-          <h3 class="">Related Reading</h3>
-          <p>
-            <ul>
-              <% @related_blogs.each do |blog| %>
-                <li><%= link_to blog.title, blog_path(blog) %></li>
-              <% end %>
-            </ul>
-          </p>
+            <h3 class="">Related Reading</h3>
+            <p>
+              <ul>
+                <% @related_blogs.each do |blog| %>
+                  <li><%= link_to blog.title, blog_path(blog) %></li>
+                <% end %>
+              </ul>
+            </p>
+          <% end %>
         </div> <!-- col -->
 
       </div> <!-- row -->
@@ -67,30 +69,30 @@
 
 
 
-  <div class="view jarallax" style="min-height: 300px">
-    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/parchment-paper.jpg" alt="<%= @blog.title %>">
-    <% if @blog.resource_id %>
-      <div id="lead-magnet" class="container py-5">
-        <h2 class="font-weight-bold text-center">Take the Next Step</h2>
-        <div class="row">
-          <div class="col-sm-3">
-            <%= image_tag @blog.resource.sample, class: "pin z-depth-3" %>
-          </div> <!-- col -->
-          <div class="col-sm-9 pl-5">
-            <p><%= raw(@blog.resource.description) %></p>
-            <% if current_user %>
-              <%= link_to "Get it Now", resource_path(@blog.resource.id), class: "btn btn-lg color-red text-white text-white-hover" %>
-            <% else %>
-              <button type="button" class="btn btn-lg color-red text-white text-white-hover" data-toggle="modal" data-target="#basicExampleModal">
-                Get it Now
-              </button>
-            <% end %>
-          </div> <!-- col -->
-        </div> <!-- row -->
-      </div> <!-- lead magnet container -->
-    <% end %>
+  <% if @blog.resource_id %>
+    <div class="view jarallax" style="min-height: 300px">
+      <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/parchment-paper.jpg" alt="<%= @blog.title %>">
+        <div id="lead-magnet" class="container py-5">
+          <h2 class="font-weight-bold text-center">Take the Next Step</h2>
+          <div class="row">
+            <div class="col-sm-3">
+              <%= image_tag @blog.resource.sample, class: "pin z-depth-3" %>
+            </div> <!-- col -->
+            <div class="col-sm-9 pl-5">
+              <p><%= raw(@blog.resource.description) %></p>
+              <% if current_user %>
+                <%= link_to "Get it Now", resource_path(@blog.resource.id), class: "btn btn-lg color-red text-white text-white-hover" %>
+              <% else %>
+                <button type="button" class="btn btn-lg color-red text-white text-white-hover" data-toggle="modal" data-target="#basicExampleModal">
+                  Get it Now
+                </button>
+              <% end %>
+            </div> <!-- col -->
+          </div> <!-- row -->
+        </div> <!-- lead magnet container -->
 
-  </div> <!-- jarallax -->
+    </div> <!-- jarallax -->
+  <% end %>
 
 
 
@@ -181,7 +183,11 @@
       </div>
       <div class="modal-body text-center">
         <h2>Subscribe</h2>
-        <p>To get access to your <span class="font-weight-bold"><%= Resource.find(@blog.resource_id).title %></span> right now!
+        <% if @blog.resource_id %>
+          <p>To get access to your <span class="font-weight-bold"><%= Resource.find(@blog.resource_id).title %></span> right now!
+        <% else %>
+          <p>Achieve your goals with helpful resources direct to your inbox.
+        <% end %>
           <br>We promise never to spam you and you may unsubscribe&nbsp;at&nbsp;any&nbsp;time.</p>
         <%= render partial: 'subscribers/form', locals: { subscriber: @new_subscriber, resource_id: @blog.resource_id } %>
       </div>

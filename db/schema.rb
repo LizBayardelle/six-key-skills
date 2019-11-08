@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_175535) do
+ActiveRecord::Schema.define(version: 2019_11_08_045017) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,15 @@ ActiveRecord::Schema.define(version: 2019_11_07_175535) do
     t.bigint "resource_id"
     t.index ["resource_id"], name: "index_blogs_on_resource_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
+  end
+
+  create_table "preauthorizations", force: :cascade do |t|
+    t.string "email"
+    t.boolean "admin", default: false
+    t.boolean "contributor", default: false
+    t.boolean "fulfilled", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "resources", force: :cascade do |t|

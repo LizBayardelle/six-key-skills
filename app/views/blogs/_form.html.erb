@@ -94,9 +94,23 @@
 
     </div> <!-- row -->
 
+    <div class="row text-left">
+      <div class="col-12">
+
+        <select id="subcategoriesSelect" class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here...">
+          <%= Subcategory.all.each do |sub| %>
+            <option value="<%= sub.id %>" class="subChoice"><%= sub.name %></option>
+          <% end %>
+        </select>
+        <label class="mdb-main-label">Subcategories</label>
+        <%= f.hidden_field :subcategory_ids, id: "subctegory_id_field" %>
+      </div> <!-- col -->
+    </div> <!-- row -->
 
 
-    <h3 class="text-center mt-5">Social Media</h3>
+
+
+    <h3 class="text-center">Social Media</h3>
     <div class="row text-left">
 
       <div class="col-12 pb-3">
@@ -177,5 +191,9 @@
       toolbar: "code",
       menubar: "tools"
     });
+    $('.filtrable').click(function(){
+      console.log($('#selectedSubcategories').val());
+      $('#subctegory_id_field').val( $('#selectedSubcategories').val() );
+    })
   });
 </script>

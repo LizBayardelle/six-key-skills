@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :preauthorizations
   resources :subcategories
   get 'home/index'
   root 'home#index'
@@ -8,6 +9,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :index]
   get 'users/show'
   get 'users/index'
+  post "users/:id/make_contributor" => "users#make_contributor", as: "make_contributor"
+
 
   get 'admin/blogs'
   get 'admin/users'
