@@ -40,7 +40,7 @@ $color-red: #ad343e !important;
 $color-slate: #66717e !important;
 $color-whiteish: #fffcf7 !important;
 $color-transparent-white: rgba(255, 255, 255, 0.4) !important;
-$color-transparent-slate: rgba(102, 113, 126, 0.7) !important;
+$color-transparent-slate: rgba(102, 113, 126, 0.5) !important;
 
 .color-navy { background-color: $color-navy; }
 .color-beige { background-color: $color-beige; }
@@ -79,6 +79,7 @@ a:hover { color: $color-navy }
 
 .side-nav .logo-wrapper { height: 150px; }
 .sidenav-icon, .icon-width { display: inline-block; width: 25px;}
+.nav-link { color: $color-navy; font-weight: 700; }
 .nav-item { padding-left: 10px; }
 .side-nav .collapsible a { font-size: 0.9rem !important; }
 .side-nav { font-size: 0.9rem; }

@@ -1,0 +1,134 @@
+<main>
+
+  <div class="view jarallax" style="height: 30vh; min-height: 500px;">
+    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/spiral-staircase.jpg" alt="">
+    <div class="mask rgba-grey-slight">
+      <div class="container flex-center text-center">
+        <div class="row">
+          <div class="col-md-12 wow fadeIn mb-3">
+            <h1 class="display-3 mb-2 wow fadeInDown" data-wow-delay="0.3s">About <span class="text-red font-weight-bold">Six Key Skills</span></h1>
+            <h4 class="text-uppercase mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">Built to help you succeed</h4>
+            <a class="btn color-slate text-white text-white-hover btn-lg wow fadeIn" href="#who" data-wow-delay="0.4s">Who We Are</a>
+            <a class="btn color-red text-white text-white-hover btn-lg wow fadeIn" href="#what" data-wow-delay="0.4s">What We Do</a>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- mask -->
+  </div> <!-- jarallax -->
+
+
+
+
+
+
+
+
+  <div class="container" id="who">
+
+    <div class="row mb-5 pb-4">
+
+      <div class="col-md-12 text-center">
+        <h2 class="h1 font-weight-bold text-red mt-5 pb-2">
+          Who We Are
+        </h2>
+      </div> <!-- header col -->
+
+
+      <div class="col-sm-4 text-center">
+
+        <img src="https://sixkeyskills.s3-us-west-1.amazonaws.com/Headshot+(Liz+Bayardelle)+Square.jpg"
+          style="object-fit: cover; width: 100%; max-width: 300px"
+          class="rounded z-depth-2 mb-4"
+          alt="Liz Bayardelle, Six Key Skills Founder">
+
+          <!--LinkedIn -->
+          <a class="p-2 fa-lg" href="https://www.linkedin.com/in/lizbayardelle/" target="_blank">
+            <i class="fab fa-linkedin"> </i>
+          </a>
+          <!-- Facebook-->
+          <a class="p-2 fa-lg" href="https://www.researchgate.net/profile/Elizabeth_Bayardelle" target="_blank">
+            <i class="fab fa-researchgate"> </i>
+          </a>
+          <!-- Email -->
+          <a class="p-2 fa-lg" href="mailto:liz@sixkeyskills.com" target="_blank">
+            <i class="fas fa-envelope"> </i>
+          </a>
+
+      </div> <!-- col -->
+
+      <div class="col-sm-8 px-3 mt-4 mt-sm-0 text-center text-sm-left">
+        <h3 class="font-weight-bold mb-0">Liz Bayardelle</h3>
+        <h5 class="font-weight-bold mb-2 text-slate">Six Key Skills Founder</h5>
+        <p>
+          Liz is a lifelong research nerd, data enthusiast, and serial entrepreneur.
+        </p>
+        <p>
+          She has worked in the fields of analytics, research, project management, and digital services for companies large and small, and has served as principal or majority owner of five different start-up companies, all of which were cash flow positive within their first year of operation.
+        </p>
+        <p>
+          Liz has over 10 years of psychological research experience and her work has been featured in peer reviewed journals, conference presentations, and dozens of internet publications.
+        </p>
+        <p>
+          Liz is a PhD graduand in Business Psychology from The Chicago School of Professional Psychology, holds a MA from John Jay College in New York, and a BA in Psychology from Pomona College.
+        </p>
+      </div> <!-- Grid column -->
+
+
+    </div> <!--Grid row-->
+
+  </div> <!-- container -->
+
+
+
+
+
+
+  <div class="view jarallax" id="what">
+    <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/white-book.jpg" alt="">
+    <div class="mask rgba-white-light">
+      <div class="container flex-center text-center">
+        <div class="row mt-5">
+          <div class="col-md-12 wow fadeIn mb-3">
+            <h1 class="display-3 mb-2 wow fadeInDown" data-wow-delay="0.3s">What We Do</h1>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">
+              Six Key Skills is a research-driven approach to achievement, based on a framework of six different skills that have proven themselves necessary in order for people to accomplish&nbsp;their&nbsp;goals.
+            </h4>
+            <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn" data-wow-delay="0.4s">
+              Our goal is to help you pinpoint which skills are holding you back and help you build them into assets.
+            </h4>
+            <%= link_to "Create a Free Account", new_user_registration_path, class: "btn color-slate text-white text-white-hover btn-lg wow fadeIn" %>
+            <a class="btn color-red text-white text-white-hover btn-lg wow fadeIn" href="#what" data-wow-delay="0.4s">Take the 6KS Quiz</a>
+          </div> <!-- col -->
+        </div> <!-- row -->
+      </div> <!-- container -->
+    </div> <!-- mask -->
+  </div>
+
+
+
+
+
+
+
+
+</main> <!-- Main layout -->
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    // object-fit polyfill run
+    objectFitImages();
+
+    /* init Jarallax */
+    jarallax(document.querySelectorAll('.jarallax'));
+
+    jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+        keepImg: true,
+    });
+  });
+</script>
