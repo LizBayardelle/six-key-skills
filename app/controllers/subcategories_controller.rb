@@ -79,6 +79,7 @@ class SubcategoriesController < ApplicationController
 
         :image,
 
+        :general,
         :motivation,
         :mindset,
         :resourcing,

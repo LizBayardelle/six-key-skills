@@ -24,6 +24,7 @@
             <th>Image</th>
             <th>Name</th>
             <th>Active</th>
+            <th><i class="fas fa-globe"></i></th>
             <th><i class="fas fa-mountain"></i></th>
             <th><i class="fas fa-brain"></i></th>
             <th><i class="fas fa-first-aid"></i></th>
@@ -37,9 +38,10 @@
           <% @subcategories.each do |subcategory| %>
             <tr>
               <td><%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_subcategory_path(subcategory) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to '<i class="fas fa-times"></i>'.html_safe, subcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              <td><%= image_tag url_for(subcategory.image), style: "height: 20px" %></td>
+              <td><% if subcategory.image.attached? %><%= image_tag url_for(subcategory.image), style: "height: 20px" %><% end %></td>
               <td class="text-left"><%= link_to subcategory.name, subcategory %></td>
               <td><% if subcategory.active %><i class="fas fa-check"></i><% end %></td>
+              <td><% if subcategory.general %><i class="fas fa-check"></i><% end %></td>
               <td><% if subcategory.motivation %><i class="fas fa-check"></i><% end %></td>
               <td><% if subcategory.mindset %><i class="fas fa-check"></i><% end %></td>
               <td><% if subcategory.resourcing %><i class="fas fa-check"></i><% end %></td>

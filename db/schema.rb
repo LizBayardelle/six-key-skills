@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_09_202658) do
+ActiveRecord::Schema.define(version: 2019_11_10_182936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 2019_11_09_202658) do
     t.boolean "time_management", default: false
     t.boolean "discipline", default: false
     t.string "blog_id_list_string"
+    t.boolean "general", default: false
   end
 
   create_table "subscribers", force: :cascade do |t|

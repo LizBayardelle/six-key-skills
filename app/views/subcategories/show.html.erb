@@ -2,7 +2,9 @@
 
   <div class="view jarallax" style="height: 30vh; min-height: 500px;">
 
-    <img class="jarallax-img" src="<%= url_for(@subcategory.image) %>" alt="<%= @subcategory.name %>">
+    <% if @subcategory.image.attached? %>
+      <img class="jarallax-img" src="<%= url_for(@subcategory.image) %>" alt="<%= @subcategory.name %>">
+    <% end %>
 
     <div class="mask rgba-white-strong">
 
