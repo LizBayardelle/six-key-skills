@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_045017) do
+ActiveRecord::Schema.define(version: 2019_11_09_202658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_045017) do
     t.datetime "updated_at", null: false
     t.string "primary_category"
     t.bigint "resource_id"
+    t.string "subcategory_id_list_string"
     t.index ["resource_id"], name: "index_blogs_on_resource_id"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
@@ -111,6 +112,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_045017) do
     t.boolean "planning", default: false
     t.boolean "time_management", default: false
     t.boolean "discipline", default: false
+    t.string "blog_id_list_string"
   end
 
   create_table "subscribers", force: :cascade do |t|

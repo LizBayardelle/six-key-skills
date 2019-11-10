@@ -36,12 +36,12 @@
       <div class="row py-4">  <!-- row-->
         <div class="col-md-12 pb-3"> <!-- column-->
 
-          <h2 class="text-center pt-3">Articles on <%= @subcategory.name %></h2>
-          <% @blog_categorizations.each do |blog_sub| %>
-            <% blog = Blog.find(blog_sub.blog_id) %>
-            <p><%= link_to blog.title, blog %></p>
-          <% end %>
-
+          <h2 class="text-center py-3">Articles on <%= @subcategory.name %></h2>
+          <div class="card-deck">
+            <% @sub_blogs.each do |blog| %>
+              <%= render partial: "layouts/blog_card", locals: { blog: blog } %><br>
+            <% end %>
+          </div> <!-- Card deck -->
         </div> <!-- column -->
       </div> <!-- row -->
     </div> <!-- container -->

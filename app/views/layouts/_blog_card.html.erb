@@ -1,0 +1,19 @@
+<div class="col-sm-6 col-lg-4 col-xl-3">
+  <div class="card mb-4">
+
+    <!--Card image-->
+    <div class="view overlay">
+      <img class="card-img-top" src="<%= blog.image_url %>" alt="<%= blog.title %>">
+      <%= link_to blog do %>
+        <div class="mask rgba-white-slight"></div>
+      <% end %>
+    </div>
+
+    <!--Card content-->
+    <div class="card-body">
+      <h4 class="card-title"><%= blog.title %></h4>
+      <p class="card-text"><%= blog.teaser %></p>
+    </div>
+
+  </div> <!-- Card -->
+</div> <!-- col -->

@@ -26,6 +26,7 @@
             <th><i class="fas fa-sitemap"></i></th>
             <th><i class="fas fa-stopwatch"></i></th>
             <th><i class="fas fa-cookie-bite"></i></th>
+            <th>Subcategories</th>
           </tr>
         </thead>
 
@@ -52,6 +53,11 @@
               <td class="text-center"><% if blog.planning %><i class="fas fa-check"></i><% end %></td>
               <td class="text-center"><% if blog.time_management %><i class="fas fa-check"></i><% end %></td>
               <td class="text-center"><% if blog.discipline %><i class="fas fa-check"></i><% end %></td>
+              <td>
+                <% blog.subcategory_ids.each do |id| %>
+                  <%= link_to Subcategory.find(id).name, Subcategory.find(id) %><br>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>

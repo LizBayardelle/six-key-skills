@@ -25,6 +25,11 @@ class BlogsController < ApplicationController
     when "Discipline"
       @related_blogs = Blog.where(discipline: true, published: true).where("published_at < ?", Date.today)
     end
+
+    @subcategories = []
+    @blog.subcategory_ids.each do |id|
+      @subcategories << Subcategory.find(id)
+    end
   end
 
   # GET /blogs/new
@@ -41,6 +46,14 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
+
+    @blog.subcategory_ids.each do |subid|
+      s = Subcategory.find(subid)
+      array = s.blog_ids
+      array << @blog.id
+      s.update_attributes(blog_ids: array)
+      s.save!
+    end
 
     if params[:blog][:pins].present?
       @blog.pins.purge
@@ -61,6 +74,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
+
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
@@ -121,7 +135,10 @@ class BlogsController < ApplicationController
         :resource_id,
         :user_id,
 
-        pins: []
+        :subcategory_id_list_string,
+
+        :pins => [],
+        subcategory_ids: [],
       )
     end
 end

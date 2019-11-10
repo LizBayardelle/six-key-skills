@@ -6,4 +6,6 @@ class Blog < ApplicationRecord
 
   has_many :blog_categorizations
   has_many :subcategories, through: :blog_categorizations
+
+
 end

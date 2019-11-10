@@ -42,7 +42,7 @@
       <div class="col-12 my-4">
         <%= f.text_area :body, class: "tinymce", rows: 20, style: "width: 100%" %>
         <%= tinymce_assets %>
-        <%= tinymce plugins: ["wordcount", "code", "anchor", "casechange", "codesample", "hr", "link", "preview"] %>
+        <%= tinymce plugins: ["wordcount", "code", "anchor", "codesample", "hr", "link", "preview"] %>
       </div>
 
     </div> <!-- row -->
@@ -59,7 +59,7 @@
     </div> <!-- row -->
 
 
-    <p class="text-left">Other Applicable Categories:</p>
+    <p class="text-left mb-1 font-weight-bold">Other Applicable Categories:</p>
     <div class="row text-left">
 
       <div class="col-4 col-lg-2 field form-check" style="margin-left: auto; margin-right: auto;">
@@ -94,17 +94,16 @@
 
     </div> <!-- row -->
 
-    <div class="row text-left">
-      <div class="col-12">
+    <p class="text-left mt-4 mb-1 font-weight-bold">Subcategories:</p>
+    <div class="row text-left mb-5">
 
-        <select id="subcategoriesSelect" class="mdb-select colorful-select dropdown-primary md-form" multiple searchable="Search here...">
-          <%= Subcategory.all.each do |sub| %>
-            <option value="<%= sub.id %>" class="subChoice"><%= sub.name %></option>
-          <% end %>
-        </select>
-        <label class="mdb-main-label">Subcategories</label>
-        <%= f.hidden_field :subcategory_ids, id: "subctegory_id_field" %>
-      </div> <!-- col -->
+      <% Subcategory.all.each do |sub| %>
+        <div class="form-check col-sm-6 col-md-4 subCheck">
+            <input type="checkbox" value="<%= sub.id %>" class="form-check-input" id="blog_subcategory_ids_<%= sub.id %>" name="blog[subcategory_ids][]">
+            <label class="form-check-label" for="blog_subcategory_ids_<%= sub.id %>"><%= sub.name %></label>
+        </div>
+      <% end %>
+
     </div> <!-- row -->
 
 
@@ -180,20 +179,17 @@
 
 
 
-
-<script>
-  $(document).ready(function() {
-    $('.mdb-select').materialSelect();
-    $('.datepicker').pickadate();
-    tinymce.init({
-      selector: "textarea",  // change this value according to your HTML
-      plugins: "code",
-      toolbar: "code",
-      menubar: "tools"
+<%= content_for :additional_js do %>
+  <script>
+    $(document).ready(function() {
+      $('.mdb-select').materialSelect();
+      $('.datepicker').pickadate();
+      tinymce.init({
+        selector: "textarea",  // change this value according to your HTML
+        plugins: "code",
+        toolbar: "code",
+        menubar: "tools"
+      });
     });
-    $('.filtrable').click(function(){
-      console.log($('#selectedSubcategories').val());
-      $('#subctegory_id_field').val( $('#selectedSubcategories').val() );
-    })
-  });
-</script>
+  </script>
+<% end %>

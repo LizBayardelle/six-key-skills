@@ -10,7 +10,10 @@ class SubcategoriesController < ApplicationController
   # GET /subcategories/1
   # GET /subcategories/1.json
   def show
-    @blog_categorizations = BlogCategorization.where(subcategory_id: @subcategory.id)
+    @sub_blogs = []
+    @subcategory.blog_ids.each do |id|
+      @sub_blogs << Blog.find(id)
+    end
   end
 
   # GET /subcategories/new
@@ -83,7 +86,11 @@ class SubcategoriesController < ApplicationController
         :time_management,
         :discipline,
 
-        :active
+        :active,
+
+        :blog_id_list_string,
+
+        blog_ids: []
       )
     end
 end
