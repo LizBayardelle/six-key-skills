@@ -23,6 +23,7 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       if @contact.save
+        ContactMailer.new_contact_us(@contact).deliver
         format.html { redirect_to root_path, notice: "Your message has been sent. We'll get back to you within 24 hours." }
         format.json { render :show, status: :created, location: @contact }
       else
@@ -52,6 +53,14 @@ class ContactsController < ApplicationController
     end
   end
 
+
+
+  def unarchive_contact
+    @contact = Contact.find(params[:id])
+    if @contact.update_attributes(archived: false)
+      redirect_to contacts_path, notice: "Succesfully un-archived!  Woohoo!"
+    end
+  end
 
 
   def admin_only

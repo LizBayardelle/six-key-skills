@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :contacts
   post "contacts/:id/archive_contact" => "contacts#archive_contact", as: "archive_contact"
+  post "contacts/:id/unarchive_contact" => "contacts#unarchive_contact", as: "unarchive_contact"
 
 
 end

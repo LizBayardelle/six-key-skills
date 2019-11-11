@@ -35,7 +35,7 @@
         <p class="text-right">
           <%= link_to 'Delete', contact, method: :delete, data: { confirm: 'Are you sure?' } %>
           &nbsp;&nbsp;|&nbsp;&nbsp;
-          <%= link_to 'Archive', archive_contact_path(contact), method: :post %>
+          <%= link_to 'Mark as Current', unarchive_contact_path(contact), method: :post %>
         </p>
       <% end %>
     <% end %>

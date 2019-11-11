@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+
+  <body>
+    <hr style="border: 0; border-top: solid 2px #516c8a;" />
+    <h1 style="text-align: center"><%= @contact.first_name %> <%= @contact.last_name %> Sent a Message</h1>
+    <hr style="border: 0; border-top: solid 2px #516c8a; margin-bottom: 25px" />
+    <p>
+      From: <%= @contact.first_name %> <%= @contact.last_name %> (<%= mail_to @contact.email %>)
+    </p>
+    <p>
+      Subject: <%= @contact.subject %>
+    </p>
+    <p>
+      <%= @contact.message %>
+    </p>
+    <hr style="border: 0; border-top: solid 2px #516c8a; margin-top: 25px" />
+    <img src="https://www.sixkeyskills.com/assets/logo-six-key-skills-955f0560e59dfb54658f2298a52922387eaa15cd2c452411d4a708d8d5efeaf3.png" style="width: 300px; display: block; margin-right: auto; margin-left: auto">
+    <hr style="border: 0; border-top: solid 2px #516c8a;" />
+  </body>
+
+</html>
