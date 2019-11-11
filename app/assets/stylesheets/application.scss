@@ -37,10 +37,10 @@
 $color-navy: #383b53 !important;
 $color-beige: #ccc5b9 !important;
 $color-red: #ad343e !important;
-$color-slate: #66717e !important;
+$color-slate: #516c8a !important; //formerly 66717e
 $color-whiteish: #fffcf7 !important;
 $color-transparent-white: rgba(255, 255, 255, 0.4) !important;
-$color-transparent-slate: rgba(102, 113, 126, 0.5) !important;
+$color-transparent-slate: rgba(81, 108, 138, 0.5) !important;
 
 .color-navy { background-color: $color-navy; }
 .color-beige { background-color: $color-beige; }
@@ -50,6 +50,7 @@ $color-transparent-slate: rgba(102, 113, 126, 0.5) !important;
 .color-transparent-white { background-color: $color-transparent-white; }
 .color-transparent-slate { background-color: $color-transparent-slate; }
 
+.bottom-border-slate { border-bottom: solid 5px $color-slate; }
 
 .text-navy { color: $color-navy; }
 .text-beige { color: $color-beige; }
@@ -127,12 +128,14 @@ label.active { color: $color-red; }
 
 
 
-  /*-----------------------------
-  -------------------------------
-  ---------MDB OVERRIDES---------
-  -----------AND DESIGN----------
-  -------------------------------
-  -----------------------------*/
+/*-----------------------------
+-------------------------------
+---------MDB OVERRIDES---------
+-----------AND DESIGN----------
+-------------------------------
+-----------------------------*/
+
+.hidden { display: none; }
 
 .thumbnail-grid-image {
   object-fit: cover;

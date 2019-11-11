@@ -1,0 +1,59 @@
+<main class="container my-5">
+  <header class="text-center">
+    <h1>Contact Us Submissions</h1>
+  </header>
+
+
+  <h2 class="font-weight-bold" id="currentHeader">Current Messages</h2>
+  <section id="currentSection">
+    <% if @contacts.count == 0 %>
+      <p>You currently have no current messages.</p>
+    <% else %>
+      <% @contacts.each do |contact| %>
+        <h4 class="m-0 mb-2 p-0 bottom-border-slate"><%= contact.subject %></h4>
+        <p class="m-0 p-0"><%= contact.message %></p>
+        <p class="m-0 p-0"><em>From <%= contact.first_name %> <%= contact.last_name %> (<%= mail_to contact.email %>)</em></p>
+        <p class="text-right">
+          <%= link_to 'Delete', contact, method: :delete, data: { confirm: 'Are you sure?' } %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'Archive', archive_contact_path(contact), method: :post %>
+        </p>
+      <% end %>
+    <% end %>
+  </section>
+
+
+  <h2 class="font-weight-bold" id="archivedHeader">Archived Messages</h2>
+  <section id="archivedSection">
+    <% if @archived.count == 0 %>
+      <p>You currently have no archived messages.</p>
+    <% else %>
+      <% @archived.each do |contact| %>
+        <h4 class="m-0 mb-2 p-0 bottom-border-slate"><%= contact.subject %></h4>
+        <p class="m-0 p-0"><%= contact.message %></p>
+        <p class="m-0 p-0"><em>From <%= contact.first_name %> <%= contact.last_name %> (<%= mail_to contact.email %>)</em></p>
+        <p class="text-right">
+          <%= link_to 'Delete', contact, method: :delete, data: { confirm: 'Are you sure?' } %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'Archive', archive_contact_path(contact), method: :post %>
+        </p>
+      <% end %>
+    <% end %>
+  </section>
+
+
+</main>
+
+
+
+
+<script>
+	$(document).ready(function() {
+    $('#currentHeader').click(function() {
+      $('#currentSection').toggleClass("hidden");
+    });
+    $('#archivedHeader').click(function() {
+      $('#archivedSection').toggleClass("hidden");
+    });
+	})
+</script>

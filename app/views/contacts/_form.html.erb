@@ -1,0 +1,70 @@
+
+<%= simple_form_for(@contact) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+
+
+  <div class="form-inputs">
+    <div class="row">
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="md-form mb-1">
+          <%= f.text_field :first_name,
+                    class: "form-control",
+                    id: "materialFormFirstName",
+                    required: true,
+                    label: false,
+                    autofocus: true,
+                    input_html: { autocomplete: "first_name" }%>
+          <label for="materialFormFirstName">First Name</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-sm-6 col-lg-4">
+        <div class="md-form mb-1">
+          <%= f.text_field :last_name,
+                    class: "form-control",
+                    id: "materialFormLastName",
+                    required: true,
+                    input_html: { autocomplete: "last_name" }%>
+          <label for="materialFormLastName">Last Name</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-lg-4">
+        <div class="md-form mb-1">
+          <%= f.text_field :email,
+          class: "form-control",
+          id: "materialFormEmail",
+          required: true,
+          input_html: { autocomplete: "email" }%>
+          <label for="materialFormEmail">Email Address</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :subject,
+                    class: "form-control",
+                    id: "materialFormSubject",
+                    required: true,
+                    label: false
+                    %>
+          <label for="materialFormSubject">Subject</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12 my-4 text-left">
+        <label>Message</label>
+        <%= f.text_area :message, class: "form-control" %>
+      </div>
+
+    </div> <!-- row -->
+
+
+
+  <div class="form-actions text-center">
+    <%= f.submit "Send Message", class: "btn btn-primary" %>
+  </div>
+<% end %>

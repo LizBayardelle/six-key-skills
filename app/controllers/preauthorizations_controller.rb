@@ -1,5 +1,6 @@
 class PreauthorizationsController < ApplicationController
   before_action :set_preauthorization, only: [:update, :destroy]
+  before_action :admin_only
 
 
   # POST /preauthorizations
@@ -41,6 +42,15 @@ class PreauthorizationsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def admin_only
+    unless current_user && current_user.admin
+      redirect_back(fallback_location: root_path)
+      flash[:warning] = "Sorry, you must be an administrator to access that page."
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

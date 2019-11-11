@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :preauthorizations
-  resources :subcategories
   get 'home/index'
   root 'home#index'
 
@@ -10,6 +8,7 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/index'
   post "users/:id/make_contributor" => "users#make_contributor", as: "make_contributor"
+  resources :preauthorizations
 
 
   get 'admin/blogs'
@@ -17,7 +16,15 @@ Rails.application.routes.draw do
   get 'admin/resources'
 
   resources :blogs
+
+  resources :subcategories
+
   resources :resources
+
   resources :subscribers
+
+  resources :contacts
+  post "contacts/:id/archive_contact" => "contacts#archive_contact", as: "archive_contact"
+
 
 end
