@@ -2,7 +2,7 @@
 <%= simple_form_for(@contact) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+  <%= f.invisible_captcha :subtitle %>
 
 
   <div class="form-inputs">
@@ -15,7 +15,6 @@
                     id: "materialFormFirstName",
                     required: true,
                     label: false,
-                    autofocus: true,
                     input_html: { autocomplete: "first_name" }%>
           <label for="materialFormFirstName">First Name</label>
         </div> <!-- md-form -->
