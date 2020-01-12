@@ -18,40 +18,38 @@
 <section class="container text-center mb-5"> <!-- blogs -->
   <div class="row">  <!-- Grid row -->
 
-    <% if @blogs.count != 0 %>
-      <% @blogs.each do |blog| %>
-        <div class="col-lg-4 col-md-6 mb-md-0 mb-4"> <!-- Grid column -->
+    <% @blogs.each do |blog| %>
+      <div class="col-lg-4 col-md-6 mb-md-0 mb-4"> <!-- Grid column -->
 
-          <div class="view overlay rounded z-depth-2 mb-3">
-            <img class="img-fluid" src="<%= blog.image_url %>" alt="Sample image">
-            <%= link_to blog do %>
-              <div class="mask rgba-white-slight"></div>
-            <% end %>
-          </div> <!-- Featured image -->
-
-          <a href="#!" class="navy-text">
-            <h6 class="font-weight-bold">
-              <%= render partial: "blogs/category_icon", locals: { blog: blog } %>
-            </h6>
-          </a> <!-- Category -->
-
+        <div class="view overlay rounded z-depth-2 mb-3">
+          <img class="img-fluid" src="<%= blog.image_url %>" alt="Sample image">
           <%= link_to blog do %>
-            <h3 class="font-weight-bold mb-0 pb-0 text-navy"><strong><%= blog.title %></strong></h3>
+            <div class="mask rgba-white-slight"></div>
           <% end %>
-          <p class="mb-1"><em>by <a class="font-weight-bold"><%= blog.user.full_name %></a>, <%= blog.published_at.strftime("%b %e, %Y") %></em></p>
-          <p class="dark-grey-text small-line-height">
-            <%= blog.teaser %>
-            <% if current_user && current_user.admin %>
-              <br><small>
-                <%= link_to 'Edit', edit_blog_path(blog) %>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                <%= link_to 'Delete', blog_path(blog), method: :delete, data: { confirm: 'Are you sure you want to delete that blog?'} %>
-              </small>
-            <% end %>
-          </p>
+        </div> <!-- Featured image -->
 
-        </div> <!-- Grid column -->
-      <% end %>
+        <a href="#!" class="navy-text">
+          <h6 class="font-weight-bold">
+            <%= render partial: "blogs/category_icon", locals: { blog: blog } %>
+          </h6>
+        </a> <!-- Category -->
+
+        <%= link_to blog do %>
+          <h3 class="font-weight-bold mb-0 pb-0 text-navy"><strong><%= blog.title %></strong></h3>
+        <% end %>
+        <p class="mb-1"><em>by <a class="font-weight-bold"><%= blog.user.full_name %></a><% if blog.published_at %>, <%= blog.published_at.strftime("%b %e, %Y") %><% end %></em></p>
+        <p class="dark-grey-text small-line-height">
+          <%= blog.teaser %>
+          <% if current_user && current_user.admin %>
+            <br><small>
+              <%= link_to 'Edit', edit_blog_path(blog) %>
+              &nbsp;&nbsp;|&nbsp;&nbsp;
+              <%= link_to 'Delete', blog_path(blog), method: :delete, data: { confirm: 'Are you sure you want to delete that blog?'} %>
+            </small>
+          <% end %>
+        </p>
+
+      </div> <!-- Grid column -->
     <% end %>
 
   </div>
