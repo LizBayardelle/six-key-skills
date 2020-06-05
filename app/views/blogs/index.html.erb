@@ -43,6 +43,10 @@
           <% if current_user && current_user.admin %>
             <br><small>
               <%= link_to 'Edit', edit_blog_path(blog) %>
+              <% if !blog.published %>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <span class="text-red">Unpublished Draft</span>
+              <% end %>
               &nbsp;&nbsp;|&nbsp;&nbsp;
               <%= link_to 'Delete', blog_path(blog), method: :delete, data: { confirm: 'Are you sure you want to delete that blog?'} %>
             </small>

@@ -5,7 +5,11 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.all
+    if current_user && current_user.admin
+      @blogs = Blog.all
+    else
+      @blogs = Blog.where(published: true)
+    end
   end
 
   # GET /blogs/1

@@ -9,6 +9,9 @@
         <p>
           You&nbsp;need six key skills in order to accomplish any&nbsp;goal.  We&nbsp;help&nbsp;you identify and develop any areas that might be holding&nbsp;you&nbsp;back.
         </p>
+        <button type="button" class="btn btn-red btn-sm mt-2 ml-0" data-toggle="modal" data-target="#subscribeModal">
+          Subscribe
+        </button>
       </div> <!-- 6KS column -->
 
       <div class="col-md-3 mx-auto mb-5"><!-- Grid column -->
@@ -76,3 +79,34 @@
 
 </footer>
 <!-- Footer -->
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="subscribeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Subscribe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <h3 class="text-center">Get updates on how you can keep building your key skills.</h3>
+        <%= render partial: 'subscribers/form', locals: { subscriber: Subscriber.new, resource_id: 2 } %>
+        <p class="text-center"><small><em>
+          We only email you with useful information, new resources, and other infrequent essentials.  You can unsubscribe at any time.
+        </em></small></p>
+      </div>
+    </div>
+  </div>
+</div>
+P
