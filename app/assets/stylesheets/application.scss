@@ -67,7 +67,10 @@ a { color: $color-slate }
 a:hover { color: $color-navy }
 
 * { font-family: 'Cormorant', serif; }
-#blog p, #blog li, #blog em { font-family: 'Roboto', sans-serif; font-weight: 300 }
+#blog-body p, #blog-body li, #blog-body em, #blog-body strong, #blog-body a, #blog-body p * { font-family: 'Roboto', sans-serif; font-weight: 400 }
+#blog-body h2 { font-weight: 800; color: $color-red; }
+#blog-body h3 { font-weight: 800; color: $color-slate; }
+#blog-body h4 { font-weight: 800; color: $color-navy; }
 
 strong { font-weight: 800; }
 

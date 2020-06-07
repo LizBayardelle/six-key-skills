@@ -26,8 +26,8 @@
             <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
               <%= @blog.teaser %>
             </h4>
-            <a class="btn color-slate btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s" href="#body">Read More</a>
-            <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s" href="#resources">Cut to the Chase</a>
+            <a class="btn color-slate btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s" href="#blog-body">Read More</a>
+            <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s" href="#lm-resource">Cut to the Chase</a>
           </div> <!-- col -->
         </div> <!-- row -->
       </div> <!-- container -->
@@ -45,7 +45,9 @@
           <h4 class="font-weight-bold text-center">
             <%= safe_join(@subcategories.map { |l| link_to(l.name, subcategory_path(l.id)) }, ", ".html_safe) %>
           </h4>
-          <%= raw(@blog.body) %>
+          <div id="blog-body">
+            <%= raw(@blog.body) %>
+          </div>
         </div> <!-- column -->
 
         <%= render partial: "users/contributor_box", locals: { user: @blog.user } %>
@@ -73,7 +75,7 @@
 
 
   <% if @blog.resource_id %>
-    <div class="view jarallax" style="min-height: 300px" id="resource">
+    <div class="view jarallax" style="min-height: 300px" id="lm-resource">
       <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/parchment-paper.jpg" alt="<%= @blog.title %>">
         <div id="lead-magnet" class="container py-5">
           <h2 class="font-weight-bold text-center">Take the Next Step</h2>
