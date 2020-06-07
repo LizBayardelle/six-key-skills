@@ -52,10 +52,10 @@
 
         <%= render partial: "users/contributor_box", locals: { user: @blog.user } %>
 
-        <div class="col-12 pt-4 justify-contents center">
+        <div class="col-12 pt-4 mt-4">
 
-          <% if @related_blogs %>
-            <hr class="col-6 mt-4">
+          <% if @related_blogs && @related_blogs.count != 0 %>
+            <hr class="col-6">
 
             <h3 class="">Related Reading</h3>
             <p>

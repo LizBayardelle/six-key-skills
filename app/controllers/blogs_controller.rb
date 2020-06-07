@@ -17,17 +17,17 @@ class BlogsController < ApplicationController
   def show
     case @blog.primary_category
     when "Motivation"
-      @related_blogs = Blog.where(motivation: true, published: true).where("published_at < ?", Date.today)
+      @related_blogs = Blog.where(motivation: true, published: true).where("published_at < ?", Date.today).where.not(id: @blog.id)
     when "Mindset"
-      @related_blogs = Blog.where(mindset: true, published: true).where("published_at < ?", Date.today)
+      @related_blogs = Blog.where(mindset: true, published: true).where("published_at < ?", Date.today).where.not(id: @blog.id)
     when "Resourcing"
-      @related_blogs = Blog.where(resourcing: true, published: true).where("published_at < ?", Date.today)
+      @related_blogs = Blog.where(resourcing: true, published: true).where("published_at < ?", Date.today).where.not(id: @blog.id)
     when "Planning"
-      @related_blogs = Blog.where(planning: true, published: true).where("published_at < ?", Date.today)
+      @related_blogs = Blog.where(planning: true, published: true).where("published_at < ?", Date.today).where.not(id: @blog.id)
     when "Time Management"
-      @related_blogs = Blog.where(time_management: true, published: true).where("published_at < ?", Date.today)
+      @related_blogs = Blog.where(time_management: true, published: true).where("published_at < ?", Date.today).where.not(id: @blog.id)
     when "Discipline"
-      @related_blogs = Blog.where(discipline: true, published: true).where("published_at < ?", Date.today)
+      @related_blogs = Blog.where(discipline: true, published: true).where("published_at < ?", Date.today).where.not(id: @blog.id)
     end
 
     @subcategories = []
