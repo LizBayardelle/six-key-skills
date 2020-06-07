@@ -1,10 +1,10 @@
 <main id="blog">
 
-  <div class="view jarallax" style="height: 30vh; min-height: 500px;">
+  <div class="view main-image jarallax" style="height: 30vh; min-height: 500px;">
 
     <img class="jarallax-img" src="<%= @blog.image_url %>" alt="<%= @blog.title %>">
 
-    <div class="mask rgba-white-strong">
+    <div class="mask rgba-black-med">
 
       <section class="text-center text-sm-right px-5 pt-2">
         <%= link_to 'Back to Blog', blogs_path %>
@@ -27,7 +27,7 @@
               <%= @blog.teaser %>
             </h4>
             <a class="btn color-slate btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s" href="#body">Read More</a>
-            <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s">Take the Quiz</a>
+            <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s" href="#resources">Cut to the Chase</a>
           </div> <!-- col -->
         </div> <!-- row -->
       </div> <!-- container -->
@@ -73,7 +73,7 @@
 
 
   <% if @blog.resource_id %>
-    <div class="view jarallax" style="min-height: 300px">
+    <div class="view jarallax" style="min-height: 300px" id="resource">
       <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/parchment-paper.jpg" alt="<%= @blog.title %>">
         <div id="lead-magnet" class="container py-5">
           <h2 class="font-weight-bold text-center">Take the Next Step</h2>
@@ -100,7 +100,7 @@
 
 
 
-  <div class="z-depth-3" id="body">
+  <div class="z-depth-3" id="comments">
     <div class="container pb-4">
 
       <h2 class="text-center pt-4 pb-2">Comments & Questions</h2>
@@ -123,7 +123,7 @@
 
 
 
-  <div class="view jarallax" style="min-height: 300px">
+  <div class="view jarallax" style="min-height: 300px" id="social-share">
     <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/white-brick-wall-2.jpg" alt="<%= @blog.title %>">
     <div class="row py-5 text-center justify-content-center">  <!-- row-->
 
