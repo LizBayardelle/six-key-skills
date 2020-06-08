@@ -1,6 +1,6 @@
 <main>
 
-  <div class="view jarallax" style="height: 100vh;">
+  <div class="view jarallax" style="height: auto;">
 
     <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/stairs.jpg" alt="">
 
@@ -45,9 +45,71 @@
 
 
 
-  <div class="view jarallax">
+  <div class="view jarallax" style="height: auto !important">
     <img class="jarallax-img" src="https://sixkeyskills.s3-us-west-1.amazonaws.com/woman-arms-up-ocean.jpg" alt="">
-  </div>
+    <div class="container-fluid px-5 py-5">
+      <div class="row text-center">
+
+        <div class="col-12">
+          <h2 class="display-3 text-white">The Six Key Skills</h2>
+        </div>
+
+        <div class="col-sm-6 col-md-4 h-100">
+          <%= link_to page_path("motivation") do %>
+            <div class="hover-box h-100">
+              <i class="h1 mt-4 fas fa-mountain"></i>
+              <h3>Motivation</h3>
+            </div>
+          <% end %>
+        </div> <!-- col -->
+
+        <div class="col-sm-6 col-md-4 h-100">
+          <%= link_to page_path("mindset") do %>
+            <div class="hover-box h-100">
+              <i class="h1 mt-4 fas fa-brain"></i>
+              <h3>Mindset</h3>
+            </div>
+          <% end %>
+        </div> <!-- col -->
+
+        <div class="col-sm-6 col-md-4 h-100">
+          <%= link_to page_path("resourcing") do %>
+            <div class="hover-box h-100">
+              <i class="h1 mt-4 fas fa-first-aid"></i>
+              <h3>Resourcing</h3>
+            </div>
+          <% end %>
+        </div> <!-- col -->
+
+        <div class="col-sm-6 col-md-4 h-100">
+          <%= link_to page_path("planning") do %>
+            <div class="hover-box h-100">
+              <i class="h1 mt-4 fas fa-sitemap"></i>
+              <h3>Planning</h3>
+            </div>
+          <% end %>
+        </div> <!-- col -->
+
+        <div class="col-sm-6 col-md-4 h-100">
+          <%= link_to page_path("Time Management") do %>
+            <div class="hover-box h-100">
+              <i class="h1 mt-4 fas fa-stopwatch"></i>
+              <h3>Time Management</h3>
+            </div>
+          <% end %>
+        </div> <!-- col -->
+
+        <div class="col-sm-6 col-md-4 h-100">
+          <%= link_to page_path("discipline") do %>
+            <div class="hover-box h-100">
+              <i class="h1 mt-4 fas fa-cookie-bite"></i>
+              <h3>Discipline</h3>
+            </div>
+          <% end %>
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+  </div> <!-- jarallax -->
 
 
 
