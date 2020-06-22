@@ -1,3 +1,24 @@
+<% if @blog.share_image.attached? %>
+  <%= content_for :meta_og_image do %>
+    <meta property="og:image" content="<%= polymorphic_url(@blog.share_image) %>" />
+  <% end %>
+<% end %>
+
+<%= content_for :meta_og_title do %>
+  <meta property="og:title" content="<%= @blog.title %> | Linchpin Industries" />
+<% end %>
+
+<%= content_for :meta_og_url do %>
+    <meta property="og:url" content="<%= polymorphic_url(@blog) %>" />
+<% end %>
+
+<%= content_for :meta_og_desc do %>
+  <meta property="og:description" content="<%= @blog.teaser %>" />
+<% end %>
+
+
+
+
 <main id="blog">
 
   <div class="view main-image jarallax" style="height: 30vh; min-height: 500px;">

@@ -130,6 +130,7 @@ class BlogsController < ApplicationController
 
         :image_url,
         :pinterest_description,
+        :share_image,
 
         :published,
         :published_at,

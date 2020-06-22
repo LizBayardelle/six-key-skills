@@ -26,6 +26,34 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
 
+    <!-- OG Tags -->
+    <meta property="og:type" content="website" />
+
+    <% if content_for?(:meta_og_image) %>
+      <%= yield :meta_og_image %>
+    <% else %>
+      <meta property="og:image" content="https://linchpinindustries.s3-us-west-1.amazonaws.com/Images/Facebook+OG.png" />
+    <% end %>
+
+    <% if content_for?(:meta_og_title) %>
+      <%= yield :meta_og_title %>
+    <% else %>
+      <meta property="og:title" content="Linchpin Industries" />
+    <% end %>
+
+    <% if content_for?(:meta_og_url) %>
+        <%= yield :meta_og_url %>
+    <% else %>
+        <meta property="og:url" content="http://www.linchpinindustries.com" />
+    <% end %>
+
+    <% if content_for?(:meta_og_desc) %>
+        <%= yield :meta_og_desc %>
+    <% else %>
+      <meta property="og:description" content="Turn your pet project into a thriving business." />
+    <% end %>
+
+
   </head>
 
   <body>
