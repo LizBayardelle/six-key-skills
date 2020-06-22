@@ -244,6 +244,99 @@ footer p { margin-bottom: 0; }
 }
 
 
+
+// TABLES OF CONTENTS
+.toc {
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  padding: 25px;
+  margin-bottom: 35px;
+}
+
+.toc h2, .toc h3 { text-align: center; }
+
+.toc a {
+  color: $color-navy;
+  font-weight: 700;
+}
+
+.toc p {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.toc .sub {
+  margin-left: 15px;
+  font-weight: 700;
+  color: $color-slate;
+}
+
+.toc .sub-sub {
+  margin-left: 30px;
+  font-weight: 500;
+  color: $color-slate;
+}
+
+
+
+// PREPOPULATED TWEET
+
+.tweet {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+	position: relative;
+	background: $color-white;
+	border-radius: .4em;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.tweet:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-right-color: $color-white;
+	border-left: 0;
+	border-bottom: 0;
+	margin-top: -10px;
+	margin-left: -20px;
+}
+
+.tweet a {
+  font-weight: 800;
+  color: #00ACEE !important;
+}
+
+.tweet a:before {
+    font-family: FontAwesome;
+    content: "\f099";
+    display: inline-block;
+    padding-right: 3px;
+    vertical-align: middle;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 table.dataTable thead .sorting:after,
 table.dataTable thead .sorting:before,
 table.dataTable thead .sorting_asc:after,
