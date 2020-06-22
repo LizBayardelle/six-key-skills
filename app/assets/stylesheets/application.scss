@@ -249,14 +249,14 @@ footer p { margin-bottom: 0; }
 .toc {
   box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
   padding: 25px;
-  margin-bottom: 35px;
+  margin: 35px 0;
 }
 
 .toc h2, .toc h3 { text-align: center; }
 
 .toc a {
-  color: $color-navy;
-  font-weight: 700;
+  color: $color-slate;
+  font-weight: 900 !important;
 }
 
 .toc p {
@@ -266,14 +266,15 @@ footer p { margin-bottom: 0; }
 
 .toc .sub {
   margin-left: 15px;
-  font-weight: 700;
-  color: $color-slate;
+  font-weight: 400 !important;
+  color: $color-red;
 }
 
 .toc .sub-sub {
   margin-left: 30px;
-  font-weight: 500;
-  color: $color-slate;
+  font-weight: 200 !important;
+  color: $color-navy;
+  font-style: italic;
 }
 
 
