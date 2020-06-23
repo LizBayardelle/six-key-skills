@@ -113,6 +113,25 @@
 
 
 
+
+
+
+    <div class="z-depth-3">
+      <div class="container pb-4">
+
+        <div class="row">  <!--Grid row-->
+          <div class="col-md-12 wow fadeIn mb-3 text-center pt-5 py-4">
+            <h2 class="display-3 mb-2 wow fadeInDown" data-wow-delay="0.3s">Recent Articles</h2>
+          </div> <!-- col -->
+          <% @blogs.each do |blog| %>
+            <%= render partial: "blogs/blogcard", locals: {blog: blog } %>
+          <% end %>
+        </div> <!--Grid row-->
+
+      </div> <!-- container -->
+    </div> <!-- z depth -->
+
+
 </main>
 
 
