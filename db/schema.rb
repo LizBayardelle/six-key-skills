@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_22_211817) do
+ActiveRecord::Schema.define(version: 2020_09_05_212828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,45 @@ ActiveRecord::Schema.define(version: 2020_06_22_211817) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "course_modules", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.bigint "course_id"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "teaser"
+    t.string "video"
+    t.string "goal"
+    t.integer "sort"
+    t.index ["course_id"], name: "index_course_modules_on_course_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price", precision: 8, scale: 2
+    t.boolean "active", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "teaser"
+    t.text "description"
+    t.text "reviews"
+    t.text "sp1"
+    t.text "sp2"
+    t.text "sp3"
+    t.boolean "motivation", default: false
+    t.boolean "mindset", default: false
+    t.boolean "resourcing", default: false
+    t.boolean "planning", default: false
+    t.boolean "time_management", default: false
+    t.boolean "discipline", default: false
+    t.string "pinterest_description"
+    t.boolean "featured", default: false
+    t.integer "sort"
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -93,6 +132,33 @@ ActiveRecord::Schema.define(version: 2020_06_22_211817) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "lesson_completions", force: :cascade do |t|
+    t.bigint "lesson_id"
+    t.bigint "user_id"
+    t.boolean "started", default: true
+    t.boolean "complete", default: false
+    t.boolean "favorite", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_lesson_completions_on_lesson_id"
+    t.index ["user_id"], name: "index_lesson_completions_on_user_id"
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.text "body"
+    t.string "video"
+    t.bigint "course_module_id"
+    t.boolean "active", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "teaser"
+    t.string "goal"
+    t.integer "sort"
+    t.index ["course_module_id"], name: "index_lessons_on_course_module_id"
   end
 
   create_table "preauthorizations", force: :cascade do |t|
@@ -177,5 +243,10 @@ ActiveRecord::Schema.define(version: 2020_06_22_211817) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "blogs", "resources"
   add_foreign_key "blogs", "users"
+  add_foreign_key "course_modules", "courses"
+  add_foreign_key "courses", "users"
+  add_foreign_key "lesson_completions", "lessons"
+  add_foreign_key "lesson_completions", "users"
+  add_foreign_key "lessons", "course_modules"
   add_foreign_key "resources", "users"
 end

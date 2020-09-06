@@ -15,6 +15,7 @@
 //= require jquery3
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery-ui/widgets/sortable
 //= require popper
 //= require bootstrap
 //= require rails_sortable

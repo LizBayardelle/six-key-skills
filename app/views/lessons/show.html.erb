@@ -1,0 +1,77 @@
+<% registered = true %>
+
+<div class="breadcrumbs">
+  <%= link_to @course.name, course_path(@course) %>
+  <i class="fas fa-arrow-right"></i>
+  <%= link_to @course_module.title, course_module_path(@course_module) %>
+  <i class="fas fa-arrow-right"></i>
+  <%= @lesson.title %>
+</div>
+
+<% if current_user && current_user.admin %>
+  <section id="admin-links" class="text-right px-3 py-2">
+    <%= link_to 'Edit Lesson', edit_lesson_path(@lesson) %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Courses Admin', admin_courses_path %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Course Page', course_path(@course) %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Module Page', course_module_path(@course_module) %>
+  </section>
+<% end %>
+
+<main class="container">
+
+  <header class="text-right">
+    <section class="text-center py-4">
+      <h3 class="uppercase text-beige">Lesson <%= @order_in_module %> of <%= Lesson.where(course_module_id: @lesson.course_module_id).count %></h3>
+      <h1 class="mb-0 font-weight-bold display-3"><%= @lesson.title %></h1>
+      <% if !@lesson.active %>
+        <h3 class="uppercase text-beige"><small>Currently Inactive</small></h3>
+      <% end %>
+    </section>
+  </header>
+
+  <section id="info" class="row">
+    <div class="col-12 col-sm-5 col-md-4 text-center">
+      <% if @lesson.image.attached? %>
+        <img class="product-image mb-3" src="<%= polymorphic_url(@lesson.image) %>" alt="<%= @lesson.title %>">
+      <% end %>
+
+      <p>Taught by <%= @course.user.full_name %></p>
+
+      <div class="text-left>"><%= render partial: "lessons/completions", locals: { lesson: @lesson } %></div>
+
+      <div class="goal-box my-4">
+        <p><strong>Lesson Goal: </strong><%= @lesson.goal %></p>
+      </div> <!-- goal-box -->
+    </div> <!-- col -->
+
+    <div class="col-12 col-sm-7 col-md-8 text-center text-sm-left">
+      <h2><%= @lesson.teaser %></h2>
+      <p><%= @lesson.description %></p>
+    </div> <!-- col -->
+  </section>
+
+  <section id="video" class="row">
+    <div class="col-12 text-center my-3">
+      <%= @lesson.video.html_safe %>
+    </div>
+  </section>
+
+  <section id="lessons" class="row">
+    <div class="col-12 text-left">
+      <%= raw(@lesson.body) %>
+    </div>
+  </section>
+
+  <section id="lessons" class="row">
+    <div class="col-12 text-left">
+      <%= raw(@lesson.body) %>
+      <div class="text-center pt-5>"><%= render partial: "lessons/completions", locals: { lesson: @lesson } %></div>
+    </div>
+  </section>
+
+
+
+</main>

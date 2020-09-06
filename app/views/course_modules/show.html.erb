@@ -1,0 +1,131 @@
+<% registered = true %>
+
+<div class="breadcrumbs">
+  <%= link_to @course_module.course.name, course_path(@course_module.course) %>
+  <i class="fas fa-arrow-right"></i>
+  <%= @course_module.title %>
+</div>
+
+<% if current_user && current_user.admin %>
+  <section id="admin-links" class="text-right px-3 py-2">
+    <%= link_to 'Edit Module', edit_course_module_path(@course_module) %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Courses Admin', admin_courses_path %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Course Page', course_path(@course) %>
+  </section>
+<% end %>
+
+<main class="container">
+
+  <header class="text-right">
+    <section class="text-center py-4">
+      <h3 class="uppercase text-beige">Module <%= @order_in_course %> of <%= CourseModule.where(course_id: @course_module.course_id).count %> (<%= pluralize(@course_module.lessons.count, "Lesson") %>)</h3>
+      <h1 class="mb-0 font-weight-bold display-3"><%= @course_module.title %></h1>
+      <% if !@course_module.active %>
+        <h3 class="uppercase text-beige"><small>Currently Inactive</small></h3>
+      <% end %>
+    </section>
+  </header>
+
+  <section id="info" class="row">
+    <div class="col-12 col-sm-5 col-md-4 text-center">
+      <% if @course_module.image.attached? %>
+        <img class="product-image mb-3" src="<%= polymorphic_url(@course_module.image) %>" alt="<%= @course_module.title %>">
+      <% end %>
+      <a href="#lessons">
+        <h3 class="text-red"><%= pluralize(@course_module.lessons.count, "Lesson") %></h3>
+      </a>
+      <p>Taught by <%= @course_module.course.user.full_name %></p>
+      <% if @course_module.goal != "" %>
+        <div class="goal-box mb-4">
+          <p><strong>Module Goal: </strong><%= @course_module.goal %></p>
+        </div> <!-- goal-box -->
+      <% end %>
+    </div> <!-- col -->
+
+    <div class="col-12 col-sm-7 col-md-8 text-center text-sm-left">
+      <h2><%= @course_module.teaser %></h2>
+      <%= raw(@course_module.description) %>
+    </div> <!-- col -->
+  </section>
+
+  <section id="video" class="row">
+    <div class="col-12 text-center my-3">
+      <%= @course_module.video.html_safe %>
+    </div>
+  </section>
+
+  <section id="lessons" class="row">
+    <div class="col-12 text-center">
+      <h2>Lessons</h2>
+      <% if current_user.admin %>
+        <%= link_to "New Lesson", new_lesson_path(course: @course, module: @course_module), class: "btn btn-slate btn-sm mb-3" %>
+      <% end %>
+
+
+      <div class="table-responsive text-left" style="width: 100%">
+        <table id="dtBasicExample" class="table table-striped table-bordered" width="100%">
+          <thead>
+            <tr>
+              <th class="text-center"></th>
+              <th class="text-center"></th>
+              <th>Module</th>
+              <% if current_user.admin %>
+                <th class="text-center">Active</th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody class="sortable">
+            <% @course_module.lessons.each_with_sortable_id do |lesson, sortable_id| %>
+              <tr id="<%= sortable_id %>">
+                <td class="text-center">
+                  <% if LessonCompletion.where(user_id: current_user.id, lesson_id: lesson.id, favorite: true).count != 0 %>
+                    <i class='fas fa-star'></i>
+                  <% else %>
+                    <i class='far fa-star'></i>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if LessonCompletion.where(user_id: current_user.id, lesson_id: lesson.id, complete: true).count != 0 %>
+                    <i class="far fa-check-square"></i>
+                  <% else %>
+                    <i class="far fa-square"></i>
+                  <% end %>
+                </td>
+                <td>
+                  <%= link_to lesson.title, lesson %>
+                  <% if current_user.admin %>
+                    ( <%= link_to 'Edit', edit_lesson_path(lesson) %>, <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %> )
+                  <% end %>
+                </td>
+                <% if current_user.admin %>
+                  <td class="text-center"><% if lesson.active %><i class='fas fa-check'></i><% end %></td>
+                <% end %>
+              </tr>
+
+            <% end %>
+          </tbody>
+        </table>
+      </div> <!-- table responsive -->
+
+
+    </div>
+  </section>
+
+
+
+</main>
+
+
+
+<% if current_user && current_user.admin %>
+  <script>
+    $(document).ready(function() {
+      $(function() {
+        $('.sortable').railsSortable();
+      });
+    });
+  </script>
+<% end %>

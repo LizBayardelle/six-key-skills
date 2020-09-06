@@ -1,0 +1,55 @@
+<% if current_user.admin %>
+  <div class="text-center pb-3">
+    <%= link_to "Create New Module", new_course_module_path(course: course), class: "btn btn-sm btn-slate" %>
+    <%= link_to "Courses Admin", admin_courses_path, class: "btn btn-sm btn-slate" %>
+  </div>
+<% end %>
+
+
+
+<div class="table-responsive" style="width: 100%">
+  <table id="dtBasicExample" class="table table-striped table-bordered" width="100%">
+    <thead>
+      <tr>
+        <th>Module</th>
+        <% if current_user.admin %>
+          <th class="text-center">Active</th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody class="sortable">
+      <% if @course_modules.count != 0 %>
+        <% @course_modules.each_with_sortable_id do |mod, sortable_id| %>
+          <tr id="<%= sortable_id %>">
+            <td>
+              <%= link_to mod.title, mod %> (
+              <%= pluralize(mod.lessons.count, "Lessons") %>
+              <% if current_user.admin %>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <%= link_to 'Edit', edit_course_module_path(mod) %>, <%= link_to 'Delete', mod, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <% end %>
+              &nbsp;)
+            </td>
+            <% if current_user.admin %>
+              <td class="text-center"><% if mod.active %><i class="fas fa-check"></i><% end %></td>
+            <% end %>
+          </tr>
+        <% end %>
+
+      <% end %>
+    </tbody>
+  </table>
+</div> <!-- table responsive -->
+
+
+
+<% if current_user && current_user.admin %>
+  <script>
+    $(document).ready(function() {
+      $(function() {
+        $('.sortable').railsSortable();
+      });
+    });
+  </script>
+<% end %>

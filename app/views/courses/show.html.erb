@@ -1,0 +1,106 @@
+<% registered = true %>
+
+<main class="container">
+
+  <header class="text-right px-3 py-2">
+    <% if current_user && current_user.admin %>
+      <%= link_to 'Edit', edit_course_path(@course) %> |
+      <%= link_to 'Courses Admin', admin_courses_path %> |
+      <%= link_to 'Public Courses Page', courses_path %>
+    <% end %>
+
+    <section class="text-center py-4">
+      <h1 class="mb-0 font-weight-bold display-3"><%= @course.name %></h1>
+      <% if !@course.active %>
+        <h3 class="uppercase text-beige"><small>Currently Inactive</small></h3>
+      <% end %>
+    </section>
+  </header>
+
+  <section id="info" class="row">
+    <div class="col-12 col-sm-5 col-md-4 text-center">
+      <% if @course.image.attached? %>
+        <img class="product-image mb-3" src="<%= polymorphic_url(@course.image) %>" alt="<%= @course.name %>">
+      <% end %>
+      <h3 class="text-red"><%= number_to_currency(@course.price) %></h3>
+      <p>Taught by <%= @course.user.full_name %></p>
+      <% if registered %>
+        <a href="#modules" class="btn btn-red">Go to Class</a>
+      <% else %>
+        <%= link_to "Register", class: "btn btn-red" %>
+      <% end %>
+    </div> <!-- col -->
+
+    <div class="col-12 col-sm-7 col-md-8 text-center text-sm-left">
+      <h2><%= @course.teaser %></h2>
+      <%= raw(@course.description) %>
+
+    </div> <!-- col -->
+  </section>
+
+  <section id="modules" class="row">
+    <div class="col-12">
+      <h2 class="text-center">Course Content</h2>
+      <% if registered %>
+        <%= render partial: "courses/modules", locals: { course: @course } %>
+      <% else %>
+        <%= render partial: "courses/modules_sample", locals: { course: @course } %>
+      <% end %>
+    </div>
+  </section>
+
+
+
+  <section id="reviews" class="row pt-5">
+    <div class="col-12">
+      <h2 class="text-center">Course Reviews</h2>
+      <%= raw(@course.reviews) %>
+    </div>
+  </section>
+
+
+
+  <section id="selling-points">
+
+    <div class="h-100 my-5">
+      <div class="row align-items-center h-100">
+        <div class="col-12 col-sm-4 text-center">
+          <% if @course.sp1_image.attached? %>
+            <img class="mb-3" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp1_image) %>" alt="<%= @course.sp1 %>">
+          <% end %>
+        </div> <!-- col -->
+        <div class="col-12 col-sm-8 text-center">
+          <h2><%= @course.sp1 %></h2>
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- h100 -->
+
+    <div class="h-100 my-5">
+      <div class="row align-items-center h-100">
+        <div class="col-12 col-sm-4 text-center order-sm-12">
+          <% if @course.sp2_image.attached? %>
+            <img class="mb-3" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp2_image) %>" alt="<%= @course.sp2 %>">
+          <% end %>
+        </div> <!-- col -->
+        <div class="col-12 col-sm-8 order-sm-1 text-center">
+          <h2><%= @course.sp2 %></h2>
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- h100 -->
+
+    <div class="h-100 my-5">
+      <div class="row align-items-center h-100">
+        <div class="col-12 col-sm-4 text-center">
+          <% if @course.sp3_image.attached? %>
+            <img class="mb-3" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp3_image) %>" alt="<%= @course.sp3 %>">
+          <% end %>
+        </div> <!-- col -->
+        <div class="col-12 col-sm-8 text-center">
+          <h2><%= @course.sp3 %></h2>
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- h100 -->
+
+  </section>
+
+</main>

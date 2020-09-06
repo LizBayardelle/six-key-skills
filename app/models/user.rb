@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :resources
   has_many :blogs
 
+  has_many :lesson_completions
+  has_many :lessons, through: :lesson_completions
+
   def full_name
     "#{first_name} #{last_name}"
   end

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lesson: one
+  user: one
+  started: false
+  complete: false
+  favorite: false
+
+two:
+  lesson: two
+  user: two
+  started: false
+  complete: false
+  favorite: false

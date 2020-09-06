@@ -1,0 +1,102 @@
+
+<%= simple_form_for(@course_module) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs text-left pt-3">
+
+    <div class="offwhite-card mb-4 row">
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :title,
+                    class: "form-control",
+                    id: "title",
+                    required: true,
+                    label: false %>
+          <label for="title">Module Title</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12">
+        <% course_array = [] %>
+        <% Course.all.each do |c| %>
+          <% course_array << [c.name, c.id] %>
+        <% end %>
+        <%= f.input :course_id, label: false, prompt: "Select Course", input_html: { class: 'mdb-select md-form colorful-select mb-0' }, collection: course_array, required: true %>
+      </div> <!-- col -->
+
+      <div class="col-12 col-sm-6 text-left pt-2">
+        <label>Module Image</label><br>
+        <%= f.file_field :image %>
+      </div> <!-- col-12 -->
+
+      <div class="col-12 col-sm-6">
+        <div class="md-form mb-1">
+          <%= f.text_field :video,
+                    class: "form-control",
+                    id: "video",
+                    required: true,
+                    label: false %>
+          <label for="title">Module Video URL</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :teaser,
+                    class: "form-control",
+                    id: "teaser",
+                    required: true,
+                    label: false %>
+          <label for="title">Module Teaser</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :goal,
+                    class: "form-control",
+                    id: "goal",
+                    required: true,
+                    label: false %>
+          <label for="title">Module Goal</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12 pt-3 field">
+        <label for="title">Module Description</label>
+        <%= f.text_area :description, class: "tinymce", rows: 20, style: "width: 100%" %>
+        <%= tinymce :content_css => asset_path('application.css')%>
+      </div>
+
+      <div class="col-12 field form-check pt-3">
+        <%= f.check_box :active, class: "form-check-input", id: "active" %>
+        <%= f.label :active, class: "form-check-label", for: "active" %>
+      </div>
+
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+<%= content_for :additional_js do %>
+  <script>
+    $(document).ready(function() {
+      $('.mdb-select').materialSelect();
+      tinymce.init({
+        selector: "textarea.tinymce",  // change this value according to your HTML
+      });
+    });
+  </script>
+<% end %>

@@ -63,6 +63,8 @@ $color-transparent-slate: rgba(81, 108, 138, 0.5) !important;
 
 .text-white-hover:hover { color: white !important; }
 
+.uppercase { text-transform: uppercase; }
+
 a { color: $color-slate }
 a:hover { color: $color-navy }
 
@@ -108,6 +110,32 @@ strong { font-weight: 800; }
 
 
 
+/*-----------------------------
+-------------------------------
+------------BUTTONS------------
+-------------------------------
+-------------------------------
+-----------------------------*/
+
+.btn { font-weight: bold; }
+
+.btn-primary, .btn-slate { background-color: $color-slate; color: white !important; }
+.btn-primary:hover, .btn-slate:hover { color: white !important; }
+
+.btn-red { background-color: $color-red; }
+.btn-red:hover { color: white !important; }
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*-----------------------------
 -------------------------------
@@ -132,6 +160,64 @@ label.active { color: $color-red; }
   border-bottom: 2px solid $color-red;
 }
 
+
+
+
+
+
+
+
+
+
+/*-----------------------------
+-------------------------------
+--------DESIGN ELEMENTS--------
+-------------------------------
+-------------------------------
+-----------------------------*/
+
+.offwhite-card {
+  background-color: $color-whiteish;
+  padding: 20px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.product-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.goal-box {
+  border: solid thin $color-slate;
+  padding: 15px;
+  border-radius: 8px;
+  color: $color-slate;
+}
+
+.goal-box p {
+  font-size: 1.1rem;
+  margin-bottom: 0px;
+  line-height: 1.15;
+}
+
+.breadcrumbs {
+  margin-top: -5px;
+  background-color: $color-slate;
+  padding: 15px 25px;
+  color: $color-white;
+  font-size: 1.3rem;
+}
+
+.breadcrumbs a { font-weight: bold; color: $color-white; }
+.breadcrumbs svg { font-size: 1.1rem; margin: 0px 10px; }
+
+#video iframe {
+  max-width: 100% !important;
+}
 
 
 
@@ -172,6 +258,9 @@ h4, .h4 { font-size: 1.3rem; }
 }
 
 .hidden { display: none; }
+
+
+
 
 .rgba-black-med, .rgba-black-med:after {
     background-color: rgba(0, 0, 0, 0.5);
@@ -214,8 +303,7 @@ p.small-line-height { line-height: 1.2 }
 
 .alert { margin: 0 }
 
-.btn-primary { background-color: $color-slate; }
-.btn-primary:hover { color: white !important; }
+
 
 .thumbnail {
   height: 250px;

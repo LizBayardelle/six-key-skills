@@ -1,0 +1,28 @@
+<div class="table-responsive" style="width: 100%">
+  <table id="dtBasicExample" class="table table-striped table-bordered" width="100%">
+    <thead>
+      <tr>
+        <th>Module</th>
+        <th>Lessons</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if @course_modules.count != 0 %>
+        <% @course_modules.each do |mod| %>
+          <tr>
+            <td>
+              <%= mod.title %> (<%= pluralize(mod.lessons.count, "Lessons") %>)
+            </td>
+            <td>
+              <% mod.lessons.each do |lesson| %>
+                <%= lesson.name %><br>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+
+      <% end %>
+    </tbody>
+  </table>
+</div> <!-- table responsive -->

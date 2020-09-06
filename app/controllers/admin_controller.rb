@@ -16,6 +16,10 @@ class AdminController < ApplicationController
     @resources = Resource.all
   end
 
+  def courses
+    @courses = Course.all
+  end
+
   def admin_only
     unless current_user && current_user.admin
       redirect_back(fallback_location: root_path)
