@@ -1,5 +1,32 @@
 <% registered = true %>
 
+
+
+
+
+<% if @course.image.attached? %>
+  <%= content_for :meta_og_image do %>
+    <meta property="og:image" content="<%= polymorphic_url(@course.image) %>" />
+  <% end %>
+<% end %>
+
+<%= content_for :meta_og_title do %>
+  <meta property="og:title" content="<%= @course.title %> | Six Key Skills" />
+<% end %>
+
+<%= content_for :meta_og_url do %>
+    <meta property="og:url" content="<%= polymorphic_url(@course) %>" />
+<% end %>
+
+<%= content_for :meta_og_desc do %>
+  <meta property="og:description" content="<%= @course.teaser %>" />
+<% end %>
+
+
+
+
+
+
 <main class="container">
 
   <header class="text-right px-3 py-2">
