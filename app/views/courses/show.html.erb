@@ -65,9 +65,9 @@
     </div> <!-- col -->
   </section>
 
-  <section id="modules" class="row">
+  <section id="modules" class="row pt-5">
     <div class="col-12">
-      <h2 class="text-center">Course Content</h2>
+       <h2 class="font-weight-bold text-black">Course Content</h2>
       <% if registered %>
         <%= render partial: "courses/modules", locals: { course: @course } %>
       <% else %>
@@ -80,7 +80,7 @@
 
   <section id="reviews" class="row pt-5">
     <div class="col-12">
-      <h2 class="text-center">Course Reviews</h2>
+       <h2 class="font-weight-bold text-black">Course Reviews</h2>
       <%= raw(@course.reviews) %>
     </div>
   </section>
@@ -133,7 +133,7 @@
 
 
 
-  <section id="pins" class="row">
+  <section id="pins" class="row text-center pb-5">
     <div class="col-12"> <!-- column-->
       <h2 class="font-weight-bold text-black">Share It</h2>
 
