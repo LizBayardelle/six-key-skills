@@ -68,7 +68,8 @@ $color-transparent-slate: rgba(81, 108, 138, 0.5) !important;
 a { color: $color-slate }
 a:hover { color: $color-navy }
 
-* { font-family: 'Cormorant', serif; }
+* { font-family: 'Roboto', sans-serif; }
+.serif { font-family: 'Cormorant', serif; }
 #blog-body p, #blog-body li, #blog-body em, #blog-body strong, #blog-body a, #blog-body p * { font-family: 'Roboto', sans-serif; font-weight: 400 }
 #blog-body strong { font-weight: 800; }
 #blog-body h2 { font-weight: 800; color: $color-red;}
