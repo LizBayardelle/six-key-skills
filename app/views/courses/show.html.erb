@@ -91,12 +91,12 @@
 
     <div class="h-100 my-5">
       <div class="row align-items-center h-100">
-        <div class="col-12 col-sm-4 text-center">
+        <div class="col-12 col-sm-5 text-center">
           <% if @course.sp1_image.attached? %>
-            <img class="mb-3" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp1_image) %>" alt="<%= @course.sp1 %>">
+            <img class="mb-3 z-depth-4" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp1_image) %>" alt="<%= @course.sp1 %>">
           <% end %>
         </div> <!-- col -->
-        <div class="col-12 col-sm-8 text-center">
+        <div class="col-12 col-sm-7 text-center">
           <h2><%= @course.sp1 %></h2>
         </div> <!-- col -->
       </div> <!-- row -->
@@ -104,12 +104,12 @@
 
     <div class="h-100 my-5">
       <div class="row align-items-center h-100">
-        <div class="col-12 col-sm-4 text-center order-sm-12">
+        <div class="col-12 col-sm-5 text-center order-sm-12">
           <% if @course.sp2_image.attached? %>
-            <img class="mb-3" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp2_image) %>" alt="<%= @course.sp2 %>">
+            <img class="mb-3 z-depth-4" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp2_image) %>" alt="<%= @course.sp2 %>">
           <% end %>
         </div> <!-- col -->
-        <div class="col-12 col-sm-8 order-sm-1 text-center">
+        <div class="col-12 col-sm-7 order-sm-1 text-center">
           <h2><%= @course.sp2 %></h2>
         </div> <!-- col -->
       </div> <!-- row -->
@@ -117,12 +117,12 @@
 
     <div class="h-100 my-5">
       <div class="row align-items-center h-100">
-        <div class="col-12 col-sm-4 text-center">
+        <div class="col-12 col-sm-5 text-center">
           <% if @course.sp3_image.attached? %>
-            <img class="mb-3" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp3_image) %>" alt="<%= @course.sp3 %>">
+            <img class="mb-3 z-depth-4" style="max-width: 100%; max-height: 25vh" src="<%= polymorphic_url(@course.sp3_image) %>" alt="<%= @course.sp3 %>">
           <% end %>
         </div> <!-- col -->
-        <div class="col-12 col-sm-8 text-center">
+        <div class="col-12 col-sm-7 text-center">
           <h2><%= @course.sp3 %></h2>
         </div> <!-- col -->
       </div> <!-- row -->
