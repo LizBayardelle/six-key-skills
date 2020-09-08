@@ -53,6 +53,7 @@ class CourseModulesController < ApplicationController
   def update
 
     if params[:course_module][:image].present?
+      @course_module.image.purge
       @course_module.image.attach(params[:course_module][:image])
     end
 

@@ -103,4 +103,48 @@
 
   </section>
 
+
+
+
+  <section id="pins" class="row">
+    <div class="col-12"> <!-- column-->
+      <h2 class="font-weight-bold text-black">Share It</h2>
+
+      <div class="text-center mb-3">
+        <div class="fb-share-button"
+          data-href="<%= polymorphic_url(@course) %>"
+          data-layout="button_count">
+        </div>
+        <a href="https://www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark"></a>
+      </div> <!-- sm share buttons-->
+
+      <% if @course.pins.attached? %>
+        <% @course.pins.limit(4).each do |pin| %>
+          <%= image_tag url_for(pin), class: "pin z-depth-3", style: "display: inline-block" %>
+        <% end %>
+      <% end %>
+    </div> <!-- column-->
+  </section>
+
 </main>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<!-- facebook share -->
