@@ -64,16 +64,54 @@
   <section id="lessons" class="row">
     <div class="col-12 text-left">
       <%= raw(@lesson.body) %>
+      <div class="text-center pt-5>"><%= render partial: "lessons/completions", locals: { lesson: @lesson } %></div>
     </div>
   </section>
 
-  <section id="lessons" class="row">
+  <section id="comments" class="row">
     <div class="col-12 text-left">
-      <%= raw(@lesson.body) %>
-      <div class="text-center pt-5>"><%= render partial: "lessons/completions", locals: { lesson: @lesson } %></div>
+      <h2 class="text-center">Comments or Questions</h2>
+      <div id="disqus_thread"></div>
+      <script>
+        var disqus_config = function () {
+          this.page.url = "<%= polymorphic_url(@lesson) %>";  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = "Lesson <%= @lesson.id %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://six-key-skills.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+      </script>
+
     </div>
   </section>
 
 
 
 </main>
+
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    //disqus_config()
+    var disqus_config = function () {
+      this.page.url = "<%= polymorphic_url(@lesson) %>";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "Lesson <%= @lesson.id %>"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://six-key-skills.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+  });
+</script>
