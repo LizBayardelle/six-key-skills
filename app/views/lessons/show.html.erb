@@ -41,15 +41,17 @@
       <p>Taught by <%= @course.user.full_name %></p>
 
       <div class="text-left>"><%= render partial: "lessons/completions", locals: { lesson: @lesson } %></div>
-
-      <div class="goal-box my-4">
-        <p><strong>Lesson Goal: </strong><%= @lesson.goal %></p>
-      </div> <!-- goal-box -->
     </div> <!-- col -->
 
     <div class="col-12 col-sm-7 col-md-8 text-center text-sm-left">
       <h2><%= @lesson.teaser %></h2>
       <p><%= @lesson.description %></p>
+    </div> <!-- col -->
+
+    <div class="col-12">
+      <div class="goal-box my-4">
+        <p><strong>Lesson Goal: </strong><%= @lesson.goal %></p>
+      </div> <!-- goal-box -->
     </div> <!-- col -->
   </section>
 

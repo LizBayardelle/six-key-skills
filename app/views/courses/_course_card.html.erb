@@ -1,4 +1,4 @@
-
+<% if course.active || ( current_user && current_user.admin ) %>
 
 <!-- Grid column -->
   <div class="col-lg-4 col-sm-6 mb-5">
@@ -44,3 +44,5 @@
     <!-- Card -->
   </div>
   <!-- Grid column -->
+
+<% end %>
