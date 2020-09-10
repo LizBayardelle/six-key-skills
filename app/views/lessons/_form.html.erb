@@ -25,8 +25,8 @@
 
       <div class="col-12">
         <% module_array = [] %>
-        <% CourseModule.all.each do |m| %>
-          <% module_array << [m.id.to_s + ": " + m.title, m.id] %>
+        <% CourseModule.all.order("title DESC").each do |m| %>
+          <% module_array << [m.title, m.id] %>
         <% end %>
         <%= f.input :course_module_id, label: false, prompt: "Select Module", input_html: { class: 'mdb-select md-form colorful-select mb-0' }, collection: module_array, required: true %>
       </div> <!-- col -->
@@ -79,6 +79,32 @@
         <%= f.text_area :body, class: "tinymce", rows: 20, style: "width: 100%" %>
         <%= tinymce :content_css => asset_path('application.css')%>
       </div>
+
+      <div class="col-12 pt-3 field">
+        <label for="title">Assignment</label>
+        <%= f.text_area :assignment, style: "width: 100%" %>
+      </div>
+
+      <div class="col-12 pt-3 field">
+        <label for="title">Materials (Separated by Commas)</label>
+        <%= f.text_area :materials, style: "width: 100%" %>
+      </div>
+
+      <div class="col-12 col-sm-6 text-left pt-2">
+        <div class="md-form mb-1">
+          <%= f.text_field :attachment_name,
+                    class: "form-control",
+                    id: "attachment_name",
+                    required: true,
+                    label: false %>
+          <label for="title">Attachment Name (if Applicable)</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12 col-sm-6 text-left pt-2">
+        <label>Attachment</label><br>
+        <%= f.file_field :attachment %>
+      </div> <!-- col-12 -->
 
       <div class="col-12 field form-check pt-3">
         <%= f.check_box :active, class: "form-check-input", id: "active" %>

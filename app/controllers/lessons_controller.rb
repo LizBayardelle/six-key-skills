@@ -134,6 +134,10 @@ class LessonsController < ApplicationController
         :body,
         :video,
         :image,
+        :materials,
+        :assignment,
+        :attachment_name,
+        :attachment,
         :course_module_id,
         :active
       )
