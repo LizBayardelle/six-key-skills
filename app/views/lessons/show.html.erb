@@ -33,6 +33,7 @@
   </header>
 
   <section id="info" class="row">
+    
     <div class="col-12 col-sm-5 col-md-4 text-center">
       <% if @lesson.image.attached? %>
         <img class="product-image mb-3" src="<%= polymorphic_url(@lesson.image) %>" alt="<%= @lesson.title %>">
@@ -48,11 +49,15 @@
       <p><%= @lesson.description %></p>
     </div> <!-- col -->
 
-    <div class="col-12">
-      <div class="goal-box my-4">
-        <p><strong>Lesson Goal: </strong><%= @lesson.goal %></p>
-      </div> <!-- goal-box -->
-    </div> <!-- col -->
+
+    <% if @lesson.goal != "" %>
+      <div class="col-12">
+        <div class="goal-box my-4">
+          <p><strong>Lesson Goal: </strong><%= @lesson.goal %></p>
+        </div> <!-- goal-box -->
+      </div> <!-- col -->
+    <% end %>
+
   </section>
 
   <section id="video" class="row">
@@ -67,26 +72,34 @@
       <%= raw(@lesson.body) %>
     </div>
 
-    <div class="col-12">
-      <h2>Materials</h2>
-      <% materials = @lesson.materials.split(",") %>
-      <ul class="mb-0">
-        <% if @lesson.attachment.attached? %>
-          <li><%= link_to @lesson.attachment_name, rails_blob_path(@lesson.attachment, disposition: "attachment") %></li>
-        <% end %>
+    <% if @lesson.materials != "" || @lesson.attachment.attached? %>
+      <div class="col-12">
+        <h2>Materials</h2>
+        <% materials = @lesson.materials.split(",") %>
+        <ul class="mb-0">
+          <% if @lesson.attachment.attached? %>
+            <li><%= link_to @lesson.attachment_name, rails_blob_path(@lesson.attachment, disposition: "attachment") %></li>
+          <% end %>
 
-        <% materials.each do |m| %>
-          <li><%= m.html_safe %></li>
-        <% end %>
-      </ul>
-    </div> <!-- col -->
 
-    <div class="col-12">
-      <div class="goal-box my-4">
-        <p><strong>Lesson Assignment:</strong></p>
-        <%= @lesson.assignment %>
-      </div> <!-- goal-box -->
-    </div> <!-- col -->
+          <% materials.each do |m| %>
+            <li><%= m.html_safe %></li>
+          <% end %>
+        </ul>
+      </div> <!-- col -->
+    <% end %>
+
+
+    <% if @lesson.assignment != "" %>
+      <div class="col-12">
+        <div class="goal-box my-4">
+          <p>
+            <strong>Lesson Assignment:</strong>
+            <%= @lesson.assignment %>
+          </p>
+        </div> <!-- goal-box -->
+      </div> <!-- col -->
+    <% end %>
 
     <div class="col-12">
       <div class="text-center pt-5>"><%= render partial: "lessons/completions", locals: { lesson: @lesson } %></div>
@@ -94,7 +107,7 @@
 
   </section>
 
-  <section id="comments" class="row">
+  <section id="comments" class="row pt-5">
     <div class="col-12 text-left">
       <h2 class="text-center">Comments or Questions</h2>
       <div id="disqus_thread"></div>

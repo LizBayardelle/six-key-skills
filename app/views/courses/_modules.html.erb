@@ -11,11 +11,14 @@
   <table id="dtBasicExample" class="table table-striped table-bordered" width="100%">
     <thead>
       <tr>
-        <th>Module</th>
+        <th>
+          <div id="showAllLessons">Module (<span class="linkish">Show Lessons</span>)</div>
+          <div id="hideAllLessons" class="hidden">Module (<span class="linkish">Hide Lessons</span>)</div>
+        </th>
         <% if current_user.admin %>
           <th class="text-center">Active</th>
         <% end %>
-      </tr>
+        </tr>
     </thead>
 
     <tbody class="sortable">
@@ -24,12 +27,17 @@
           <tr id="<%= sortable_id %>">
             <td>
               <%= link_to mod.title, mod %> (
-              <%= pluralize(mod.lessons.count, "Lessons") %>
+              <div id="mod<%= mod.id %>lessonsTarget" class="linkish" style="display: inline-block"><%= pluralize(mod.lessons.count, "Lessons") %></div>
               <% if current_user.admin %>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 <%= link_to 'Edit', edit_course_module_path(mod) %>, <%= link_to 'Delete', mod, method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
               &nbsp;)
+              <div id="mod<%= mod.id %>lessons" class="hidden modLessons">
+                <% mod.lessons.each do |lesson| %>
+                  <%= link_to "&nbsp;&nbsp;↳&nbsp;&nbsp;".html_safe + lesson.title, lesson_path(lesson) %><br>
+                <% end %>
+              </div> <!-- mod lessons -->
             </td>
             <% if current_user.admin %>
               <td class="text-center"><% if mod.active %><i class="fas fa-check"></i><% end %></td>
@@ -50,6 +58,23 @@
       $(function() {
         $('.sortable').railsSortable();
       });
+      $("#showAllLessons").click(function(){
+        $(".modLessons").removeClass("hidden");
+        $("#showAllLessons").addClass("hidden");
+        $("#hideAllLessons").removeClass("hidden");
+      })
+      $("#hideAllLessons").click(function(){
+        $(".modLessons").addClass("hidden");
+        $("#hideAllLessons").addClass("hidden");
+        $("#showAllLessons").removeClass("hidden");
+      })
+      <% @course_modules.each do |mod| %>
+        <% mod.lessons.each do |lesson| %>
+          $("#mod<%= mod.id %>lessonsTarget").click(function(){
+            $("#mod<%= mod.id %>lessons").toggleClass("hidden");
+          })
+        <% end %>
+      <% end %>
     });
   </script>
 <% end %>

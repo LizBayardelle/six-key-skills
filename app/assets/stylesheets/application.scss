@@ -65,8 +65,8 @@ $color-transparent-slate: rgba(81, 108, 138, 0.5) !important;
 
 .uppercase { text-transform: uppercase; }
 
-a { color: $color-slate }
-a:hover { color: $color-navy }
+a, .linkish { color: $color-slate; cursor: pointer; }
+a:hover, .linkish:hover { color: $color-navy }
 
 * { font-family: 'Roboto', sans-serif; }
 .serif { font-family: 'Cormorant', serif; }
@@ -78,7 +78,8 @@ a:hover { color: $color-navy }
 
 strong { font-weight: 800; }
 
-
+.inliine-block { display: inline-block; }
+.hidden { display: none !important; }
 
 
 
