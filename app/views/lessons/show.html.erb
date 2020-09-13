@@ -33,7 +33,7 @@
   </header>
 
   <section id="info" class="row">
-    
+
     <div class="col-12 col-sm-5 col-md-4 text-center">
       <% if @lesson.image.attached? %>
         <img class="product-image mb-3" src="<%= polymorphic_url(@lesson.image) %>" alt="<%= @lesson.title %>">
@@ -75,15 +75,20 @@
     <% if @lesson.materials != "" || @lesson.attachment.attached? %>
       <div class="col-12">
         <h2>Materials</h2>
-        <% materials = @lesson.materials.split(",") %>
+        <% if @lesson.materials %>
+          <% materials = @lesson.materials.split(",") %>
+        <% else %>
+          <% materials = false %>
+        <% end %>
         <ul class="mb-0">
           <% if @lesson.attachment.attached? %>
             <li><%= link_to @lesson.attachment_name, rails_blob_path(@lesson.attachment, disposition: "attachment") %></li>
           <% end %>
 
-
-          <% materials.each do |m| %>
-            <li><%= m.html_safe %></li>
+          <% if materials %>
+            <% materials.each do |m| %>
+              <li><%= m.html_safe %></li>
+            <% end %>
           <% end %>
         </ul>
       </div> <!-- col -->
