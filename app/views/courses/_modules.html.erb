@@ -34,7 +34,7 @@
               <% end %>
               &nbsp;)
               <div id="mod<%= mod.id %>lessons" class="hidden modLessons">
-                <% mod.lessons.each do |lesson| %>
+                <% mod.lessons.order("created_at").each do |lesson| %>
                   <%= link_to "&nbsp;&nbsp;↳&nbsp;&nbsp;".html_safe + lesson.title, lesson_path(lesson) %><br>
                 <% end %>
               </div> <!-- mod lessons -->
