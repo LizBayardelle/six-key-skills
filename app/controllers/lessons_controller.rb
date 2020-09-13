@@ -28,10 +28,22 @@ class LessonsController < ApplicationController
   # GET /lessons/new
   def new
     @lesson = Lesson.new
+    @other_lessons = Lesson.where(course_module_id: @lesson.course_module_id)
+    if @other_lessons.where.not(order_in_module: nil).count != 0
+      @last_lesson_number = @other_lessons.where.not(order_in_module: nil).order("order_in_module DESC").first.order_in_module
+    else
+      @last_lesson_number = 0
+    end
   end
 
   # GET /lessons/1/edit
   def edit
+    @other_lessons = Lesson.where(course_module_id: @lesson.course_module_id)
+    if @other_lessons.where.not(order_in_module: nil).count != 0
+      @last_lesson_number = @other_lessons.where.not(order_in_module: nil).order("order_in_module DESC").first.order_in_module
+    else
+      @last_lesson_number = 0
+    end
   end
 
   # POST /lessons
@@ -127,17 +139,21 @@ class LessonsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def lesson_params
       params.require(:lesson).permit(
+        :order_in_module,
         :title,
         :teaser,
         :goal,
         :description,
         :body,
+
         :video,
         :image,
+
         :materials,
         :assignment,
         :attachment_name,
         :attachment,
+
         :course_module_id,
         :active
       )

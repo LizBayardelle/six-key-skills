@@ -24,24 +24,16 @@
 
 
 
-
+<%= render partial: "courses/nav", locals: { course: @course } %>
 
 
 <main class="container">
 
-  <header class="text-right px-3 py-2">
-    <% if current_user && current_user.admin %>
-      <%= link_to 'Edit', edit_course_path(@course) %> |
-      <%= link_to 'Courses Admin', admin_courses_path %> |
-      <%= link_to 'Public Courses Page', courses_path %>
+  <header class="text-center py-4">
+    <h1 class="mb-0 font-weight-bold display-3"><%= @course.name %></h1>
+    <% if !@course.active %>
+      <h3 class="uppercase text-beige"><small>Currently Inactive</small></h3>
     <% end %>
-
-    <section class="text-center py-4">
-      <h1 class="mb-0 font-weight-bold display-3"><%= @course.name %></h1>
-      <% if !@course.active %>
-        <h3 class="uppercase text-beige"><small>Currently Inactive</small></h3>
-      <% end %>
-    </section>
   </header>
 
   <section id="info" class="row">

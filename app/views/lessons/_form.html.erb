@@ -33,6 +33,25 @@
         <%= f.input :course_module_id, label: false, prompt: "Select a Module", input_html: { class: 'mdb-select md-form colorful-select mb-0' }, collection: module_array, required: true %>
       </div> <!-- col -->
 
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :order_in_module,
+                    class: "form-control",
+                    id: "order_in_module",
+                    required: true,
+                    label: false %>
+          <label for="title">Order of Lesson in Module</label>
+        </div> <!-- md-form -->
+        <small>There <%= @other_lessons.count == 1 ? 'is' : 'are' %> <%= pluralize(@other_lessons.count, "other lesson") %>. The last lesson was #<%= @last_lesson_number %>.</small>
+      </div>
+
+    </div> <!-- row card -->
+
+
+
+
+    <div class="offwhite-card mb-4 row">
+
       <div class="col-12 col-sm-6 text-left pt-2">
         <label>Lesson Image</label><br>
         <%= f.file_field :image %>
@@ -71,6 +90,13 @@
         </div> <!-- md-form -->
       </div> <!-- col -->
 
+    </div> <!-- row card -->
+
+
+
+
+    <div class="offwhite-card mb-4 row">
+
       <div class="col-12 pt-3 field">
         <label for="title">Brief Description</label>
         <%= f.text_area :description, style: "width: 100%" %>
@@ -81,6 +107,13 @@
         <%= f.text_area :body, class: "tinymce", rows: 20, style: "width: 100%" %>
         <%= tinymce :content_css => asset_path('application.css')%>
       </div>
+
+    </div> <!-- row card -->
+
+
+
+
+    <div class="offwhite-card mb-4 row">
 
       <div class="col-12 pt-3 field">
         <label for="title">Assignment</label>

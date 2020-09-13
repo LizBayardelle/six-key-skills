@@ -34,8 +34,12 @@
               <% end %>
               &nbsp;)
               <div id="mod<%= mod.id %>lessons" class="hidden modLessons">
-                <% mod.lessons.order("created_at").each do |lesson| %>
-                  <%= link_to "&nbsp;&nbsp;↳&nbsp;&nbsp;".html_safe + lesson.title, lesson_path(lesson) %><br>
+                <% mod.lessons.order("order_in_module").each do |lesson| %>
+                  <%= link_to "&nbsp;&nbsp;↳&nbsp;&nbsp;".html_safe + " Lesson " + lesson.order_in_module.to_s + ": " + lesson.title, lesson_path(lesson) %>
+                  <% if current_user.admin %>
+                    ( <%= link_to 'Edit', edit_lesson_path(lesson) %>, <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %> )
+                  <% end %>
+                  <br>
                 <% end %>
               </div> <!-- mod lessons -->
             </td>

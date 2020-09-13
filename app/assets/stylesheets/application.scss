@@ -45,7 +45,7 @@ $color-transparent-slate: rgba(81, 108, 138, 0.5) !important;
 
 .color-navy { background-color: $color-navy; }
 .color-beige { background-color: $color-beige; }
-.color-red { background-color: $color-red; }
+.color-red { background-color: $color-red !important; }
 .color-slate { background-color: $color-slate; }
 .color-whiteish { background-color: $color-whiteish; }
 .color-white { background-color: $color-white; }
@@ -107,8 +107,10 @@ strong { font-weight: 800; }
 .colorful-select .dropdown-content li:hover, .dropdown-content li:active { background-color: $color-slate; color: white !important; }
 .colorful-select .dropdown-content li.active span { color: black !important; }
 
-
-
+ul.stepper a { margin-top: 0px !important; margin-bottom: 0px !important }
+ul.stepper { margin: 0px !important; padding: 0px !important}
+.danger-color, ul.stepper li.active a .circle { background-color: $color-slate; }
+.danger-color, ul.stepper li.warning a .circle { background-color: $color-red; }
 
 
 
@@ -211,7 +213,7 @@ label.active { color: $color-red; }
   background-color: $color-slate;
   padding: 15px 25px;
   color: $color-white;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .breadcrumbs a { font-weight: bold; color: $color-white; }

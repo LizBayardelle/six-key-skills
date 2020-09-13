@@ -1,0 +1,19 @@
+<section class="breadcrumbs">
+  <%= link_to @course.name, course_path(@course) %>
+  <i class="fas fa-arrow-right"></i>
+  <%= link_to @course_module.title, course_module_path(@course_module) %>
+  <i class="fas fa-arrow-right"></i>
+  <%= @lesson.title %>
+</section>
+
+<% if current_user && current_user.admin %>
+  <section id="admin-links" class="text-center px-3 py-2">
+    <%= link_to 'Courses Admin', admin_courses_path %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Course Page', course_path(@course) %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Module Page', course_module_path(@course_module) %>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <%= link_to 'Edit Lesson', edit_lesson_path(@lesson) %>
+  </section>
+<% end %>

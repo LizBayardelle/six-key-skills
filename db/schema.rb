@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_235652) do
+ActiveRecord::Schema.define(version: 2020_09_13_174310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_235652) do
     t.text "assignment"
     t.text "materials"
     t.string "attachment_name"
+    t.integer "order_in_module"
     t.index ["course_module_id"], name: "index_lessons_on_course_module_id"
   end
 

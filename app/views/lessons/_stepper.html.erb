@@ -1,0 +1,55 @@
+<!-- Stepper CSS -->
+<link href="css/addons-pro/steppers.css" rel="stylesheet">
+<!-- Stepper CSS - minified-->
+<link href="css/addons-pro/steppers.min.css" rel="stylesheet">
+
+<!-- Stepper JavaScript -->
+<script type="text/javascript" src="js/addons-pro/steppers.js"></script>
+<!-- Stepper JavaScript - minified -->
+<script type="text/javascript" src="js/addons-pro/steppers.min.js"></script>
+
+
+
+
+
+<div class="row">
+  <div class="col-md-12">
+
+    <!-- Stepers Wrapper -->
+    <ul class="stepper stepper-horizontal">
+
+      <% @course_module.lessons.each do |l| %>
+        <li class=" <% if l.id == @lesson.id %>warning<% else %>active<% end %>">
+          <%= link_to lesson_path(l) do %>
+            <span class="circle">
+              <% if LessonCompletion.where(user_id: current_user.id, lesson_id: l.id).count != 0 %>
+                <i class="fas fa-check"></i>
+              <% else %>
+                <%= l.order_in_module %>
+              <% end %>
+            </span><br>
+            <span class="label"><%= l.title %></span>
+          <% end %>
+        </li>
+      <% end %>
+
+    </ul>
+    <!-- /.Stepers Wrapper -->
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+  $(document).ready(function () {
+    $('.stepper').mdbStepper();
+  })
+</script>
