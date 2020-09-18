@@ -10,16 +10,20 @@
     <tbody>
       <% if @course_modules.count != 0 %>
         <% @course_modules.each do |mod| %>
-          <tr>
-            <td>
-              <%= mod.title %> (<%= pluralize(mod.lessons.count, "Lessons") %>)
-            </td>
-            <td>
-              <% mod.lessons.each do |lesson| %>
-                <%= lesson.title %><br>
-              <% end %>
-            </td>
-          </tr>
+          <% if mod.active || ( current_user && current_user.admin ) %>
+            <tr>
+              <td>
+                <%= mod.title %> (<%= pluralize(mod.lessons.count, "Lessons") %>)
+              </td>
+              <td>
+                <% mod.lessons.each do |lesson| %>
+                  <% if course.active || ( current_user && current_user.admin ) %>
+                    <%= lesson.title %><br>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
 
       <% end %>

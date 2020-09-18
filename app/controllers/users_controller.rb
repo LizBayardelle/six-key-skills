@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @course_registrations = CourseRegistration.where(user_id: current_user.id)
     @courses = []
     @course_registrations.each do |reg|
-      @courses << Course.friendly.find(reg.course_id)
+      @courses << Course.find(reg.course_id)
     end
   end
 

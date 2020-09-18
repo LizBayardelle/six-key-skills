@@ -27,7 +27,7 @@ class CourseRegistrationsController < ApplicationController
   # POST /course_registrations.json
   def create
     @course_registration = CourseRegistration.new(course_registration_params)
-    @course = Course.friendly.find(@course_registration.course_id)
+    @course = Course.find(@course_registration.course_id)
 
     respond_to do |format|
       if @course_registration.save
@@ -45,7 +45,7 @@ class CourseRegistrationsController < ApplicationController
   def update
     respond_to do |format|
       if @course_registration.update(course_registration_params)
-        format.html { redirect_to @course_registration, notice: 'Course registration was successfully updated.' }
+        format.html { redirect_to @course, notice: 'Course registration was successfully updated.' }
         format.json { render :show, status: :ok, location: @course_registration }
       else
         format.html { render :edit }

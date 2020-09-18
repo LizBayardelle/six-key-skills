@@ -12,7 +12,7 @@ class CourseModulesController < ApplicationController
   # GET /course_modules/1
   # GET /course_modules/1.json
   def show
-    @course = Course.friendly.find(@course_module.course_id)
+    @course = Course.find(@course_module.course_id)
     @this_is_course = @course
 
     @lessons = Lesson.where(course_module_id: @course_module.id).order(:sort).all

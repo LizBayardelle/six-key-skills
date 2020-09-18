@@ -1,7 +1,4 @@
 class Course < ApplicationRecord
-  extend FriendlyId
-  friendly_id :name, use: :slugged
-
   include RailsSortable::Model
   set_sortable :sort
 
