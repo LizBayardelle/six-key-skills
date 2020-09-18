@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :lesson_completions
   has_many :lessons, through: :lesson_completions
 
+  has_many :course_registrations
+  has_many :courses, through: :course_registrations
+
   def full_name
     "#{first_name} #{last_name}"
   end

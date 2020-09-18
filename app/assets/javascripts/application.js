@@ -23,3 +23,9 @@
 //= require font_awesome5
 //= require tinymce
 //= require perfect-scrollbar
+
+
+// ALERT FADE AWAY
+$(document).on("ready page:load", function() {
+  setTimeout(function() { $(".alert").fadeOut(); }, 5000);
+});

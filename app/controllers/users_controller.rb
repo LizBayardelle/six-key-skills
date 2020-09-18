@@ -4,6 +4,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @course_registrations = CourseRegistration.where(user_id: current_user.id)
+    @courses = []
+    @course_registrations.each do |reg|
+      @courses << Course.find(reg.course_id)
+    end
   end
 
   def index

@@ -45,7 +45,7 @@ $color-transparent-slate: rgba(81, 108, 138, 0.5) !important;
 
 .color-navy { background-color: $color-navy; }
 .color-beige { background-color: $color-beige; }
-.color-red { background-color: $color-red !important; }
+.color-red { background-color: $color-red; }
 .color-slate { background-color: $color-slate; }
 .color-whiteish { background-color: $color-whiteish; }
 .color-white { background-color: $color-white; }
@@ -91,6 +91,8 @@ strong { font-weight: 800; }
 -------------------------------
 -----------------------------*/
 
+.navbar { z-index: 500; }
+
 .side-nav .logo-wrapper { height: 150px; }
 .sidenav-icon, .icon-width { display: inline-block; width: 25px;}
 .nav-link { color: $color-navy; font-weight: 700; }
@@ -130,6 +132,77 @@ ul.stepper { margin: 0px !important; padding: 0px !important}
 .btn-red:hover { color: white !important; }
 
 
+
+
+
+
+
+
+
+
+
+
+
+/*-----------------------------
+-------------------------------
+---------COURSE NAV------------
+-------------------------------
+-------------------------------
+-----------------------------*/
+
+nav#course-nav {
+  height: 100%;
+  width: 0;
+  z-index: 100;
+  padding-top: 105px;
+  padding-left: 10px;
+  padding-right: 10px;
+  position: fixed;
+  overflow-y: scroll;
+  background-color: $color-navy;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+nav#course-nav * a, nav#course-nav * {
+  color: $color-white;
+}
+
+nav#course-nav * a:hover {
+  color: $color-beige;
+}
+
+@media screen and (min-width: 768px) {
+  nav#course-nav {
+    width: 250px;
+  }
+
+  nav#course-nav * a, nav#course-nav * {
+    color: $color-white;
+  }
+
+  nav#course-nav * a:hover {
+    color: $color-beige;
+  }
+}
+
+@media only screen and (min-width : 1441px) {
+  nav#course-nav {
+    width: 500px;
+    padding-left: 250px;
+  }
+}
+
+.closebtn {
+    position: absolute;
+    top: 0;
+    margin-top: 75px;
+    right: 15px;
+    font-size: 36px !important;
+    margin-left: 50px;
+}
 
 
 
@@ -305,7 +378,7 @@ p.small-line-height { line-height: 1.2 }
 }
 
 
-.alert { margin: 0 }
+.alert { margin: 0; z-index: 500; }
 
 
 

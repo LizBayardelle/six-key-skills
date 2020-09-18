@@ -1,5 +1,7 @@
 class LessonsController < ApplicationController
   before_action :set_lesson, only: [:show, :edit, :update, :destroy]
+  before_action :registered_or_admin, only: [:show]
+  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /lessons
   # GET /lessons.json
@@ -12,8 +14,10 @@ class LessonsController < ApplicationController
   def show
     @course_module = @lesson.course_module
     @course = @course_module.course
+    @this_is_course = @course
+
     if LessonCompletion.where(user_id: current_user.id).exists?
-      @lesson_completion = LessonCompletion.find(current_user.id)
+      @lesson_completion = LessonCompletion.where(user_id: current_user.id).last
     else
       @lesson_completion = LessonCompletion.new(user_id: current_user.id, lesson_id: @lesson.id, started: true)
       @lesson_completion.save!
@@ -86,54 +90,19 @@ class LessonsController < ApplicationController
     end
   end
 
-  def complete_lesson
-    @lesson_completion = LessonCompletion.find(params[:id])
-    if @lesson_completion.update_attributes(complete: true)
-        redirect_to course_module_path(CourseModule.find(Lesson.find(@lesson_completion.lesson_id).id))
-        flash[:notice] = "Congratulations on completing that lesson!"
-    else
-        redirect_to lesson_path(Lesson.find(@lesson_completion.lesson_id))
-        flash[:warning] = "Oops! Something went wrong!"
-    end
-  end
-
-  def uncomplete_lesson
-    @lesson_completion = LessonCompletion.find(params[:id])
-    if @lesson_completion.update_attributes(complete: false)
-        redirect_to lesson_path(Lesson.find(@lesson_completion.lesson_id))
-        flash[:notice] = "Congratulations on completing that lesson!"
-    else
-        redirect_to lesson_path(Lesson.find(@lesson_completion.lesson_id))
-        flash[:warning] = "Oops! Something went wrong!"
-    end
-  end
-
-  def favorite_lesson
-    @lesson_completion = LessonCompletion.find(params[:id])
-    if @lesson_completion.update_attributes(favorite: true)
-        redirect_to lesson_path(Lesson.find(@lesson_completion.lesson_id))
-        flash[:notice] = "That lesson has been saved to your favorites."
-    else
-        redirect_to lesson_path(Lesson.find(@lesson_completion.lesson_id))
-        flash[:warning] = "Oops! Something went wrong!"
-    end
-  end
-
-  def uncomplete_lesson
-    @lesson_completion = LessonCompletion.find(params[:id])
-    if @lesson_completion.update_attributes(favorite: false)
-        redirect_to lesson_path(Lesson.find(@lesson_completion.lesson_id))
-        flash[:notice] = "That lesson has been removed from your favorites."
-    else
-        redirect_to lesson_path(Lesson.find(@lesson_completion.lesson_id))
-        flash[:warning] = "Oops! Something went wrong!"
-    end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
       @lesson = Lesson.find(params[:id])
+    end
+
+    def registered_or_admin
+      @course_module = @lesson.course_module
+      @course = @course_module.course
+      unless current_user && (current_user.admin || CourseRegistration.where(user_id: current_user.id, course_id: @course.id).count != 0)
+        redirect_to courses_path, notice: "Sorry, you do not have access to that course yet."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

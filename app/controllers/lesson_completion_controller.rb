@@ -2,7 +2,7 @@ class LessonCompletionController < ApplicationController
 
   def complete_lesson
     @lesson_completion = LessonCompletion.find(params[:id])
-    if @lesson_completion.update_attributes(complete: true)
+    if @lesson_completion.update_attributes!(complete: true)
         redirect_to course_module_path(CourseModule.find(Lesson.find(@lesson_completion.lesson_id).id))
         flash[:notice] = "Congratulations on completing that lesson!"
     else

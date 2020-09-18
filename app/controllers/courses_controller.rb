@@ -11,6 +11,11 @@ class CoursesController < ApplicationController
   # GET /courses/1.json
   def show
     @course_modules = CourseModule.where(course_id: @course.id).order("sort").all
+    if current_user && CourseRegistration.where(course_id: @course.id, user_id: current_user.id).count != 0
+      @registered = true
+    elsif current_user && current_user.admin
+      @registered = false
+    end
   end
 
   # GET /courses/new

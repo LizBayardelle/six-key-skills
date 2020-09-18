@@ -1,5 +1,7 @@
 class CourseModulesController < ApplicationController
   before_action :set_course_module, only: [:show, :edit, :update, :destroy]
+  before_action :registered_or_admin, only: [:show]
+  before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
 
   # GET /course_modules
   # GET /course_modules.json
@@ -11,6 +13,8 @@ class CourseModulesController < ApplicationController
   # GET /course_modules/1.json
   def show
     @course = Course.find(@course_module.course_id)
+    @this_is_course = @course
+
     @lessons = Lesson.where(course_module_id: @course_module.id).order(:sort).all
     array = []
     @course.course_modules.order(:sort).each do |mod|
@@ -82,6 +86,14 @@ class CourseModulesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_course_module
       @course_module = CourseModule.find(params[:id])
+    end
+
+    def registered_or_admin
+      @course_module = CourseModule.find(params[:id])
+      @course = @course_module.course
+      unless current_user && (current_user.admin || CourseRegistration.where(user_id: current_user.id, course_id: @course.id).count != 0)
+        redirect_to courses_path, notice: "Sorry, you do not have access to that course yet."
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

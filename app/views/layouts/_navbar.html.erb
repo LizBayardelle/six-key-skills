@@ -20,6 +20,10 @@
         <%= link_to "Blog", blogs_path, class: "nav-link" %>
       </li>
 
+      <li class="nav-item">
+        <%= link_to "Courses", courses_path, class: "nav-link" %>
+      </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -44,16 +48,17 @@
             aria-haspopup="true" aria-expanded="false">
             <%= current_user.full_name %></a>
           <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-            <% if current_user.admin %>
+            <% if current_user && current_user.admin %>
               <small>User Actions</small>
             <% end %>
             <%= link_to 'My Account', user_path(current_user), class: "dropdown-item" %>
             <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-            <% if current_user.admin %>
+            <% if current_user && current_user.admin %>
               <hr class="m-0 p-0">
               <small>Admin Actions</small>
               <%= link_to "Resource Manager", admin_resources_path, class: "dropdown-item" %>
               <%= link_to "Blog Manager", admin_blogs_path, class: "dropdown-item" %>
+              <%= link_to "Course Manager", admin_courses_path, class: "dropdown-item" %>
               <%= link_to "Subcategory Manager", subcategories_path, class: "dropdown-item" %>
               <%= link_to "Members", admin_users_path, class: "dropdown-item" %>
               <%= link_to "Subscribers", subscribers_path, class: "dropdown-item" %>

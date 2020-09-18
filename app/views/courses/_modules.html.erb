@@ -1,4 +1,4 @@
-<% if current_user.admin %>
+<% if current_user && current_user.admin %>
   <div class="text-center pb-3">
     <%= link_to "Create New Module", new_course_module_path(course: course), class: "btn btn-sm btn-slate" %>
     <%= link_to "Courses Admin", admin_courses_path, class: "btn btn-sm btn-slate" %>
@@ -15,7 +15,7 @@
           <div id="showAllLessons">Module (<span class="linkish">Show Lessons</span>)</div>
           <div id="hideAllLessons" class="hidden">Module (<span class="linkish">Hide Lessons</span>)</div>
         </th>
-        <% if current_user.admin %>
+        <% if current_user && current_user.admin %>
           <th class="text-center">Active</th>
         <% end %>
         </tr>
@@ -28,7 +28,7 @@
             <td>
               <%= link_to mod.title, mod %> (
               <div id="mod<%= mod.id %>lessonsTarget" class="linkish" style="display: inline-block"><%= pluralize(mod.lessons.count, "Lessons") %></div>
-              <% if current_user.admin %>
+              <% if current_user && current_user.admin %>
                 &nbsp;&nbsp;|&nbsp;&nbsp;
                 <%= link_to 'Edit', edit_course_module_path(mod) %>, <%= link_to 'Delete', mod, method: :delete, data: { confirm: 'Are you sure?' } %>
               <% end %>
@@ -36,14 +36,14 @@
               <div id="mod<%= mod.id %>lessons" class="hidden modLessons">
                 <% mod.lessons.order("order_in_module").each do |lesson| %>
                   <%= link_to "&nbsp;&nbsp;↳&nbsp;&nbsp;".html_safe + " Lesson " + lesson.order_in_module.to_s + ": " + lesson.title, lesson_path(lesson) %>
-                  <% if current_user.admin %>
+                  <% if current_user && current_user.admin %>
                     ( <%= link_to 'Edit', edit_lesson_path(lesson) %>, <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %> )
                   <% end %>
                   <br>
                 <% end %>
               </div> <!-- mod lessons -->
             </td>
-            <% if current_user.admin %>
+            <% if current_user && current_user.admin %>
               <td class="text-center"><% if mod.active %><i class="fas fa-check"></i><% end %></td>
             <% end %>
           </tr>

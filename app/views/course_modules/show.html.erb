@@ -1,38 +1,50 @@
-<% registered = true %>
+<span class="d-md-none" style="position: absolute; margin-left: 40px; font-size:30px; cursor:pointer" onclick="openNav()">☰ <span style="font-size: 1rem">Open Course Navigation</span></span>
 
-<%= render partial: "course_modules/nav", locals: { course: @course, course_module: @course_module } %>
+
+<div class="view main-image jarallax" style="height: 30vh; min-height: 500px;">
+
+  <% if @course_module.image.attached? %>
+    <img class="jarallax-img" src="<%= polymorphic_url(@course_module.image) %>" alt="<%= @course_module.title %>">
+  <% end %>
+
+
+  <div class="mask rgba-white-strong">
+    <div class="container text-center mt-5">
+      <div class="row my-5">
+        <div class="col-md-12 wow fadeIn mt-5 mb-3">
+          <% if !@course_module.active %>
+            <h3 class="uppercase text-black"><small>Currently Inactive</small></h3>
+          <% end %>
+          <h1 class="display-3 mb-2 wow fadeInDown text-black font-weight-bold" data-wow-delay="0.3s"><%= @course_module.title %></h1>
+          <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
+            <%= @course_module.teaser %>
+          </h4>
+          <a href="#lessons">
+            <h3 class="text-red"><%= pluralize(@course_module.lessons.count, "Lesson") %></h3>
+          </a>
+          <p>Taught by <%= @course_module.course.user.full_name %></p>
+        </div> <!-- col -->
+      </div> <!-- row -->
+    </div> <!-- container -->
+
+  </div> <!-- mask -->
+
+</div> <!-- jarallax view -->
+
 
 <main class="container">
 
-  <header class="text-right">
-    <section class="text-center py-4">
-      <h3 class="uppercase text-beige">Module <%= @order_in_course %> of <%= CourseModule.where(course_id: @course_module.course_id).count %> (<%= pluralize(@course_module.lessons.count, "Lesson") %>)</h3>
-      <h1 class="mb-0 font-weight-bold display-3"><%= @course_module.title %></h1>
-      <% if !@course_module.active %>
-        <h3 class="uppercase text-beige"><small>Currently Inactive</small></h3>
-      <% end %>
-    </section>
-  </header>
+  <section id="info" class="row pt-5">
+    <div class="col-12">
 
-  <section id="info" class="row">
-    <div class="col-12 col-sm-5 col-md-4 text-center">
-      <% if @course_module.image.attached? %>
-        <img class="product-image mb-3" src="<%= polymorphic_url(@course_module.image) %>" alt="<%= @course_module.title %>">
-      <% end %>
-      <a href="#lessons">
-        <h3 class="text-red"><%= pluralize(@course_module.lessons.count, "Lesson") %></h3>
-      </a>
-      <p>Taught by <%= @course_module.course.user.full_name %></p>
       <% if @course_module.goal != "" %>
         <div class="goal-box mb-4">
           <p><strong>Module Goal: </strong><%= @course_module.goal %></p>
         </div> <!-- goal-box -->
       <% end %>
-    </div> <!-- col -->
 
-    <div class="col-12 col-sm-7 col-md-8 text-center text-sm-left">
-      <h2><%= @course_module.teaser %></h2>
       <%= raw(@course_module.description) %>
+
     </div> <!-- col -->
   </section>
 
@@ -45,7 +57,7 @@
   <section id="lessons" class="row">
     <div class="col-12 text-center">
       <h2>Lessons</h2>
-      <% if current_user.admin %>
+      <% if current_user && current_user.admin %>
         <%= link_to "New Lesson", new_lesson_path(course: @course, module: @course_module), class: "btn btn-slate btn-sm mb-3" %>
       <% end %>
 
@@ -57,7 +69,7 @@
               <th class="text-center"></th>
               <th class="text-center"></th>
               <th>Module</th>
-              <% if current_user.admin %>
+              <% if current_user && current_user.admin %>
                 <th class="text-center">Active</th>
               <% end %>
             </tr>
@@ -82,11 +94,11 @@
                 </td>
                 <td>
                   <%= link_to "Lesson " + lesson.order_in_module.to_s + ":  ".html_safe + lesson.title, lesson_path(lesson) %>
-                  <% if current_user.admin %>
+                  <% if current_user && current_user.admin %>
                     ( <%= link_to 'Edit', edit_lesson_path(lesson) %>, <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %> )
                   <% end %>
                 </td>
-                <% if current_user.admin %>
+                <% if current_user && current_user.admin %>
                   <td class="text-center"><% if lesson.active %><i class='fas fa-check'></i><% end %></td>
                 <% end %>
               </tr>
@@ -109,8 +121,19 @@
 <% if current_user && current_user.admin %>
   <script>
     $(document).ready(function() {
+
       $(function() {
         $('.sortable').railsSortable();
+      });
+
+      // object-fit polyfill run
+      objectFitImages();
+
+      /* init Jarallax */
+      jarallax(document.querySelectorAll('.jarallax'));
+
+      jarallax(document.querySelectorAll('.jarallax-keep-img'), {
+          keepImg: true,
       });
     });
   </script>

@@ -3,7 +3,7 @@
 <!-- Grid column -->
   <div class="col-lg-4 col-sm-6 mb-5">
     <!-- Card -->
-    <div class="card card-cascade wider card-ecommerce">
+    <div class="card card-cascade narrower card-ecommerce">
       <!-- Card image -->
       <div class="view view-cascade overlay">
         <% if course.image.attached? %>
@@ -28,7 +28,13 @@
         <p class="card-text"><%= course.teaser %></p>
         <!-- Card footer -->
         <div class="card-footer mt-4">
-          <p class="float-left font-weight-bold mb-1 pb-2"><%= number_to_currency(course.price) %></p>
+          <p class="float-left font-weight-bold text-red mb-1 pb-2">
+            <% if current_user && CourseRegistration.where(course_id: course.id, user_id: current_user.id).count != 0 %>
+              Registered
+            <% else %>
+              <%= number_to_currency(course.price) %>
+            <% end %>
+          </p>
           <% if current_user && current_user.admin %>
             <%= link_to edit_course_path(course), class: "float-right" do %>
               <i class="fas fa-pencil-alt ml-3"></i>

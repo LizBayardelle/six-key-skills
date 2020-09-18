@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_13_174310) do
+ActiveRecord::Schema.define(version: 2020_09_17_160040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 2020_09_13_174310) do
     t.string "goal"
     t.integer "sort"
     t.index ["course_id"], name: "index_course_modules_on_course_id"
+  end
+
+  create_table "course_registrations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_registrations_on_course_id"
+    t.index ["user_id"], name: "index_course_registrations_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -248,6 +257,8 @@ ActiveRecord::Schema.define(version: 2020_09_13_174310) do
   add_foreign_key "blogs", "resources"
   add_foreign_key "blogs", "users"
   add_foreign_key "course_modules", "courses"
+  add_foreign_key "course_registrations", "courses"
+  add_foreign_key "course_registrations", "users"
   add_foreign_key "courses", "users"
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"

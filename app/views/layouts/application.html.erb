@@ -64,11 +64,22 @@
 
 
     <div class="non-footer">
+      <% if @this_is_course != nil %>
+        <%= render 'layouts/coursenav' %>
+      <% end %>
+
       <%= render 'layouts/navbar' %>
       <%= render 'layouts/sidenav' %>
       <%= render 'layouts/notifications' %>
 
-      <%= yield %>
+      <div id="everything-else" class="d-md-none">
+        <%= yield %>
+      </div>
+
+      <div id="everything-else" class="d-none d-md-block" style="<% if @this_is_course != nil %>margin-left: 250px<% end %>">
+        <%= yield %>
+      </div>
+
     </div>
 
     <%= render 'layouts/footer' %>

@@ -23,6 +23,7 @@
           <em>Administrator</em>
         <% elsif @user.contributor %>
           <em>Contributor Since <%= @user.contributor_since.year %></em>
+          <%= render partial: "users/contributor_box", locals: { user: @user } %>
         <% else %>
           <em>Member Since <%= @user.created_at.year %></em>
         <% end %>
@@ -30,10 +31,23 @@
     </header>
 
 
-
-    <section>
-      <%= render partial: "users/contributor_box", locals: { user: @user } %>
-    </section>
+    <% if @courses != [] %>
+      <section id="courses">
+        <h2>My Courses</h2>
+        <table>
+          <% @courses.each do |course| %>
+            <tr>
+              <td><%= link_to course.name, course %></td>
+              <td>
+                <div class="progress md-progress" style="height: 20px">
+                    <div class="progress-bar" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </section>
+    <% end %>
 
   </div> <!-- container -->
 

@@ -1,11 +1,6 @@
-<% registered = true %>
-
-
-<%= render partial: "lessons/nav", locals: { course: @course, course_module: CourseModule.find(@lesson.course_module_id), lesson: @lesson } %>
+<span class="d-md-none" style="margin-left: 40px; font-size:30px; cursor:pointer" onclick="openNav()">☰ <span style="font-size: 1rem">Open Course Navigation</span></span>
 
 <main class="container">
-
-  <%= render partial: "lessons/stepper", locals: { course_module: CourseModule.find(@lesson.course_module_id), lesson: @lesson } %>
 
   <header class="text-center py-4">
     <h1 class="mb-0 font-weight-bold display-3"><%= @lesson.title %></h1>
