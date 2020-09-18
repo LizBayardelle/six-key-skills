@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_17_160040) do
+ActiveRecord::Schema.define(version: 2020_09_18_212012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,8 @@ ActiveRecord::Schema.define(version: 2020_09_17_160040) do
     t.string "pinterest_description"
     t.boolean "featured", default: false
     t.integer "sort"
+    t.string "slug"
+    t.index ["slug"], name: "index_courses_on_slug", unique: true
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
