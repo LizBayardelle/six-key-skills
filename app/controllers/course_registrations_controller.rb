@@ -1,6 +1,7 @@
 class CourseRegistrationsController < ApplicationController
   before_action :set_course_registration, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :redirect_without_params, only: [:new]
 
   # GET /course_registrations
   # GET /course_registrations.json
@@ -26,7 +27,7 @@ class CourseRegistrationsController < ApplicationController
   # POST /course_registrations.json
   def create
     @course_registration = CourseRegistration.new(course_registration_params)
-    @course = Course.find(@course_registration.course_id)
+    @course = Course.friendly.find(@course_registration.course_id)
 
     respond_to do |format|
       if @course_registration.save
@@ -60,6 +61,12 @@ class CourseRegistrationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to course_registrations_url, notice: 'Course registration was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def redirect_without_params
+    unless params[:course]
+      redirect_to courses_path
     end
   end
 

@@ -69,7 +69,7 @@ a, .linkish { color: $color-slate; cursor: pointer; }
 a:hover, .linkish:hover { color: $color-navy }
 
 * { font-family: 'Roboto', sans-serif; }
-.serif { font-family: 'Cormorant', serif; }
+.serif, .font-serif { font-family: 'Cormorant', serif; }
 #blog-body p, #blog-body li, #blog-body em, #blog-body strong, #blog-body a, #blog-body p * { font-family: 'Roboto', sans-serif; font-weight: 400 }
 #blog-body strong { font-weight: 800; }
 #blog-body h2 { font-weight: 800; color: $color-red;}
@@ -93,6 +93,7 @@ strong { font-weight: 800; }
 
 .navbar { z-index: 500; }
 
+.side-nav { overflow-y: scroll; }
 .side-nav .logo-wrapper { height: 150px; }
 .sidenav-icon, .icon-width { display: inline-block; width: 25px;}
 .nav-link { color: $color-navy; font-weight: 700; }

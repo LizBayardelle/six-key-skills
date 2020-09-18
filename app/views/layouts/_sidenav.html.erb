@@ -29,25 +29,75 @@
 
 
 
-    <!-- Side navigation links -->
     <li>
       <ul class="collapsible collapsible-accordion">
-
-
-
-
-
         <li>
           <a class="waves-effect arrow-r">
             <em>Map My Skills©</em> Quiz
           </a>
         </li>
-
-
         <li><%= link_to "Blog", blogs_path, class: "waves-effect arrow-r" %></li>
         <li><%= link_to "Courses", courses_path, class: "waves-effect arrow-r" %></li>
+      </ul>
+    </li>
 
 
+
+
+    <!--USER-->
+    <li>
+      <ul class="collapsible collapsible-accordion">
+        <% if current_user %>
+          <li><a class="collapsible-header waves-effect arrow-r" style="border-bottom: solid thin rgba(153, 153, 153, 0.3); border-top: solid thin rgba(153, 153, 153, 0.3);">
+            <div class="sidenav-icon"><i class="fas fa-user"></i></div><%= current_user.full_name %>
+              <i class="fas fa-angle-down rotate-icon"></i></a>
+            <div class="collapsible-body">
+              <ul>
+                <% if current_user && current_user.admin %>
+                  <li>
+                    <a style="margin-left: -20px; cursor: default" class="text-navy font-weight-bold">User Actions</a>
+                  </li>
+                <% end %>
+                <li><%= link_to 'My Account', user_path(current_user), class: "waves-effect" %></li>
+                <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "waves-effect" %></li>
+                <% if current_user && current_user.admin %>
+                  <li>
+                    <a style="margin-left: -20px; cursor: default" class="text-navy font-weight-bold">Admin Actions</a>
+                  </li>
+                  <li><%= link_to "Course Manager", admin_courses_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Resource Manager", admin_resources_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Blog Manager", admin_blogs_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Subcategory Manager", subcategories_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Members", admin_users_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Subscribers", subscribers_path, class: "waves-effect" %></li>
+                  <li><%= link_to "Messages", contacts_path, class: "waves-effect" %></li>
+                <% end %>
+              </ul>
+            </div>
+          </li>
+        <% else %>
+          <li><a class="collapsible-header waves-effect arrow-r">
+            <div class="sidenav-icon"><i class="fas fa-user"></i></div>My Account
+              <i class="fas fa-angle-down rotate-icon"></i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><%= link_to 'Sign Up', new_user_registration_path, class: "waves-effect" %></li>
+                <li><%= link_to 'Sign In', new_user_session_path, class: "waves-effect" %></li>
+              </ul>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+    <!--/.Search Form-->
+
+
+
+    <!-- Side navigation links -->
+    <li>
+      <h5 class="text-center mt-3 mb-0 font-serif text-slate">THE SKILLS</h5>
+
+      <ul class="collapsible collapsible-accordion">
 
         <li><a class="collapsible-header waves-effect arrow-r">
           <div class="sidenav-icon"><i class="fas fa-mountain"></i></div>Motivation
@@ -139,49 +189,6 @@
             6KS Private Coaching
           </a>
         </li>
-
-
-
-        <% if current_user %>
-          <li><a class="collapsible-header waves-effect arrow-r">
-            <div class="sidenav-icon"><i class="fas fa-user"></i></div><%= current_user.full_name %>
-              <i class="fas fa-angle-down rotate-icon"></i></a>
-            <div class="collapsible-body">
-              <ul>
-                <% if current_user && current_user.admin %>
-                  <li>
-                    <a style="margin-left: -20px; cursor: default" class="text-navy font-weight-bold">User Actions</a>
-                  </li>
-                <% end %>
-                <li><%= link_to 'My Account', user_path(current_user), class: "waves-effect" %></li>
-                <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: "waves-effect" %></li>
-                <% if current_user && current_user.admin %>
-                  <li>
-                    <a style="margin-left: -20px; cursor: default" class="text-navy font-weight-bold">Admin Actions</a>
-                  </li>
-                  <li><%= link_to "Course Manager", admin_courses_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Resource Manager", admin_resources_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Blog Manager", admin_blogs_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Subcategory Manager", subcategories_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Members", admin_users_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Subscribers", subscribers_path, class: "waves-effect" %></li>
-                  <li><%= link_to "Messages", contacts_path, class: "waves-effect" %></li>
-                <% end %>
-              </ul>
-            </div>
-          </li>
-        <% else %>
-          <li><a class="collapsible-header waves-effect arrow-r">
-            <div class="sidenav-icon"><i class="fas fa-user"></i></div>My Account
-              <i class="fas fa-angle-down rotate-icon"></i></a>
-            <div class="collapsible-body">
-              <ul>
-                <li><%= link_to 'Sign Up', new_user_registration_path, class: "waves-effect" %></li>
-                <li><%= link_to 'Sign In', new_user_session_path, class: "waves-effect" %></li>
-              </ul>
-            </div>
-          </li>
-        <% end %>
 
 
       </ul>
