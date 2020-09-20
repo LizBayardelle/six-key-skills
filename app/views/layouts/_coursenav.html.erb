@@ -1,6 +1,6 @@
 <nav id="course-nav">
   <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">×</a>
-  <p class="h3 text-center pb-4"><%= link_to @this_is_course.name, @this_is_course %></p>
+  <h3 class="h3 text-center pb-4"><%= link_to @this_is_course.name, @this_is_course %></h3>
 
   <% @this_is_course.course_modules.order("sort").each do |mod| %>
   <% if @course_module && mod.id == @course_module.id && !@lesson %>

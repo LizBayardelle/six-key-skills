@@ -9,6 +9,11 @@
     <% if !@lesson.active %>
       <h3 class="uppercase text-beige"><small>Currently Inactive</small></h3>
     <% end %>
+    <% if current_user && current_user.admin %>
+      <div class="text-center">
+        <%= link_to "Edit Lesson", edit_lesson_path(@lesson), class: "btn btn-slate btn-sm" %>
+      </div>
+    <% end %>
   </header>
 
   <section id="info" class="row">

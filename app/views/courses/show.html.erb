@@ -44,10 +44,17 @@
         <% end %>
       </h3>
       <p>Taught by <%= @course.user.full_name %></p>
+
       <% if @registered %>
         <a href="#modules" class="btn btn-red">Go to Class</a>
       <% else %>
         <%= link_to "Register", new_course_registration_path(course: @course), class: "btn btn-red" %>
+      <% end %>
+
+      <% if current_user && current_user.admin %>
+        <div class="text-center">
+          <%= link_to "Edit Course", edit_lesson_path(@course), class: "btn btn-slate" %>
+        </div>
       <% end %>
     </div> <!-- col -->
 

@@ -23,6 +23,13 @@
             <h3 class="text-red"><%= pluralize(@course_module.lessons.count, "Lesson") %></h3>
           </a>
           <p>Taught by <%= @course_module.course.user.full_name %></p>
+
+          <% if current_user && current_user.admin %>
+            <div class="text-center">
+              <%= link_to "Edit Module", edit_course_module_path(@course_module), class: "btn btn-slate btn-sm" %>
+            </div>
+          <% end %>
+
         </div> <!-- col -->
       </div> <!-- row -->
     </div> <!-- container -->
@@ -33,6 +40,7 @@
 
 
 <main class="container px-5">
+
 
   <section id="info" class="row pt-5">
     <div class="col-12">
