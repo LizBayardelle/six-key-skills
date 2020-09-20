@@ -17,7 +17,7 @@
               </td>
               <td>
                 <% mod.lessons.each do |lesson| %>
-                  <% if course.active || ( current_user && current_user.admin ) %>
+                  <% if lesson.active || ( current_user && current_user.admin ) %>
                     <%= lesson.title %><br>
                   <% end %>
                 <% end %>

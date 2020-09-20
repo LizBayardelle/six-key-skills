@@ -1,6 +1,8 @@
-<span class="d-md-none" style="margin-left: 40px; font-size:30px; cursor:pointer" onclick="openNav()">☰ <span style="font-size: 1rem">Open Course Navigation</span></span>
+<div class="text-center pt-6">
+  <div class="d-md-none btn btn-slate btn-sm text-center" style="cursor:pointer" onclick="openNav()">Open Course Navigation</div>
+</div>
 
-<main class="container">
+<main class="container px-5">
 
   <header class="text-center py-4">
     <h1 class="mb-0 font-weight-bold display-3"><%= @lesson.title %></h1>
@@ -93,6 +95,9 @@
 
 
 
+  <div class="text-center pt-6">
+    <div class="d-md-none btn btn-slate btn-sm text-center" style="cursor:pointer" onclick="openNav()">Go to Next Lesson</div>
+  </div>
 
 
 
@@ -126,12 +131,6 @@
 
 
 
-<section id="next-lesson" class="color-whiteish my-5 py-5 z-depth-3">
-  <div class="container">
-    <h2 class="text-center">Next Lesson</h2>
-    <%= render partial: "lessons/stepper", locals: { course_module: CourseModule.find(@lesson.course_module_id), lesson: @lesson } %>
-  </div>
-</section>
 
 
 

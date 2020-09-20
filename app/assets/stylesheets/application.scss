@@ -81,6 +81,7 @@ strong { font-weight: 800; }
 .inliine-block { display: inline-block; }
 .hidden { display: none !important; }
 
+p, li { overflow-x: hidden; }
 
 
 
@@ -153,11 +154,11 @@ ul.stepper { margin: 0px !important; padding: 0px !important}
 
 nav#course-nav {
   height: 100%;
-  width: 0;
+  width: 0px;
   z-index: 100;
   padding-top: 105px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
   position: fixed;
   overflow-y: scroll;
   background-color: $color-navy;
@@ -175,9 +176,15 @@ nav#course-nav * a:hover {
   color: $color-beige;
 }
 
+footer.course-padded {
+  padding-left: 0px;
+}
+
 @media screen and (min-width: 768px) {
   nav#course-nav {
     width: 250px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   nav#course-nav * a, nav#course-nav * {
@@ -186,6 +193,10 @@ nav#course-nav * a:hover {
 
   nav#course-nav * a:hover {
     color: $color-beige;
+  }
+
+  footer.course-padded {
+    padding-left: 250px;
   }
 }
 

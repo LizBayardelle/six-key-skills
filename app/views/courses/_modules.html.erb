@@ -24,31 +24,37 @@
     <tbody class="sortable">
       <% if @course_modules.count != 0 %>
         <% @course_modules.each_with_sortable_id do |mod, sortable_id| %>
-          <tr id="<%= sortable_id %>">
-            <td>
-              <%= link_to mod.title, mod %> (
-              <div id="mod<%= mod.id %>lessonsTarget" class="linkish" style="display: inline-block"><%= pluralize(mod.lessons.count, "Lessons") %></div>
-              <% if current_user && current_user.admin %>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-                <%= link_to 'Edit', edit_course_module_path(mod) %>, <%= link_to 'Delete', mod, method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% end %>
-              &nbsp;)
-              <div id="mod<%= mod.id %>lessons" class="hidden modLessons">
-                <% mod.lessons.order("order_in_module").each do |lesson| %>
-                  <%= link_to "&nbsp;&nbsp;↳&nbsp;&nbsp;".html_safe + " Lesson " + lesson.order_in_module.to_s + ": " + lesson.title, lesson_path(lesson) %>
-                  <% if current_user && current_user.admin %>
-                    ( <%= link_to 'Edit', edit_lesson_path(lesson) %>, <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %> )
-                  <% end %>
-                  <br>
-                <% end %>
-              </div> <!-- mod lessons -->
-            </td>
-            <% if current_user && current_user.admin %>
-              <td class="text-center"><% if mod.active %><i class="fas fa-check"></i><% end %></td>
-            <% end %>
-          </tr>
-        <% end %>
 
+          <% if mod.active || ( current_user && current_user.admin ) %>
+
+              <tr id="<%= sortable_id %>">
+                <td>
+                  <%= link_to mod.title, mod %> (
+                  <div id="mod<%= mod.id %>lessonsTarget" class="linkish" style="display: inline-block"><%= pluralize(mod.lessons.count, "Lessons") %></div>
+                  <% if current_user && current_user.admin %>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                    <%= link_to 'Edit', edit_course_module_path(mod) %>, <%= link_to 'Delete', mod, method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <% end %>
+                  &nbsp;)
+                  <div id="mod<%= mod.id %>lessons" class="hidden modLessons">
+                    <% mod.lessons.order("order_in_module").each do |lesson| %>
+                      <%= link_to "&nbsp;&nbsp;↳&nbsp;&nbsp;".html_safe + " Lesson " + lesson.order_in_module.to_s + ": " + lesson.title, lesson_path(lesson) %>
+                      <% if current_user && current_user.admin %>
+                        ( <%= link_to 'Edit', edit_lesson_path(lesson) %>, <%= link_to 'Delete', lesson, method: :delete, data: { confirm: 'Are you sure?' } %> )
+                      <% end %>
+                      <br>
+                    <% end %>
+                  </div> <!-- mod lessons -->
+                  <% unless mod.active %><i class="fas fa-eye-slash float-right"></i><% end %>
+                </td>
+                <% if current_user && current_user.admin %>
+                  <td class="text-center"><% if mod.active %><i class="fas fa-check"></i><% end %></td>
+                <% end %>
+              </tr>
+
+          <% end %>
+
+        <% end %>
       <% end %>
     </tbody>
   </table>

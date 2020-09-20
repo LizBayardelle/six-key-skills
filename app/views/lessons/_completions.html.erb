@@ -1,4 +1,4 @@
-<table class="text-left">
+<table class="text-left mb-3">
   <tr>
     <% if @lesson_completion.complete %>
       <td class="pr-1"><%= link_to "<i class='far fa-check-square'></i>".html_safe, uncomplete_lesson_path(@lesson), method: :post, class: "text-red" %></td>
