@@ -168,6 +168,11 @@ nav#course-nav {
     transition: 0.5s;
 }
 
+nav#course-nav p, nav#course-nav li {
+  font-size: .9rem;
+  line-height: 1.2;
+}
+
 nav#course-nav * a, nav#course-nav * {
   color: $color-white;
 }
