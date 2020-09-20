@@ -30,12 +30,12 @@
                 <%= link_to course.name, course, class: "font-weight-bold" %> ( <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_course_path(course) %>  <%= link_to '<i class="fas fa-times"></i>'.html_safe, course, method: :delete, data: { confirm: 'Are you sure?' } %> )
                 <% CourseModule.where(course_id: course.id).order("sort ASC").each do |course_module| %>
                   <br>
-                  <%= link_to course_module.title, course_module, class: "pl-3" %> ( <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_course_path(course_module) %>  <%= link_to '<i class="fas fa-times"></i>'.html_safe, course_module, method: :delete, data: { confirm: 'Are you sure?' } %> ) <% unless course_module.active %><i class="fas fa-eye-slash float-right"></i><% end %>
+                  <%= link_to course_module.title, course_module, class: "pl-3" %> ( <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_course_module_path(course_module) %>  <%= link_to '<i class="fas fa-times"></i>'.html_safe, course_module, method: :delete, data: { confirm: 'Are you sure?' } %> ) <% unless course_module.active %><i class="fas fa-eye-slash float-right"></i><% end %>
 
                   <% course_module.lessons.order("order_in_module ASC").each do |lesson| %>
                     <br>
 
-                    <em><%= link_to lesson.title, lesson, class: "pl-5" %></em> ( <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_course_path(lesson) %>  <%= link_to '<i class="fas fa-times"></i>'.html_safe, lesson, method: :delete, data: { confirm: 'Are you sure?' } %> ) <% unless lesson.active %><i class="fas fa-eye-slash float-right"></i><% end %>
+                    <em><%= link_to lesson.title, lesson, class: "pl-5" %></em> ( <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_lesson_path(lesson) %>  <%= link_to '<i class="fas fa-times"></i>'.html_safe, lesson, method: :delete, data: { confirm: 'Are you sure?' } %> ) <% unless lesson.active %><i class="fas fa-eye-slash float-right"></i><% end %>
                   <% end %>
 
                 <% end %>
