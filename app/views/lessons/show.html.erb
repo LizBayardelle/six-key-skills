@@ -18,7 +18,7 @@
 
   <section id="info" class="row">
 
-    <div class="col-12 col-sm-5 col-md-4 text-center">
+    <div class="col-12 col-md-5 col-lg-4 text-center">
       <% if @lesson.image.attached? %>
         <img class="product-image mb-3" src="<%= polymorphic_url(@lesson.image) %>" alt="<%= @lesson.title %>">
       <% end %>
@@ -28,7 +28,7 @@
       <div class="text-left>"><%= render partial: "lessons/completions", locals: { lesson: @lesson } %></div>
     </div> <!-- col -->
 
-    <div class="col-12 col-sm-7 col-md-8 text-center text-sm-left">
+    <div class="col-12 col-md-7 col-lg-8 text-center text-sm-left">
       <h2><%= @lesson.teaser %></h2>
       <p><%= @lesson.description %></p>
     </div> <!-- col -->
@@ -52,7 +52,7 @@
 
   <section id="lessons" class="row">
 
-    <div class="col-12 text-left">
+    <div class="col-12 text-left lesson-body">
       <%= raw(@lesson.body) %>
     </div>
 
