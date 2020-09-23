@@ -6,7 +6,10 @@
   <% if @course_module && mod.id == @course_module.id && !@lesson %>
       <div class="color-red" style="margin-left: -15px; padding-left: 15px; width: 265px">
     <% end %>
-      <p><%= link_to mod.title, mod, class: "font-weight-bold"%></p>
+      <p>
+        <%= link_to mod.title, mod, class: "font-weight-bold"%>
+        <% if current_user && current_user.admin && !mod.active %><i class="fas fa-eye-slash float-right"></i><% end %>
+      </p>
     <% if @course_module && mod.id == @course_module.id && !@lesson %>
       </div>
     <% end %>
@@ -23,6 +26,7 @@
           <% end %>
           &nbsp;&nbsp;
           <%= link_to lesson.title, lesson  %>
+          <% if current_user && current_user.admin && !lesson.active %><i class="fas fa-eye-slash float-right"></i><% end %>
         </p>
       <% if @lesson && lesson.id == @lesson.id %>
         </div>

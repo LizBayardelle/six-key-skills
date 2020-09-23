@@ -34,18 +34,40 @@
     <% if @courses != [] %>
       <section id="courses">
         <h2>My Courses</h2>
-        <table>
-          <% @courses.each do |course| %>
-            <tr>
-              <td><%= link_to course.name, course %></td>
-              <td>
-                <div class="progress md-progress" style="height: 20px">
-                    <div class="progress-bar" role="progressbar" style="width: 25%; height: 20px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                </div>
-              </td>
-            </tr>
-          <% end %>
-        </table>
+        <div class="table-responsive">
+          <table class="table">
+            <% @courses.each do |course| %>
+              <tr>
+                <td><%= link_to course.name, course %></td>
+                <td>
+
+                  <% @course_lesson_ids = [] %>
+                  <% Lesson.all.each do |lesson| %>
+                    <% if lesson.course_module.course_id == course.id %>
+                      <% @course_lesson_ids << lesson.id %>
+                    <% end %>
+                  <% end %>
+
+                  <% @all_user_lesson_completions = LessonCompletion.where(user_id: current_user.id) %>
+                  <% @completed_lessons = [] %>
+                  <% @all_user_lesson_completions.each do |lc| %>
+                    <% if @course_lesson_ids.include? lc.lesson_id %>
+                      <% @completed_lessons << Lesson.find(lc.lesson_id) %>
+                    <% end %>
+                  <% end %>
+
+                  <%= @total_course_lessons = @course_lesson_ids.count %>
+                  <%= @total_completed_lessons = @completed_lessons.count %>
+                  <%= percent = @total_completed_lessons / @total_course_lessons * 100 %>
+
+                  <div class="progress md-progress" style="height: 20px">
+                      <div class="progress-bar" role="progressbar" style="width: <%= percent %>%; height: 20px" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100"><%= percent %>%</div>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div> <!-- table div -->
       </section>
     <% end %>
 
