@@ -16,8 +16,8 @@ class LessonsController < ApplicationController
     @course = @course_module.course
     @this_is_course = @course
 
-    if LessonCompletion.where(user_id: current_user.id).exists?
-      @lesson_completion = LessonCompletion.where(user_id: current_user.id).last
+    if LessonCompletion.where(user_id: current_user.id, lesson_id: @lesson.id).exists?
+      @lesson_completion = LessonCompletion.find_by(user_id: current_user.id, lesson_id: @lesson.id)
     else
       @lesson_completion = LessonCompletion.new(user_id: current_user.id, lesson_id: @lesson.id, started: true)
       @lesson_completion.save!
