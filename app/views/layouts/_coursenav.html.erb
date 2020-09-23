@@ -1,39 +1,58 @@
 <nav id="course-nav">
   <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">×</a>
+  <% if current_user && current_user.admin %><p class="text-center">ADMIN VIEW</p><% end %>
   <h3 class="h3 text-center pb-4"><%= link_to @this_is_course.name, @this_is_course %></h3>
 
   <% @this_is_course.course_modules.order("sort").each do |mod| %>
-  <% if @course_module && mod.id == @course_module.id && !@lesson %>
-      <div class="color-red" style="margin-left: -15px; padding-left: 15px; width: 265px">
-    <% end %>
-      <p>
-        <%= link_to mod.title, mod, class: "font-weight-bold"%>
-        <% if current_user && current_user.admin && !mod.active %><i class="fas fa-eye-slash float-right"></i><% end %>
-      </p>
-    <% if @course_module && mod.id == @course_module.id && !@lesson %>
-      </div>
-    <% end %>
 
-    <% mod.lessons.order("order_in_module").each do |lesson| %>
-      <% if @lesson && lesson.id == @lesson.id %>
-        <div class="color-red" style="margin-left: -15px; padding-left: 15px; width: 265px">
-      <% end %>
-        <p class="pl-3">
-          <% if LessonCompletion.where(user_id: current_user.id, lesson_id: lesson.id, complete: true).count != 0 %>
-            <i class="far fa-check-square"></i>
-          <% else %>
-            <i class="far fa-square"></i>
-          <% end %>
-          &nbsp;&nbsp;
-          <%= link_to lesson.title, lesson  %>
-          <% if current_user && current_user.admin && !lesson.active %><i class="fas fa-eye-slash float-right"></i><% end %>
-        </p>
-      <% if @lesson && lesson.id == @lesson.id %>
+    <% if mod.active || ( current_user && current_user.admin ) %>
+
+      <% if @course_module && mod.id == @course_module.id && !@lesson %>
+        <div class="color-red" style="margin-left: -15px; padding-left: 15px; margin-top: -10px; padding-top: 10px; margin-bottom: 5px; padding-bottom: 10px; width: 265px">
+          <p class="mb-0">
+        <% else %>
+          <p class="mb-3">
+      <% end %>  <!-- begin red div -->
+
+            <%= link_to mod.title, mod, class: "font-weight-bold"%>
+            <% if current_user && current_user.admin && !mod.active %><i class="fas fa-eye-slash float-right"></i><% end %>
+          </p>
+
+      <% if @course_module && mod.id == @course_module.id && !@lesson %>
         </div>
-      <% end %>
-    <% end %>
+      <% end %> <!-- end red div -->
 
-  <% end %>
+        <% mod.lessons.order("order_in_module").each do |lesson| %>
+
+          <% if lesson.active || ( current_user && current_user.admin ) %>
+
+            <% if @lesson && lesson.id == @lesson.id %>
+            <div class="color-red" style="margin-left: -15px; padding-left: 15px; padding-right: 20px; margin-top: -10px; padding-top: 10px; margin-bottom: 5px; padding-bottom: 10px; width: 265px">
+              <p class="mb-0 pl-3">
+            <% else %>
+              <p class="mb-3 pl-3">
+            <% end %>
+
+                <% if LessonCompletion.where(user_id: current_user.id, lesson_id: lesson.id, complete: true).count != 0 %>
+                  <i class="far fa-check-square"></i>
+                <% else %>
+                  <i class="far fa-square"></i>
+                <% end %>
+                &nbsp;&nbsp;
+                <%= link_to lesson.title, lesson  %>
+                <% if current_user && current_user.admin && !lesson.active %><i class="fas fa-eye-slash float-right"></i><% end %>
+              </p>
+            <% if @lesson && lesson.id == @lesson.id %>
+              </div>
+            <% end %>
+
+            <% end %> <!-- if active or admin (lesson) -->
+
+        <% end %> <!-- each lesson do -->
+
+      <% end %> <!-- if active or admin -->
+
+  <% end %> <!-- course modules each do -->
 
   <div class="text-center pt-5 mt-5">
     <% if current_user && current_user.admin %>
