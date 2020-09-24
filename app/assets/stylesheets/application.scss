@@ -83,7 +83,14 @@ strong { font-weight: 800; }
 
 p, li { overflow-x: hidden; }
 
+#user-page h2 {
+  font-weight: bold;
+}
 
+#user-page h3 {
+  text-transform: uppercase;
+  font-weight: 200;
+}
 
 /*-----------------------------
 -------------------------------

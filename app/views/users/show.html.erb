@@ -1,4 +1,4 @@
-<main class="mb-5 mt-3">
+<main id="user-page" class="mb-5 mt-3">
 
   <% if current_user.id == @user.id %>
     <div class="text-right px-5">
@@ -34,40 +34,63 @@
     <% if @courses != [] %>
       <section id="courses">
         <h2>My Courses</h2>
-        <div class="table-responsive">
-          <table class="table">
+
+
+          <h3>In Progress</h3>
+          <div class="row pb-4">
             <% @courses.each do |course| %>
-              <tr>
-                <td><%= link_to course.name, course %></td>
-                <td>
 
-                  <% @course_lesson_ids = [] %>
-                  <% Lesson.all.each do |lesson| %>
-                    <% if lesson.course_module.course_id == course.id %>
-                      <% @course_lesson_ids << lesson.id %>
-                    <% end %>
-                  <% end %>
+              <!-- LOGIC -->
+              <% @course_lesson_ids = [] %>
+              <% Lesson.all.each do |lesson| %>
+                <% if lesson.course_module.course_id == course.id %>
+                  <% @course_lesson_ids << lesson.id %>
+                <% end %>
+              <% end %>
 
-                  <% @all_user_lesson_completions = LessonCompletion.where(user_id: current_user.id) %>
-                  <% @completed_lessons = [] %>
-                  <% @all_user_lesson_completions.each do |lc| %>
-                    <% if @course_lesson_ids.include? lc.lesson_id %>
-                      <% @completed_lessons << Lesson.find(lc.lesson_id) %>
-                    <% end %>
-                  <% end %>
+              <% @all_user_lesson_completions = LessonCompletion.where(user_id: current_user.id) %>
+              <% @completed_lessons = [] %>
+              <% @all_user_lesson_completions.each do |lc| %>
+                <% if @course_lesson_ids.include? lc.lesson_id %>
+                  <% @completed_lessons << Lesson.find(lc.lesson_id) %>
+                <% end %>
+              <% end %>
 
-                  <%= @total_course_lessons = @course_lesson_ids.count %>
-                  <%= @total_completed_lessons = @completed_lessons.count %>
-                  <%= percent = @total_completed_lessons / @total_course_lessons * 100 %>
+              <% @total_course_lessons = @course_lesson_ids.count.to_f %>
+              <% @total_completed_lessons = @completed_lessons.count.to_f %>
+              <% percent = @total_completed_lessons / @total_course_lessons * 100 %>
+              <!-- END LOGIC -->
 
-                  <div class="progress md-progress" style="height: 20px">
-                      <div class="progress-bar" role="progressbar" style="width: <%= percent %>%; height: 20px" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100"><%= percent %>%</div>
-                  </div>
-                </td>
-              </tr>
+              <div class="col-12 col-sm-9">
+                <%= link_to course.name, course, class: "font-weight-bold" %>
+              </div> <!-- COL -->
+
+              <div class="col-12 col-sm-3">
+                <div class="progress md-progress" style="height: 20px">
+                  <div class="progress-bar color-red" role="progressbar" style="width: <%= percent %>%; height: 20px" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100"><%= percent %>%</div>
+                </div> <!-- progress bar -->
+              </div> <!-- COL -->
+
             <% end %>
-          </table>
-        </div> <!-- table div -->
+          </div> <!-- row -->
+
+          <h3>Favorite Lessons</h3>
+          <div class="row pb-4">
+
+            <!-- LOGIC -->
+            <% @favorite_lessons = [] %>
+            <% LessonCompletion.where(user_id: @user.id, favorite: true).each do |lc| %>
+              <% @favorite_lessons << Lesson.find(lc.lesson_id) %>
+            <% end %>
+            <!-- END LOGIC -->
+
+            <% @favorite_lessons.each do |lesson| %>
+              <div class="col-12">
+                <%= link_to lesson.title, lesson, class: "font-weight-bold" %> (from <%= link_to lesson.course_module.course.name, lesson.course_module.course %>)
+              </div> <!-- COL -->
+            <% end %>
+          </div> <!-- row -->
+
       </section>
     <% end %>
 
