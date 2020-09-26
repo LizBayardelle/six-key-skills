@@ -58,7 +58,7 @@
 
               <% @total_course_lessons = @course_lesson_ids.count.to_f %>
               <% @total_completed_lessons = @completed_lessons.count.to_f %>
-              <% percent = @total_completed_lessons / @total_course_lessons * 100 %>
+              <% percent = (@total_completed_lessons / @total_course_lessons * 100).round %>
               <!-- END LOGIC -->
 
               <div class="col-12 col-sm-9">
