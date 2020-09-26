@@ -72,11 +72,7 @@
       <%= render 'layouts/sidenav' %>
       <%= render 'layouts/notifications' %>
 
-      <div id="everything-else" class="d-md-none">
-        <%= yield %>
-      </div>
-
-      <div id="everything-else" class="d-none d-md-block" style="<% if @this_is_course != nil %>margin-left: 250px<% end %>">
+      <div id="everything-else" style="<% if @this_is_course != nil %>margin-left: 250px<% end %>">
         <%= yield %>
       </div>
 
@@ -93,7 +89,7 @@
       $(".button-collapse").sideNav();
       // SideNav Scrollbar Initialization
       var sideNavScrollbar = document.querySelector('.custom-scrollbar');
-      var ps = new PerfectScrollbar(sideNavScrollbar);
+      var ps = new PerfectScrollbar.initialize(sideNavScrollbar);
     </script>
 
 
