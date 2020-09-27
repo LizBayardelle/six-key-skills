@@ -1,11 +1,11 @@
-<div class="text-center pt-6">
-  <div class="d-md-none btn btn-slate btn-sm text-center" style="cursor:pointer" onclick="openNav()">Open Course Navigation</div>
+<div style="position: fixed; top: 80px; cursor:pointer; z-index: 99" class="color-slate z-depth-3 px-3 py-2 text-white font-weight-bold d-md-none text-center pt-6" onclick="openNav()">
+  Open Course Outline
 </div>
 
 <main class="container px-5">
 
   <header class="text-center py-4">
-    <h1 class="mb-0 font-weight-bold display-3"><%= @lesson.title %></h1>
+    <h1 class="mb-0 mt-4 mt-md-0 font-weight-bold display-3"><%= @lesson.title %></h1>
     <% if !@lesson.active %>
       <h3 class="uppercase text-beige"><small>Currently Inactive</small></h3>
     <% end %>

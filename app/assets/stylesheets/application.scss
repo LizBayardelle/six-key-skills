@@ -99,6 +99,7 @@ p, li { overflow-x: hidden; }
 
 
 
+
 /*-----------------------------
 -------------------------------
 ----------NAVIGATION-----------
@@ -199,7 +200,15 @@ footer.course-padded {
   padding-left: 0px;
 }
 
+.non-mobile-250-margin {
+  margin-left: 0px
+}
+
 @media screen and (min-width: 768px) {
+  .non-mobile-250-margin {
+    margin-left: 250px
+  }
+
   nav#course-nav {
     width: 250px;
     padding-left: 10px;

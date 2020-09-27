@@ -72,7 +72,7 @@
       <%= render 'layouts/sidenav' %>
       <%= render 'layouts/notifications' %>
 
-      <div id="everything-else" style="<% if @this_is_course != nil %>margin-left: 250px<% end %>">
+      <div id="everything-else" class="<% if @this_is_course != nil %>non-mobile-250-margin<% end %>">
         <%= yield %>
       </div>
 
