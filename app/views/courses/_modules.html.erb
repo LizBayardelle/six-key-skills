@@ -15,6 +15,7 @@
           <div id="showAllLessons">Module (<span class="linkish">Show Lessons</span>)</div>
           <div id="hideAllLessons" class="hidden">Module (<span class="linkish">Hide Lessons</span>)</div>
         </th>
+        <th>Progress</th>
         <% if current_user && current_user.admin %>
           <th class="text-center">Active</th>
         <% end %>
@@ -47,6 +48,22 @@
                   </div> <!-- mod lessons -->
                   <% unless mod.active %><i class="fas fa-eye-slash float-right"></i><% end %>
                 </td>
+                <td style="min-width: 100px">
+                  <% @total_lessons = mod.lessons.count %>
+                  <% if @total_lessons != 0 %>
+                    <% @total_completed_lessons = 0 %>
+                    <% Lesson.where(course_module_id: mod.id).each do |lesson| %>
+                      <% if LessonCompletion.where(lesson_id: lesson.id, user_id: current_user.id, complete: true).exists? %>
+                        <% @total_completed_lessons += 1 %>
+                      <% end %>
+                    <% end %>
+                    <% percent = (@total_completed_lessons.to_f / @total_lessons.to_f * 100).round %>
+
+                    <div class="progress progress-blue md-progress">
+                      <div class="progress-bar" role="progressbar" style="width: <%= percent %>%" aria-valuenow="<%= percent %>" aria-valuemin="0" aria-valuemax="100"><%= percent %>%</div>
+                    </div> <!-- progress bar -->
+                    <% end %>
+                  </td>
                 <% if current_user && current_user.admin %>
                   <td class="text-center"><% if mod.active %><i class="fas fa-check"></i><% end %></td>
                 <% end %>
