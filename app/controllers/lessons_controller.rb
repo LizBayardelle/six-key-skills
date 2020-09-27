@@ -15,6 +15,8 @@ class LessonsController < ApplicationController
     @course_module = @lesson.course_module
     @course = @course_module.course
     @this_is_course = @course
+    @active_mod_id = @lesson.course_module.id
+
 
     if LessonCompletion.where(user_id: current_user.id, lesson_id: @lesson.id).exists?
       @lesson_completion = LessonCompletion.find_by(user_id: current_user.id, lesson_id: @lesson.id)

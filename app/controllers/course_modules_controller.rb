@@ -14,6 +14,7 @@ class CourseModulesController < ApplicationController
   def show
     @course = Course.find(@course_module.course_id)
     @this_is_course = @course
+    @active_mod_id = @course_module.id
 
     @lessons = Lesson.where(course_module_id: @course_module.id).order(:sort).all
     array = []
