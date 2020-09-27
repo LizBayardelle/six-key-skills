@@ -1,3 +1,7 @@
+<div style="position: fixed; top: 80px; cursor:pointer; z-index: 99" class="color-slate z-depth-3 px-3 py-2 text-white font-weight-bold d-md-none text-center pt-6" onclick="openNav()">
+  Open Course Outline
+</div>
+
 <nav id="course-nav">
   <a href="javascript:void(0)" class="closebtn d-md-none" onclick="closeNav()">×</a>
   <% if current_user && current_user.admin %><p class="text-center">ADMIN VIEW</p><% end %>
