@@ -133,6 +133,11 @@ ul.stepper { margin: 0px !important; padding: 0px !important}
 
 
 
+
+
+
+
+
 /*-----------------------------
 -------------------------------
 ------------BUTTONS------------
@@ -315,6 +320,20 @@ label.active { color: $color-red; }
 -------------------------------
 -------------------------------
 -----------------------------*/
+
+blockquote {
+  margin: 0;
+  border: solid thin $color-red;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+  padding: 20px 30px;
+  text-align: center;
+}
+
+blockquote p {
+  padding: 0;
+  margin: 0;
+}
+
 
 .offwhite-card {
   background-color: $color-whiteish;
