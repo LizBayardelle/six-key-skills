@@ -72,9 +72,12 @@ a:hover, .linkish:hover { color: $color-navy }
 .serif, .font-serif { font-family: 'Cormorant', serif; }
 #blog-body p, #blog-body li, #blog-body em, #blog-body strong, #blog-body a, #blog-body p * { font-family: 'Roboto', sans-serif; font-weight: 400 }
 #blog-body strong { font-weight: 800; }
-#blog-body h2 { font-weight: 800; color: $color-red;}
-#blog-body h3 { font-weight: 800; color: $color-slate; }
-#blog-body h4 { font-weight: 800; color: $color-navy; }
+
+.lesson-body h2, #blog-body h2 { font-size: 3rem; color: $color-red; font-weight: 200; }
+.lesson-body h3, #blog-body h3 { font-size: 2.3rem; color: $color-slate; font-weight: 500; }
+.lesson-body h4, #blog-body h4 { font-size: 1.8rem; color: $color-navy; font-weight: 800; }
+.lesson-body h5, #blog-body h5 { font-size: 1.2rem; color: $color-beige; font-weight: 900; text-transform: uppercase; }
+
 
 strong { font-weight: 800; }
 
@@ -389,6 +392,11 @@ blockquote p {
   margin-top: 15px;
   margin-bottom: 30px;
 }
+
+
+
+
+
 
 
 
