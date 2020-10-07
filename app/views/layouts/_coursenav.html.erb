@@ -20,7 +20,7 @@
 
             <span id="mod<%= mod.id %>showTarget" class="mr-2 linkish <% if @active_mod_id == mod.id %>hidden<% end %>">►</span>
             <span id="mod<%= mod.id %>hideTarget" class="mr-2 linkish <% unless @active_mod_id == mod.id %>hidden<% end %>">▼</span>
-            <%= link_to mod.title, mod, class: "font-weight-bold"%>
+            <%= link_to "M" + (mod.sort + 1).to_s + ": " + mod.title, mod, class: "font-weight-bold"%>
             <% if current_user && current_user.admin && !mod.active %><i class="fas fa-eye-slash float-right"></i><% end %>
           </p>
 
@@ -46,7 +46,7 @@
                     <i class="far fa-square"></i>
                   <% end %>
                   &nbsp;&nbsp;
-                  <%= link_to lesson.title, lesson  %>
+                  <%= link_to "L" + lesson.order_in_module.to_s + ": " + lesson.title, lesson  %>
                   <% if current_user && current_user.admin && !lesson.active %><i class="fas fa-eye-slash float-right"></i><% end %>
                 </p>
               <% if @lesson && lesson.id == @lesson.id %>
