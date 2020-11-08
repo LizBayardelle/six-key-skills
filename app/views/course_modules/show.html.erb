@@ -13,7 +13,7 @@
             <h3 class="uppercase text-black"><small>Currently Inactive</small></h3>
           <% end %>
           <h1 class="display-3 mb-2 wow fadeInDown text-black font-weight-bold" data-wow-delay="0.3s"><%= @course_module.title %></h1>
-          <h4 class="lesson-body mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
+          <h4 class="mb-3 mt-1 font-weight-bold wow fadeIn text-black" data-wow-delay="0.4s">
             <%= @course_module.teaser %>
           </h4>
           <a href="#lessons">
@@ -39,7 +39,7 @@
 <main class="container px-5">
 
 
-  <section id="info" class="row pt-5">
+  <section id="info" class="row lesson-body pt-5">
     <div class="col-12">
 
       <% if @course_module.goal != "" %>
