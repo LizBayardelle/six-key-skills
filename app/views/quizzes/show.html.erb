@@ -102,27 +102,27 @@
 
 
 
-<% if @answers_count != 0 %>
   <script>
     $(document).ready(function () {
       $(".form-check-input").click(function () {
         var js_results_array = [];
         var js_possible_array = [];
         <% @quiz.questions.each do |question| %>
-          <% first = question.answers.first %>
-          js_possible_array.push("<%= question.measures %>=<%= first.response_value %>")
-          $("#sitting_possible_results").val(js_possible_array);
-          <% question.answers.each do |answer| %>
-            if ( $("#q<%= question.id %>a<%= answer.id %>").is(':checked') ) {
-              js_results_array.push("<%= question.measures %>=<%= answer.response_value %>")
-              $("#sitting_results").val(js_results_array);
-            };
+          <% if question.answers.count != 0 %>
+            <% first = question.answers.first %>
+            js_possible_array.push("<%= question.measures %>=<%= first.response_value %>")
+            $("#sitting_possible_results").val(js_possible_array);
+            <% question.answers.each do |answer| %>
+              if ( $("#q<%= question.id %>a<%= answer.id %>").is(':checked') ) {
+                js_results_array.push("<%= question.measures %>=<%= answer.response_value %>")
+                $("#sitting_results").val(js_results_array);
+              };
+            <% end %>
           <% end %>
         <% end %>
       });
     });
   </script>
-<% end %>
 
 
 
