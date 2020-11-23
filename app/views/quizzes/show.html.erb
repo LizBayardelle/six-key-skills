@@ -35,6 +35,9 @@
       <%= f.hidden_field :quiz_id, value: @quiz.id %>
       <%= f.hidden_field :results %>
       <%= f.hidden_field :possible_results %>
+      <% if current_user %>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+      <% end %>
 
 
       <% n = 1 %>

@@ -7,7 +7,7 @@
     <div class="row">
 
       <% subcategory_collection = [] %>
-      <% Subcategory.all.order("name DESC").each do |subcategory| %>
+      <% Subcategory.order("name ASC").each do |subcategory| %>
         <% subcategory_collection << ["#{subcategory.name}", "#{subcategory.name}"] %>
       <% end %>
       <div class="form-group col-12">

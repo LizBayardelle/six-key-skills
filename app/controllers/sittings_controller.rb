@@ -36,7 +36,6 @@ class SittingsController < ApplicationController
   # POST /sittings.json
   def create
     @sitting = Sitting.new(sitting_params)
-    @sitting.user_id = current_user.id
 
     respond_to do |format|
       if @sitting.save
