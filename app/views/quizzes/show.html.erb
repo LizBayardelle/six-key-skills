@@ -78,9 +78,11 @@
           <% n += 1 %>
 
           <!-- ADMIN STUFF -->
-          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAnswer<%= question.id %>">
-            Add an Answer
-          </button>
+          <% if current_user && current_user.admin %>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAnswer<%= question.id %>">
+              Add an Answer
+            </button>
+          <% end %>
 
         </div> <!-- question container -->
 
