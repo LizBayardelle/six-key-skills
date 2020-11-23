@@ -1,5 +1,5 @@
 class Sitting < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :quiz
   before_save :compile_results
   before_save :compile_percentages

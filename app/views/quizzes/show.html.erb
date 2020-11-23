@@ -190,7 +190,7 @@
           </div> <!-- modal-header -->
           <div class="modal-body">
             <h4>Question: <%= question.text %></h4>
-            <% question.answers.each do |answer| %>
+            <% question.answers.order("response_value DESC").each do |answer| %>
               <p class="mb-0 pl-3">
                 <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;
                 <%= answer.text %>
