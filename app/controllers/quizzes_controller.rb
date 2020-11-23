@@ -10,6 +10,12 @@ class QuizzesController < ApplicationController
   # GET /quizzes/1
   # GET /quizzes/1.json
   def show
+    @answers_count = 0
+    @quiz.questions.each do |q|
+      q.answers.each do |a|
+        @answers_count += 1
+      end
+    end
   end
 
   # GET /quizzes/new
