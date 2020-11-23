@@ -1,0 +1,35 @@
+
+<%= simple_form_for(answer) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+
+
+
+      <div class="col-12">
+        <label>Answer Text</label><br>
+        <%= f.text_area :text, rows: 7, style: "width: 100%" %>
+      </div>
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.number_field :response_value,
+                    class: "form-control",
+                    id: "response_value",
+                    required: true,
+                    label: false %>
+          <label for="response_value">What is the integer value of this response?</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <%= f.hidden_field :question_id, value: question_id %>
+
+
+  </div>
+
+  <div class="form-actions text-center pt-4">
+    <%= f.button :submit, "Save Answer", class: "btn btn-primary" %>
+  </div>
+<% end %>

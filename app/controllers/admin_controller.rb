@@ -20,6 +20,10 @@ class AdminController < ApplicationController
     @courses = Course.all
   end
 
+  def quizzes
+    @quizzes = Quiz.all
+  end
+
   def admin_only
     unless current_user && current_user.admin
       redirect_back(fallback_location: root_path)

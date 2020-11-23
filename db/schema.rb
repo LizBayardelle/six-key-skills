@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_18_212012) do
+ActiveRecord::Schema.define(version: 2020_11_22_233524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2020_09_18_212012) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "question_id"
+    t.text "text"
+    t.integer "response_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "blog_categorizations", force: :cascade do |t|
@@ -185,6 +194,27 @@ ActiveRecord::Schema.define(version: 2020_09_18_212012) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string "measures"
+    t.text "text"
+    t.bigint "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["quiz_id"], name: "index_questions_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.text "description"
+    t.string "result"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_quizzes_on_slug", unique: true
+    t.index ["user_id"], name: "index_quizzes_on_user_id"
+  end
+
   create_table "resources", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -203,6 +233,20 @@ ActiveRecord::Schema.define(version: 2020_09_18_212012) do
     t.datetime "updated_at", null: false
     t.string "classification"
     t.index ["user_id"], name: "index_resources_on_user_id"
+  end
+
+  create_table "sittings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "quiz_id"
+    t.string "results", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "compiled_results", default: [], array: true
+    t.string "possible_results"
+    t.string "possible_compiled_results", default: [], array: true
+    t.string "compiled_percentages", default: [], array: true
+    t.index ["quiz_id"], name: "index_sittings_on_quiz_id"
+    t.index ["user_id"], name: "index_sittings_on_user_id"
   end
 
   create_table "subcategories", force: :cascade do |t|
@@ -256,6 +300,7 @@ ActiveRecord::Schema.define(version: 2020_09_18_212012) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answers", "questions"
   add_foreign_key "blogs", "resources"
   add_foreign_key "blogs", "users"
   add_foreign_key "course_modules", "courses"
@@ -265,5 +310,9 @@ ActiveRecord::Schema.define(version: 2020_09_18_212012) do
   add_foreign_key "lesson_completions", "lessons"
   add_foreign_key "lesson_completions", "users"
   add_foreign_key "lessons", "course_modules"
+  add_foreign_key "questions", "quizzes"
+  add_foreign_key "quizzes", "users"
   add_foreign_key "resources", "users"
+  add_foreign_key "sittings", "quizzes"
+  add_foreign_key "sittings", "users"
 end

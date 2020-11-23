@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :resources
   has_many :blogs
+  has_many :sittings
 
   has_many :lesson_completions
   has_many :lessons, through: :lesson_completions

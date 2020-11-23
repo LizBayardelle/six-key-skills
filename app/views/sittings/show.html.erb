@@ -1,0 +1,58 @@
+<main class="container">
+
+  <header class="my-5 text-center">
+    <p>Results for</p>
+    <h1><%= @sitting.quiz.name %></h1>
+  </header>
+
+  <section class="row">
+    <div class="col-12">
+      <canvas id="resultsChart"></canvas>
+    </div>
+  </section>
+
+  <section class="row my-5 text-center">
+    <div class="col-12">
+      <p>Your lowest score was for...</p>
+      <h2><%= @lowest_subcategory.name %></h2>
+      <h4><%= @lowest_subcategory.description %></h4>
+      <%= link_to "Learn More about #{@lowest_subcategory.name}", subcategory_path(@lowest_subcategory), class: "btn btn-red" %>
+    </div>
+  </section>
+
+</main>
+
+
+
+<script>
+  $(document).ready(function () {
+
+    var ctx = document.getElementById("resultsChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: <%= raw @array_of_labels %>,
+    datasets: [{
+    label: '% out of 100',
+    data: <%= @array_of_values %>,
+    backgroundColor: [
+    'rgba(204, 197, 185, 0.2)'
+    ],
+    borderColor: [
+    'rgba(204, 197, 185, 1)'
+    ],
+    borderWidth: 1
+    }]
+    },
+    options: {
+    scales: {
+    yAxes: [{
+    ticks: {
+    beginAtZero: true
+    }
+    }]
+    }
+    }
+    });
+  });
+</script>

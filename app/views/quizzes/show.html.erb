@@ -1,0 +1,236 @@
+<main class="container mb-5">
+
+  <section class="text-center row pt-5">
+    <div class="col-sm-5 col-xl-4">
+      <% if @quiz.image.attached? %>
+          <%= image_tag @quiz.image, class: "product-image mb-3" %>
+      <% end %>
+      <% if current_user && current_user.admin %>
+        <%= link_to 'Edit Quiz', edit_quiz_path(@quiz), class: "btn btn-sm btn-primary" %>
+        <%= link_to 'Quiz Manager', admin_quizzes_path, class: "btn btn-sm btn-primary" %>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addQuestion">
+          Add a Question
+        </button>
+      <% end %>
+    </div>
+    <div class="col-sm-6 col-xl-8 text-sm-left">
+      <h1><%= @quiz.name %></h1>
+      <% if current_user && current_user.admin %>
+        <h3>Slug: <%= @quiz.slug %></h3>
+      <% end %>
+      <p><%= @quiz.description %></p>
+
+    </div>
+  </section>
+
+
+  <hr>
+
+
+  <section>
+    <%= simple_form_for(Sitting.new) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+      <%= f.hidden_field :quiz_id, value: @quiz.id %>
+      <%= f.hidden_field :results %>
+      <%= f.hidden_field :possible_results %>
+
+
+      <% n = 1 %>
+      <% @quiz.questions.each do |question| %>
+
+        <div class="question-container py-3">
+          <!-- USER STUFF -->
+          <h4>
+            <strong>Question <%= n %>: </strong>
+              <% if current_user && current_user.admin %>
+                <%= question.measures %>
+                <span data-toggle="modal" data-target="#editQuestion<%= question.id %>">
+                  <i class="fas fa-pencil-alt"></i>
+                </span>
+                <br><em><small>
+              <% end %>
+              <%= question.text %>
+              <% if current_user && current_user.admin %>
+                </small></em>
+              <% end %>
+          </h4>
+
+          <% answers = question.answers.order("response_value DESC") %>
+          <% answers.each do |answer| %>
+            <!-- Group of Radios for Question <%= n %> -->
+            <div class="form-check">
+              <input type="radio" class="form-check-input" id="q<%= n %>a<%= answer.id %>" name="groupQuestion<%= n %>">
+              <label class="form-check-label" for="q<%= n %>a<%= answer.id %>">
+                <%= answer.text %>
+                <% if current_user && current_user.admin %>
+                  (<%= answer.response_value %>)
+                  &nbsp;
+                  <span data-toggle="modal" data-target="#editAnswer<%= answer.id %>">
+                    <i class="fas fa-pencil-alt"></i>
+                  </span>
+                <% end %>
+              </label>
+            </div>
+          <% end %>
+
+          <% n += 1 %>
+
+          <!-- ADMIN STUFF -->
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addAnswer<%= question.id %>">
+            Add an Answer
+          </button>
+
+        </div> <!-- question container -->
+
+      <% end %> <!-- end question each -->
+
+      <div class="form-actions text-center">
+        <%= f.button :submit, "Get Results", class: "btn btn-red" %>
+      </div>
+
+    <% end %> <!-- end sitting form -->
+  </section>
+
+
+</main>
+
+
+
+
+
+
+<script>
+  $(document).ready(function () {
+    $(".form-check-input").click(function () {
+      var js_results_array = [];
+      var js_possible_array = [];
+      <% @quiz.questions.each do |question| %>
+        <% first = question.answers.first %>
+        js_possible_array.push("<%= question.measures %>=<%= first.response_value %>")
+        $("#sitting_possible_results").val(js_possible_array);
+        <% question.answers.each do |answer| %>
+          if ( $("#q<%= question.id %>a<%= answer.id %>").is(':checked') ) {
+            js_results_array.push("<%= question.measures %>=<%= answer.response_value %>")
+            $("#sitting_results").val(js_results_array);
+          };
+        <% end %>
+      <% end %>
+    });
+  });
+</script>
+
+
+
+
+
+
+
+<!-- New Question Modal -->
+  <% if current_user && current_user.admin %>
+    <div class="modal fade" id="addQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addQuestionLabel">Add a New Question</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= render partial: "questions/form", locals: { question: Question.new, quiz_id: @quiz.id } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %> <!-- admin only -->
+<!-- New Question Modal -->
+
+
+
+<!-- New Question Modal -->
+  <% if current_user && current_user.admin %>
+    <% @quiz.questions.each do |question| %>
+      <div class="modal fade" id="editQuestion<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addQuestionLabel">Edit Question</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= render partial: "questions/form", locals: { question: question, quiz_id: @quiz.id } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %> <!-- admin only -->
+<!-- New Question Modal -->
+
+
+<!-- New Answer Modals -->
+  <% @quiz.questions.each do |question| %>
+    <div class="modal fade" id="addAnswer<%= question.id %>" tabindex="-1" role="dialog" aria-labelledby="addAnswer<%= question.id %>Label" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add an Answer</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div> <!-- modal-header -->
+          <div class="modal-body">
+            <h4>Question: <%= question.text %></h4>
+            <% question.answers.each do |answer| %>
+              <p class="mb-0 pl-3">
+                <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;
+                <%= answer.text %>
+                (Value: <%= answer.response_value %>)
+              </p>
+            <% end %>
+            <%= render partial: "answers/form", locals: { answer: Answer.new, question_id: question.id } %>
+          </div>  <!-- modal-body -->
+        </div> <!-- modal-header -->
+      </div> <!-- modal-content -->
+    </div> <!-- modal-dialog -->
+  </div>  <!-- modal-fade -->
+<% end %>
+<!-- New Answer Modals -->
+
+
+
+
+<!-- New Answer Modals -->
+  <% @quiz.questions.each do |question| %>
+    <% question.answers.each do |answer| %>
+      <div class="modal fade" id="editAnswer<%= answer.id %>" tabindex="-1" role="dialog" aria-labelledby="editAnswer<%= answer.id %>Label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Edit Answer</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <h4>Question: <%= question.text %></h4>
+              <% question.answers.each do |answer| %>
+                <p class="mb-0 pl-3">
+                  <i class="fas fa-long-arrow-alt-right"></i>&nbsp;&nbsp;
+                  <%= answer.text %>
+                  (Value: <%= answer.response_value %>)
+                </p>
+              <% end %>
+              <%= render partial: "answers/form", locals: { answer: answer, question_id: question.id } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  <!-- modal-fade -->
+    <% end %>
+  <% end %>
+<!-- New Answer Modals -->

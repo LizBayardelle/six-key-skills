@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :course_registrations
+  resources :sittings
   get 'home/index'
   root 'home#index'
 
@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'admin/users'
   get 'admin/resources'
   get 'admin/courses'
+  get 'admin/quizzes'
 
   resources :blogs
 
@@ -31,11 +32,16 @@ Rails.application.routes.draw do
 
   resources :lessons
   resources :course_modules
+  resources :course_registrations
   resources :courses
 
   post "lesson_completion/:id/complete_lesson" => "lesson_completion#complete_lesson", as: "complete_lesson"
   post "lesson_completion/:id/uncomplete_lesson" => "lesson_completion#uncomplete_lesson", as: "uncomplete_lesson"
   post "lesson_completion/:id/favorite_lesson" => "lesson_completion#favorite_lesson", as: "favorite_lesson"
   post "lesson_completion/:id/unfavorite_lesson" => "lesson_completion#unfavorite_lesson", as: "unfavorite_lesson"
+
+  resources :answers
+  resources :questions
+  resources :quizzes
 
 end

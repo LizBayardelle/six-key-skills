@@ -1,0 +1,45 @@
+
+<%= simple_form_for(@quiz) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <div class="row">
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :name,
+                    class: "form-control",
+                    id: "name",
+                    required: true,
+                    label: false %>
+          <label for="name">Name of Quiz</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12">
+        <div class="md-form mb-1">
+          <%= f.text_field :slug,
+                    class: "form-control",
+                    id: "slug",
+                    required: true,
+                    label: false %>
+          <label for="slug">Unique Quiz Identifier (Slug)</label>
+        </div> <!-- md-form -->
+      </div> <!-- col -->
+
+      <div class="col-12 my-4">
+        <%= f.text_area :description, rows: 7, style: "width: 100%" %>
+      </div>
+
+       <div class="col-12 mb-4 text-left">
+          <label>Upload an Image</label><br>
+          <%= f.file_field :image %>
+       </div> <!-- col-12 -->
+
+  </div>
+
+  <div class="form-actions text-center">
+    <%= f.button :submit, "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>
