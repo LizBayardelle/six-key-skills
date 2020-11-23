@@ -1,6 +1,7 @@
 class SubcategoriesController < ApplicationController
   before_action :set_subcategory, only: [:show, :edit, :update, :destroy]
   before_action :admin_only, only: [:new, :create, :edit, :update, :destroy]
+  before_action :redirects, only: [:show]
 
   # GET /subcategories
   # GET /subcategories.json
@@ -8,8 +9,23 @@ class SubcategoriesController < ApplicationController
     @subcategories = Subcategory.all
   end
 
-  # GET /subcategories/1
-  # GET /subcategories/1.json
+  def redirects
+    @subcategory = Subcategory.find(params[:id])
+    if @subcategory.name == "Motivation"
+      redirect_to page_path("motivation")
+    elsif @subcategory.name == "Mindset"
+      redirect_to page_path("mindset")
+    elsif @subcategory.name == "Resourcing"
+      redirect_to page_path("resourcing")
+    elsif @subcategory.name == "Planning"
+      redirect_to page_path("planning")
+    elsif @subcategory.name == "Time Management"
+      redirect_to page_path("time-management")
+    elsif @subcategory.name == "Discipline"
+      redirect_to page_path("discipline")
+    end
+  end
+
   def show
     @sub_blogs = []
     @subcategory.blog_ids.each do |id|
