@@ -21,7 +21,9 @@
               Do you have the resourcing skills you need?  Take the quiz to find out.
             </h4>
             <a class="btn color-slate btn-lg wow fadeIn text-white text-white-hover" href="#resourcing-skills" data-wow-delay="0.4s">Read More</a>
-            <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s">Take the Quiz</a>
+            <% if Quiz.where(slug: "Resourcing").count != 0 %>
+              <%= link_to "Test Your Resourcing", quiz_path(Quiz.where(slug: "Resourcing").first.id), class: "btn color-red btn-lg wow fadeIn text-white text-white-hover" %>
+            <% end %>
           </div> <!-- col -->
         </div> <!-- row -->
       </div> <!-- container -->

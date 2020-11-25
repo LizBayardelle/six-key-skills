@@ -18,7 +18,9 @@
               Take the free quiz to see if your motivation is helping you achieve your goals.
             </h4>
             <a class="btn color-slate btn-lg wow fadeIn text-white text-white-hover" href="#motivation-skills" data-wow-delay="0.4s">Read More</a>
-            <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s">Take the Quiz</a>
+            <% if Quiz.where(slug: "Motivation").count != 0 %>
+              <%= link_to "Test Your Motivation", quiz_path(Quiz.where(slug: "Motivation").first.id), class: "btn color-red btn-lg wow fadeIn text-white text-white-hover" %>
+            <% end %>
           </div> <!-- col -->
         </div> <!-- row -->
       </div> <!-- container -->

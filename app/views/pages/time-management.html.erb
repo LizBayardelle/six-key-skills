@@ -21,7 +21,9 @@
               Want to know how your time management skills stack up?  Take the quiz.
             </h4>
             <a class="btn color-slate btn-lg wow fadeIn text-white text-white-hover" href="#time-management-skills" data-wow-delay="0.4s">Read More</a>
-            <a class="btn color-red btn-lg wow fadeIn text-white text-white-hover" data-wow-delay="0.4s">Take the Quiz</a>
+            <% if Quiz.where(slug: "Time Management").count != 0 %>
+              <%= link_to "Test Your Time Management", quiz_path(Quiz.where(slug: "Time Management").first.id), class: "btn color-red btn-lg wow fadeIn text-white text-white-hover" %>
+            <% end %>
           </div> <!-- col -->
         </div> <!-- row -->
       </div> <!-- container -->
